@@ -1,3 +1,6 @@
+Images = new Mongo.Collection('Images');
+console.log(Images.find().count());
+
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('counter', 0);
