@@ -1,24 +1,16 @@
 if (Meteor.isServer) {
   Meteor.startup(function() {
     if (Images.find().count() == 0) {
-      Images.insert(
+      for (var i=1; i<23; i++) {
+        Images.insert(
         {
-          img_src: "candidati-pas-1.jpg",
-          img_alt: "some photo"
+          img_src: "img_"+i+".jpg",
+          img_alt: "photo_"+i
         }
-      );
-      Images.insert(
-        {
-          img_src: "candidati-pas-2.jpg",
-          img_alt: "some photo"
-        }
-      );
-      Images.insert(
-        {
-          img_src: "candidati-pas-3.jpg",
-          img_alt: "some photo"
-        }
-      );
+        );
+      }
     }
+
+    console.log('Startup Images inserted: ' + Images.find().count());
   });
 }
