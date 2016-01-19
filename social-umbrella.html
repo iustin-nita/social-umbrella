@@ -3,11 +3,20 @@
 </head>
 
 <body>
+  {{>image_add_form}}
   <h1>Welcome!</h1>
   <div class="container">
   {{> images}}
 </div>
 </body>
+
+<template name="image_add_form">
+  <form class="js-add-image">
+    <input type="text" name="img_src">
+    <input type="text" name="img_alt">
+    <button class="btn btn-success">Save</button>
+  </form>
+</template>
 
 <template name="images">
   <div class="row">
