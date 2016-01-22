@@ -4,10 +4,14 @@
 
 <body>
   {{>image_add_form}}
+  <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
-    <h1>Welcome!</h1>
-    <p>Please Log in to add an image</p>
     {{>loginButtons}}
+  </div>
+  </nav>
+  <div class="container">
+    <h1>Welcome {{username}}!</h1>
+    
     {{> images}}
   </div>
 </body>
@@ -36,7 +40,14 @@
 </template>
 
 <template name="images">
+<p>
+{{#if currentUser}}
   <button class="btn btn-succes js-show-image-form">Add image</button>
+{{else}}
+  <span>Please Log in to add an image</span>
+{{/if}}
+</p>
+
   <div class="row">
     {{#each images}}
     <div class="col-xs-6 col-sm-4 col-md-3" id="{{_id}}">

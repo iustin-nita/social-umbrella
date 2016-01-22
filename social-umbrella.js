@@ -2,6 +2,17 @@
 Images = new Mongo.Collection("images");
 
 if (Meteor.isClient) {
+
+  Template.body.helpers({
+    username: function() {
+      if (Meteor.user()) {
+        return Meteor.user().emails[0].address;
+      } else {
+        return 'anonymous';
+      }
+    }
+  });
+
  Template.images.helpers({images:
   Images.find({}, {sort:{createdOn: -1, addedOn:-1}})
 });
