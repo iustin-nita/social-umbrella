@@ -25,7 +25,10 @@ if (Meteor.isClient) {
     Images.update({_id: image_id},
       {$set: {rating: rating}}
       );
-  }
+  },
+  'click .js-show-image-form':function(event){
+    $('#image_add_form').modal('show');
+  }, 
 
 });
 

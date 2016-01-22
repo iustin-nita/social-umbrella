@@ -11,14 +11,30 @@
 </body>
 
 <template name="image_add_form">
-  <form class="js-add-image">
-    <input type="text" name="img_src">
-    <input type="text" name="img_alt">
-    <button class="btn btn-success">Save</button>
-  </form>
+
+  <div class="modal fade" id="image_add_form">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title"></div>
+        </div>
+      
+      <div class="modal-body">
+        <form class="js-add-image">
+          <input type="text" placeholder="Path to image.." name="img_src">
+          <input type="text" placeholder="Something about the image" img_alt">
+          <button class="btn btn-success">Save</button>
+        </form>
+      </div>
+      <div class="modal-footer"><button data-dismiss="modal" class="btn btn-warning">Cancel</button></div>
+      </div>
+    </div>
+  </div>
+
 </template>
 
 <template name="images">
+<button class="btn btn-succes js-show-image-form">Add image</button>
   <div class="row">
   {{#each images}}
   <div class="col-xs-6 col-sm-4 col-md-3" id="{{_id}}">
