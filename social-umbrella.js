@@ -3,10 +3,20 @@ Images = new Mongo.Collection("images");
 
 if (Meteor.isClient) {
 
+  Accounts.ui.config({
+    requestPermissions: {
+      // facebook: ['user_likes']
+    },
+    requestOfflineToken: {
+      // google: true
+    },
+    passwordSignupFields: 'USERNAME_AND_EMAIL' //  One of 'USERNAME_AND_EMAIL', 'USERNAME_AND_OPTIONAL_EMAIL', 'USERNAME_ONLY', or 'EMAIL_ONLY' (default).
+  });
+
   Template.body.helpers({
     username: function() {
       if (Meteor.user()) {
-        return Meteor.user().emails[0].address;
+        return Meteor.user().username;
       } else {
         return 'anonymous';
       }
