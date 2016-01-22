@@ -24,7 +24,15 @@ if (Meteor.isClient) {
   });
 
  Template.images.helpers({images:
-  Images.find({}, {sort:{createdOn: -1, addedOn:-1}})
+  Images.find({}, {sort:{createdOn: -1, addedOn:-1}}),
+  getUser: function(user_id) {
+    var user = Meteor.users.findOne({_id: user_id});
+    if (user) {
+      return user.username;
+    } else {
+      return 'anonymous';
+    }
+  }
 });
 
  Template.images.events({
@@ -58,11 +66,15 @@ if (Meteor.isClient) {
     var img_src, img_alt;
     img_src = event.target.img_src.value;
     img_alt = event.target.img_alt.value;
-    Images.insert({
-      img_src : img_src,
-      img_alt: img_alt,
-      addedOn: new Date()
-    });
+    if (Meteor.user()) {
+      Images.insert({
+        img_src : img_src,
+        img_alt: img_alt,
+        addedOn: new Date(),
+        addedBy: Meteor.user()._id
+      });
+    }
+    
     return false;
   }
 });
