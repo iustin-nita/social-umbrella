@@ -9,8 +9,8 @@ if (Meteor.isServer) {
         }
         );
       }
+    console.log('Startup Images inserted: ' + Images.find().count());
     }
 
-    console.log('Startup Images inserted: ' + Images.find().count());
   });
 }
