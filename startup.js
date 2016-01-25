@@ -5,7 +5,8 @@ if (Meteor.isServer) {
         Images.insert(
         {
           img_src: "img_"+i+".jpg",
-          img_alt: "photo_"+i
+          img_alt: "photo_"+i,
+          addedBy: 'just for test'
         }
         );
       }

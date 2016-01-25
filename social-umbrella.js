@@ -23,8 +23,17 @@ if (Meteor.isClient) {
     }
   });
 
- Template.images.helpers({images:
-  Images.find({}, {sort:{createdOn: -1, addedOn:-1}}),
+ Template.images.helpers({
+
+  images: function() {
+    if (Session.get("userFilter")) { //they set a filter!
+      console.log('asdasd');
+      return Images.find({addedBy: Session.get('userFilter')}, {sort:{addedOn: -1, rating:-1}});
+    } else {
+      console.log('esle');
+      return Images.find({}, {sort:{addedOn: -1, rating:-1}});
+    }
+  },
   getUser: function(user_id) {
     var user = Meteor.users.findOne({_id: user_id});
     if (user) {
@@ -58,6 +67,10 @@ if (Meteor.isClient) {
   'click .js-show-image-form':function(event){
     $('#image_add_form').modal('show');
   }, 
+
+  'click .js-set-image-filter' : function(event) {
+    Session.set("userFilter", this.addedBy);
+  }
 
 });
 
