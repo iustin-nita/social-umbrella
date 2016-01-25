@@ -2,6 +2,23 @@
 Images = new Mongo.Collection("images");
 
 if (Meteor.isClient) {
+  Session.set("imageLimit", 5);
+
+  lastScrollTop = 0;
+  $(window).scroll(function(event) {
+    
+    // test if we are near the bottom of the window
+    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+
+       // where we are
+      var scrollTop = $(this).scrollTop();
+      //test if we are going down
+      if (scrollTop > lastScrollTop) {
+       Session.set('imageLimit', Session.get('imageLimit') + 4);
+     }
+    lastScrollTop = scrollTop;
+    }
+  });
 
   Accounts.ui.config({
     requestPermissions: {
@@ -24,14 +41,11 @@ if (Meteor.isClient) {
   });
 
   Template.images.helpers({
-
     images: function() {
     if (Session.get("userFilter")) { //they set a filter!
-      console.log('asdasd');
       return Images.find({addedBy: Session.get('userFilter')}, {sort:{addedOn: -1, rating:-1}});
     } else {
-      console.log('esle');
-      return Images.find({}, {sort:{addedOn: -1, rating:-1}});
+      return Images.find({}, {sort:{addedOn: -1, rating:-1}, limit: Session.get("imageLimit")});
     }
   },
   filtering_images :function() {
