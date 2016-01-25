@@ -46,6 +46,10 @@
 {{else}}
   <span>Please Log in to add an image</span>
 {{/if}}
+
+{{#if filtering_images}}
+<p>Showing images by user {{currentUserFilter}}. <a href="#" class="js-unset-image-filter btn btn-primary">Remove filter</a></p>
+{{/if}}
 </p>
 
   <div class="row">
