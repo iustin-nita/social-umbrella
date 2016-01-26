@@ -3,7 +3,28 @@
 </head>
 
 <body>
-  {{>image_add_form}}
+  <div class="container">
+  
+  </div>
+</body>
+
+<template name="hero">
+  <br><br>
+  <h1 class="header center orange-text">Welcome {{username}}!</h1>
+  <div class="row center">
+    <h5 class="header col s12 light">Feel free to add some images</h5>
+  </div>
+  <div class="row center">
+    {{#if currentUser}}
+    <a class="btn-large waves-effect waves-light orange modal-trigger js-show-image-form" data-target="image_add_form" href="#image_add_form">Add image</a>
+    {{else}}
+    <span>Please Log in to add an image</span>
+    {{/if}}
+  </div>
+  <br><br>
+</template>
+
+<template name="navbar">
   <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
@@ -14,28 +35,7 @@
       </div>
     </nav>
   </div>
-
-  <div class="container">
-    <br><br>
-    <h1 class="header center orange-text">Welcome {{username}}!</h1>
-    <div class="row center">
-      <h5 class="header col s12 light">Feel free to add some images</h5>
-    </div>
-    <div class="row center">
-      {{#if currentUser}}
-      <a class="btn-large waves-effect waves-light orange modal-trigger js-show-image-form" data-target="image_add_form" href="#image_add_form">Add image</a>
-      {{else}}
-      <span>Please Log in to add an image</span>
-      {{/if}}
-    </div>
-    <br><br>
-  </div>
-
-  <div class="container">
-    {{> images}}
-  </div>
-
-</body>
+</template>
 
 <template name="image_add_form">
   <div id="image_add_form" class="modal">
@@ -89,7 +89,7 @@
           <p><em>Rating: {{rating}}</em></p>
         </div>
         <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+          <span class="card-title grey-text text-darken-4">{{img_alt}}<i class="material-icons right">close</i></span>
           <p class="flow-text">{{img_alt}}</p>
           <button class="js-del-image btn btn-warning">Delete image</button>
         </div>

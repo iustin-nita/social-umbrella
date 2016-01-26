@@ -1,21 +1,29 @@
-Session.set("imageLimit", 6);
+//routing
+Router.route('/', function () {
+  this.render('images');
+});
 
+  // infinite scroll
+  Session.set("imageLimit", 6);
   lastScrollTop = 0;
   $(window).scroll(function(event) {
-    
+
     // test if we are near the bottom of the window
     if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
 
        // where we are
-      var scrollTop = $(this).scrollTop();
+       var scrollTop = $(this).scrollTop();
       //test if we are going down
       if (scrollTop > lastScrollTop) {
        Session.set('imageLimit', Session.get('imageLimit') + 3);
      }
-    lastScrollTop = scrollTop;
-    }
-  });
+     lastScrollTop = scrollTop;
+   }
+ });
 
+
+
+  //accounts config
   Accounts.ui.config({
     requestPermissions: {
       // facebook: ['user_likes']
