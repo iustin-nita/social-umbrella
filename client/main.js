@@ -38,7 +38,8 @@ Session.set("imageLimit", 6);
 
   Template.body.events({
     'click .js-show-image-form':function(event){
-      $('#open_image_form').leanModal();
+      $('.js-show-image-form').leanModal();
+      console.log(event);
     }, 
   });
 

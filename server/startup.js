@@ -5,7 +5,8 @@ Meteor.startup(function() {
         {
           img_src: "img_"+i+".jpg",
           img_alt: "photo_"+i,
-          addedBy: 'just for test'
+          addedBy: 'just for test',
+          rating: 0
         }
         );
       }
