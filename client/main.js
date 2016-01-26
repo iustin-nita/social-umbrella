@@ -1,6 +1,43 @@
 //routing
+
+Router.configure({
+  layoutTemplate: 'layout'
+});
+
 Router.route('/', function () {
-  this.render('images');
+  this.render('hero', {
+    to: "main"
+  });
+});
+
+Router.route('/images', function () {
+  this.render('navbar', {
+    to: "navbar"
+  });
+  this.render('images', {
+    to: "main"
+  });
+});
+
+Router.route('/image/:_id', function () {
+  this.render('navbar', {
+    to: "navbar"
+  });
+  this.render('image', {
+    to: "main",
+    data: function() {
+      return Images.findOne({_id: this.params._id});
+    }
+  });
+});
+
+Router.route('/contact', function () {
+  this.render('navbar', {
+    to: "navbar"
+  });
+  this.render('contact', {
+    to: "main"
+  });
 });
 
   // infinite scroll

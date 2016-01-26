@@ -4,24 +4,13 @@
 
 <body>
   <div class="container">
-  
+    {{>layout}}
   </div>
 </body>
 
-<template name="hero">
-  <br><br>
-  <h1 class="header center orange-text">Welcome {{username}}!</h1>
-  <div class="row center">
-    <h5 class="header col s12 light">Feel free to add some images</h5>
-  </div>
-  <div class="row center">
-    {{#if currentUser}}
-    <a class="btn-large waves-effect waves-light orange modal-trigger js-show-image-form" data-target="image_add_form" href="#image_add_form">Add image</a>
-    {{else}}
-    <span>Please Log in to add an image</span>
-    {{/if}}
-  </div>
-  <br><br>
+<template name="layout">
+  {{> yield "navbar"}}
+  {{> yield "main"}}
 </template>
 
 <template name="navbar">
@@ -34,6 +23,60 @@
         </ul>
       </div>
     </nav>
+  </div>
+</template>
+
+<template name="hero">
+  <br><br>
+  <h1 class="header center orange-text">Welcome {{username}}!</h1>
+  <div class="row center">
+    <h5 class="header col s12 light">Feel free to add some images</h5>
+  </div>
+  <div class="row center">
+    {{#if currentUser}}
+    <a class="btn-large waves-effect waves-light orange modal-trigger js-show-image-form" data-target="image_add_form" href="#image_add_form">Add image</a>
+    {{else}}
+    <span>Please Log in to add an image</span>
+    <p>...or just view some <a href="/images">images</a></p>
+    {{/if}}
+  </div>
+  <br><br>
+</template>
+
+<template name="contact">
+  <div class="row">
+    <div class="col s12">
+      <h2 class="center">Contact us</h2>
+    </div>
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="first_name" type="text" class="validate">
+          <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 center">
+          <input type="submit" value="Send" class="btn-flat">
+        </div>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -68,35 +111,48 @@
 <!-- end image add form -->
 
 <template name="images">
-  <p>
-    {{#if filtering_images}}
-    <p>Showing images by user {{currentUserFilter}}. <a href="#" class="js-unset-image-filter btn btn-primary">Remove filter</a></p>
-    {{/if}}
-  </p>
-
-  <div class="row">
-    {{#each images}}
-
-    <div class="col s12 m6 l4" id="{{_id}}">
-      <div class="card hoverable">
-        <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" src="{{img_src}}">
-        </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">{{img_alt}}<i class="material-icons right">more_vert</i></span>
-          <p><a href="#">{{addedOn}}</a></p>
-          <p>Added by: <a href="#" class="js-set-image-filter"> {{getUser(addedBy)}}</a></p>
-          <p><em>Rating: {{rating}}</em></p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">{{img_alt}}<i class="material-icons right">close</i></span>
-          <p class="flow-text">{{img_alt}}</p>
-          <button class="js-del-image btn btn-warning">Delete image</button>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center">
+        {{#if filtering_images}}
+        <p>Showing images by user {{currentUserFilter}}. <a href="#" class="js-unset-image-filter btn btn-primary">Remove filter</a></p>
+        {{/if}}
       </div>
-    </div> <!-- / col -->
+    </div>
+    <div class="row">
+      {{#each images}}
+      <div class="col s12 m6 l4" id="{{_id}}">
+        <div class="card">
+        <a href="/image/{{_id}}">
+          <div class="card-image">
+            <img class="activator" src="{{img_src}}">
+            <span class="card-title">{{img_alt}}</span>
+          </div>
+          <div class="card-content">
+            <!-- <p><a href="#">{{addedOn}}</a></p> -->
+            <p>Added by: <a href="#" class="js-set-image-filter"> {{getUser(addedBy)}}</a></p>
+            <!-- <p><em>Rating: {{rating}}</em></p> -->
+          </div>
+          <div class="card-action">
+            <a href="#" class="js-del-image btn-flat">Delete image</a>
+          </div>
+          </a>
+        </div>
+      </div> <!-- / col -->
+      {{/each}}
+    </div> <!-- / row -->
+  </div>
+</template>
 
-    {{/each}}
-  </div> <!-- / row -->
-
+<template name="image">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center">
+        <h2>{{img_alt}}</h2>
+        <a href="/images">
+          <img src="/{{img_src}}" alt="{{img_alt}}">
+        </a>
+      </div>
+    </div>
+  </div>
 </template>
