@@ -36,6 +36,12 @@ Session.set("imageLimit", 6);
     }
   });
 
+  Template.body.events({
+    'click .js-show-image-form':function(event){
+      $('#open_image_form').leanModal();
+    }, 
+  });
+
   Template.images.helpers({
     images: function() {
     if (Session.get("userFilter")) { //they set a filter!
@@ -67,9 +73,6 @@ Session.set("imageLimit", 6);
 });
 
   Template.images.events({
-    'click .js-image':function(event){
-      $(event.target).css("width", "50px");
-    }, 
     'click .js-del-image': function (event) {
       var image_id = this._id;
       console.log(image_id);
@@ -86,9 +89,6 @@ Session.set("imageLimit", 6);
         {$set: {rating: rating}}
         );
     },
-    'click .js-show-image-form':function(event){
-      $('#image_add_form').modal('show');
-    }, 
 
     'click .js-set-image-filter' : function(event) {
       Session.set("userFilter", this.addedBy);

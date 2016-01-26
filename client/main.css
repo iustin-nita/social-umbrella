@@ -1,5 +1,5 @@
 /* CSS declarations go here */
-.thumbnail img {
+/*.thumbnail img {
   max-width: 100%;
   height: auto;
   max-height: 300px;
@@ -15,4 +15,4 @@ body {
   .col-sm-4:nth-child(3n+1) {
       clear: left;
   }
-}
+}*/
