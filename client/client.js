@@ -1,4 +1,4 @@
-Session.set("imageLimit", 5);
+Session.set("imageLimit", 6);
 
   lastScrollTop = 0;
   $(window).scroll(function(event) {
@@ -10,7 +10,7 @@ Session.set("imageLimit", 5);
       var scrollTop = $(this).scrollTop();
       //test if we are going down
       if (scrollTop > lastScrollTop) {
-       Session.set('imageLimit', Session.get('imageLimit') + 4);
+       Session.set('imageLimit', Session.get('imageLimit') + 3);
      }
     lastScrollTop = scrollTop;
     }
