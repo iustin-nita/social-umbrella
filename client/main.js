@@ -18,6 +18,15 @@ Router.route('/posts', function () {
   });
 });
 
+Router.route('/add', function () {
+  this.render('navbar', {
+    to: "navbar"
+  });
+  this.render('addPostPage', {
+    to: "main"
+  });
+});
+
 Router.route('/post/:_id', function () {
   this.render('navbar', {
     to: "navbar"
@@ -162,19 +171,24 @@ Router.route('/contact', function () {
       } else {
         return 'anonymous';
       }
+    },
+
+    active: function(){
+      
     }
   });
 
   Template.post.events({
-    'click .upvote': function(event) {
+    'click .active.upvote': function(event) {
       var post_id = this._id;
+      var user_id = Meteor.user()._id;
 
-      Posts.update({_id: post_id},
-        {$inc: {rating: +1}}
+      Posts.update( {_id: post_id},
+        {$inc: {rating: +1}, $push: {voters: user_id}}
         );
-      $('.upvote').addClass('disabled');
+
     },
-    'click .downvote': function(event) {
+    'click .active.downvote': function(event) {
       var post_id = this._id;
       console.log(post_id);
 
@@ -203,12 +217,13 @@ Router.route('/contact', function () {
   });
 
 
-  //post_add_form template
-  Template.post_add_form.events({
+  //addPostPage template
+  Template.addPostPage.events({
     'submit .js-add-post' : function(event) {
-      var source, img_alt;
+      var source, img_alt, keywords;
       source = event.target.source.value;
       img_alt = event.target.img_alt.value;
+
       if (Meteor.user()) {
         Posts.insert({
           source : source,
