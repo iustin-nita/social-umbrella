@@ -85,7 +85,7 @@ Router.route('/contact', function () {
     'click .js-show-post-form':function(event){
       $('.js-show-post-form').leanModal();
       console.log(event);
-    }, 
+    },
   });
 
   Template.posts.helpers({
@@ -145,6 +145,17 @@ Router.route('/contact', function () {
 
   });
 
+  Template.post.helpers({
+    getUser: function(user_id) {
+      var user = Meteor.users.findOne({_id: user_id});
+      if (user) {
+        return user.username;
+      } else {
+        return 'anonymous';
+      }
+    }
+  });
+
   Template.post_add_form.events({
     'submit .js-add-post' : function(event) {
       var source, img_alt;
@@ -162,4 +173,3 @@ Router.route('/contact', function () {
       return false;
     }
   });
-

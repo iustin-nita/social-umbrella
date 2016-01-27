@@ -1,5 +1,7 @@
 <head>
   <title>social-umbrella</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 
 <body>
@@ -14,12 +16,18 @@
 </template>
 
 <template name="navbar">
-  <div class="navbar-fixed">
+  <div class="navbar">
     <nav>
       <div class="nav-wrapper">
         <a href="/" class="brand-logo center">Social-umbrella</a>
         <ul class="center">
           <li>{{>loginButtons}}</li>
+          {{#if currentUser}}
+          <li>
+            <a class="modal-trigger js-show-post-form" data-target="post_add_form" href="#post_add_form">Add post</a>
+          </li>
+          {{/if}}
+          <!-- <a class="btn-large waves-effect waves-light orange modal-trigger js-show-post-form" data-target="post_add_form" href="#post_add_form">Add post</a> -->
         </ul>
       </div>
     </nav>
@@ -34,7 +42,6 @@
   </div>
   <div class="row center">
     {{#if currentUser}}
-    <a class="btn-large waves-effect waves-light orange modal-trigger js-show-post-form" data-target="post_add_form" href="#post_add_form">Add post</a>
     {{else}}
     <span>Please Log in to add an post</span>
     <p>...or just view some <a href="/posts">posts</a></p>
@@ -121,27 +128,19 @@
       </div>
     </div>
     <div class="row">
+      <ul class="collection col s12">
       {{#each posts}}
-      <div class="col s12 m6 l4" id="{{_id}}">
-        <div class="card">
-        
-          <div class="card-post">
-          <a href="/post/{{_id}}">
-            <a href="{{source}}"></a>
-            <span class="card-title">{{img_alt}}</span>
-          </a>
-          </div>
-          <div class="card-content">
-            <!-- <p><a href="#">{{addedOn}}</a></p> -->
-            <p>Added by: <a href="#" class="js-set-post-filter"> {{getUser(addedBy)}}</a></p>
-            <!-- <p><em>Rating: {{rating}}</em></p> -->
-          </div>
-          <div class="card-action">
-            <a href="#" class="js-del-post btn-flat">Delete post</a>
-          </div>
-        </div>
-      </div> <!-- / col -->
+          <li class="collection-item avatar" id="{{_id}}">
+            <a href="{{source}}"><i class="material-icons circle cyan darken-1">public</i></a>
+            <span class="title">{{description}}<a href="/post/{{_id}}"></a></span>
+            <p><a href="#" class="js-set-post-filter"> {{getUser(addedBy)}}</a> <br>
+              {{addedOn}} <br>
+              {{rating}}
+            </p>
+            <a href="/post/{{_id}}" class="secondary-content"><i class="material-icons">send</i></a>
+          </li>
       {{/each}}
+      </ul>
     </div> <!-- / row -->
   </div>
 </template>
@@ -150,10 +149,23 @@
   <div class="container">
     <div class="row">
       <div class="col s12 center">
-        <h2>{{img_alt}}</h2>
-        <a href="/posts">
-          <img src="/{{source}}" alt="{{img_alt}}">
-        </a>
+        <div class="card">
+          <div class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="{{source}}">
+          </div>
+          <div class="card-content">
+            <span class="card-title activator grey-text text-darken-4">{{description}}<i class="material-icons right">more_vert</i></span>
+            <p><a href="#" class="btn-flat js-set-post-filter"> {{getUser(addedBy)}}</a></p>
+            <p><a class="btn-flat" href="/posts">Back to posts</a></p>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title grey-text text-darken-4">{{description}}<i class="material-icons right">close</i></span>
+            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+            <p><a href="#">{{addedOn}}</a></p>
+            <p><a href="#" class="btn js-del-post">Delete this post</a></p>
+            <p><a href="#">{{rating}}</a></p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
