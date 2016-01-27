@@ -160,7 +160,6 @@ Router.route('/contact', function () {
 
   Template.post.events({
     'click .upvote': function(event) {
-      console.log('asdad');
       var post_id = this._id;
 
       Posts.update({_id: post_id},
