@@ -86,6 +86,7 @@ Router.route('/contact', function () {
       $('.js-show-post-form').leanModal();
       console.log(event);
     },
+
   });
 
   Template.posts.helpers({
@@ -119,6 +120,7 @@ Router.route('/contact', function () {
 });
 
   Template.posts.events({
+
     'click .js-del-post': function (event) {
       var post_id = this._id;
       console.log(post_id);
@@ -154,6 +156,27 @@ Router.route('/contact', function () {
         return 'anonymous';
       }
     }
+  });
+
+  Template.post.events({
+    'click .upvote': function(event) {
+      console.log('asdad');
+      var post_id = this._id;
+
+      Posts.update({_id: post_id},
+        {$inc: {rating: +1}}
+        );
+      $('.upvote').attr('disabled');
+    },
+    'click .downvote': function(event) {
+      var post_id = this._id;
+      console.log(post_id);
+
+      Posts.update({_id: post_id},
+        {$inc: {rating: -1}}
+        );
+      $('.downvote').attr('disabled');
+    },
   });
 
   Template.post_add_form.events({

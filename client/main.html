@@ -133,9 +133,14 @@
           <li class="collection-item avatar" id="{{_id}}">
             <a href="{{source}}"><i class="material-icons circle cyan darken-1">public</i></a>
             <span class="title">{{description}}<a href="/post/{{_id}}"></a></span>
-            <p><a href="#" class="js-set-post-filter"> {{getUser(addedBy)}}</a> <br>
-              {{addedOn}} <br>
-              Votes: {{rating}}
+            <p>
+              <a href="#" class="js-set-post-filter"> {{getUser(addedBy)}}</a>
+            </p>
+            <p>{{addedOn}} </p>
+            <p>Votes: {{rating}}</p>
+            <p>
+              <span class="upvote"><i class="material-icons">arrow_downward</i></span>
+              <span class="downvote"><i class="material-icons">arrow_upward</i></span>
             </p>
             <a href="/post/{{_id}}" class="secondary-content"><i class="material-icons">send</i></a>
           </li>
@@ -154,11 +159,12 @@
             <img class="activator" src="{{source}}">
           </div>
           <div class="card-content">
+            <h2>{{_id}}</h2>
             <span class="card-title activator grey-text text-darken-4">{{description}}<i class="material-icons right">more_vert</i></span>
             <br>
             <p>
-              <span class="upvote"><i class="material-icons">arrow_downward</i></span>
-              <span class="downvote"><i class="material-icons">arrow_upward</i></span>
+              <a href="#" class="upvote"><i class="material-icons">arrow_upward</i></a>
+              <a href="#" class="downvote"><i class="material-icons">arrow_downward</i></a>
             </p>
             <p><a href="#">Votes: {{rating}}</a></p>
             <p><a href="#" class="btn-flat js-set-post-filter"> {{getUser(addedBy)}}</a></p>
