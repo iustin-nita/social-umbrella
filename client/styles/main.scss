@@ -11,3 +11,12 @@ nav {
       background: linear-gradient(left, $blue, $green);
       filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='$blue', EndColorStr='$green');
 }
+
+.upvote {
+  padding: 5px;
+  cursor: pointer;
+}
+.downvote {
+  padding: 5px;
+  cursor: pointer;
+}
