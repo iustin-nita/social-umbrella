@@ -17,7 +17,7 @@
   <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
-        <a href="#!" class="brand-logo center">Social-umbrella</a>
+        <a href="/" class="brand-logo center">Social-umbrella</a>
         <ul class="center">
           <li>{{>loginButtons}}</li>
         </ul>
@@ -30,14 +30,14 @@
   <br><br>
   <h1 class="header center orange-text">Welcome {{username}}!</h1>
   <div class="row center">
-    <h5 class="header col s12 light">Feel free to add some images</h5>
+    <h5 class="header col s12 light">Feel free to add some posts</h5>
   </div>
   <div class="row center">
     {{#if currentUser}}
-    <a class="btn-large waves-effect waves-light orange modal-trigger js-show-image-form" data-target="image_add_form" href="#image_add_form">Add image</a>
+    <a class="btn-large waves-effect waves-light orange modal-trigger js-show-post-form" data-target="post_add_form" href="#post_add_form">Add post</a>
     {{else}}
-    <span>Please Log in to add an image</span>
-    <p>...or just view some <a href="/images">images</a></p>
+    <span>Please Log in to add an post</span>
+    <p>...or just view some <a href="/posts">posts</a></p>
     {{/if}}
   </div>
   <br><br>
@@ -80,24 +80,24 @@
   </div>
 </template>
 
-<template name="image_add_form">
-  <div id="image_add_form" class="modal">
+<template name="post_add_form">
+  <div id="post_add_form" class="modal">
     <div class="modal-content">
 
       <div class="row">
         <div class="col s12">
-          <h4>Add an image</h4>
-          <p>Add the url and some description of the image</p>
+          <h4>Post something</h4>
+          <p>Add the url and some description</p>
         </div>
-        <form class="col s12 js-add-image">
+        <form class="col s12 js-add-post">
           <div class="row">
             <div class="input-field col s6">
-              <input name="img_src" type="text" class="validate">
-              <label for="first_name">Image url:</label>
+              <input name="source" type="text" class="validate">
+              <label for="first_name">Url:</label>
             </div>
             <div class="input-field col s6">
               <input name="img_alt" type="text" class="validate">
-              <label for="last_name">Image short description:</label>
+              <label for="last_name">Short description:</label>
             </div>
           </div>
           <div class="col s12">
@@ -108,35 +108,37 @@
     </div>
   </div>
 </template>
-<!-- end image add form -->
+<!-- end post add form -->
 
-<template name="images">
+<template name="posts">
   <div class="container">
     <div class="row">
       <div class="col s12 center">
-        {{#if filtering_images}}
-        <p>Showing images by user {{currentUserFilter}}. <a href="#" class="js-unset-image-filter btn btn-primary">Remove filter</a></p>
+        {{#if filtering_posts}}
+          <p>Showing content by user {{currentUserFilter}}.</p>
+          <a href="#" class="js-unset-post-filter btn btn-primary">Remove filter</a>
         {{/if}}
       </div>
     </div>
     <div class="row">
-      {{#each images}}
+      {{#each posts}}
       <div class="col s12 m6 l4" id="{{_id}}">
         <div class="card">
-        <a href="/image/{{_id}}">
-          <div class="card-image">
-            <img class="activator" src="{{img_src}}">
+        
+          <div class="card-post">
+          <a href="/post/{{_id}}">
+            <a href="{{source}}"></a>
             <span class="card-title">{{img_alt}}</span>
+          </a>
           </div>
           <div class="card-content">
             <!-- <p><a href="#">{{addedOn}}</a></p> -->
-            <p>Added by: <a href="#" class="js-set-image-filter"> {{getUser(addedBy)}}</a></p>
+            <p>Added by: <a href="#" class="js-set-post-filter"> {{getUser(addedBy)}}</a></p>
             <!-- <p><em>Rating: {{rating}}</em></p> -->
           </div>
           <div class="card-action">
-            <a href="#" class="js-del-image btn-flat">Delete image</a>
+            <a href="#" class="js-del-post btn-flat">Delete post</a>
           </div>
-          </a>
         </div>
       </div> <!-- / col -->
       {{/each}}
@@ -144,13 +146,13 @@
   </div>
 </template>
 
-<template name="image">
+<template name="post">
   <div class="container">
     <div class="row">
       <div class="col s12 center">
         <h2>{{img_alt}}</h2>
-        <a href="/images">
-          <img src="/{{img_src}}" alt="{{img_alt}}">
+        <a href="/posts">
+          <img src="/{{source}}" alt="{{img_alt}}">
         </a>
       </div>
     </div>

@@ -21,5 +21,5 @@ barbatus:stars-rating
 accounts-ui
 accounts-password
 fourseven:scss
-materialize:materialize
 iron:router
+materialize:materialize

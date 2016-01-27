@@ -10,23 +10,23 @@ Router.route('/', function () {
   });
 });
 
-Router.route('/images', function () {
+Router.route('/posts', function () {
   this.render('navbar', {
     to: "navbar"
   });
-  this.render('images', {
+  this.render('posts', {
     to: "main"
   });
 });
 
-Router.route('/image/:_id', function () {
+Router.route('/post/:_id', function () {
   this.render('navbar', {
     to: "navbar"
   });
-  this.render('image', {
+  this.render('post', {
     to: "main",
     data: function() {
-      return Images.findOne({_id: this.params._id});
+      return Posts.findOne({_id: this.params._id});
     }
   });
 });
@@ -41,7 +41,7 @@ Router.route('/contact', function () {
 });
 
   // infinite scroll
-  Session.set("imageLimit", 6);
+  Session.set("postLimit", 6);
   lastScrollTop = 0;
   $(window).scroll(function(event) {
 
@@ -52,7 +52,7 @@ Router.route('/contact', function () {
        var scrollTop = $(this).scrollTop();
       //test if we are going down
       if (scrollTop > lastScrollTop) {
-       Session.set('imageLimit', Session.get('imageLimit') + 3);
+       Session.set('postLimit', Session.get('postLimit') + 3);
      }
      lastScrollTop = scrollTop;
    }
@@ -82,21 +82,21 @@ Router.route('/contact', function () {
   });
 
   Template.body.events({
-    'click .js-show-image-form':function(event){
-      $('.js-show-image-form').leanModal();
+    'click .js-show-post-form':function(event){
+      $('.js-show-post-form').leanModal();
       console.log(event);
     }, 
   });
 
-  Template.images.helpers({
-    images: function() {
+  Template.posts.helpers({
+    posts: function() {
     if (Session.get("userFilter")) { //they set a filter!
-      return Images.find({addedBy: Session.get('userFilter')}, {sort:{addedOn: -1, rating:-1}});
+      return Posts.find({addedBy: Session.get('userFilter')}, {sort:{addedOn: -1, rating:-1}});
     } else {
-      return Images.find({}, {sort:{addedOn: -1, rating:-1}, limit: Session.get("imageLimit")});
+      return Posts.find({}, {sort:{addedOn: -1, rating:-1}, limit: Session.get("postLimit")});
     }
   },
-  filtering_images :function() {
+  filtering_posts :function() {
     if (Session.get("userFilter")) { //they set a filter!
       return true;
     } else {
@@ -118,41 +118,41 @@ Router.route('/contact', function () {
   }
 });
 
-  Template.images.events({
-    'click .js-del-image': function (event) {
-      var image_id = this._id;
-      console.log(image_id);
-      $('#'+image_id).hide('slow', function() {
-        Images.remove({"_id": image_id});
+  Template.posts.events({
+    'click .js-del-post': function (event) {
+      var post_id = this._id;
+      console.log(post_id);
+      $('#'+post_id).hide('slow', function() {
+        posts.remove({"_id": post_id});
       });
     },
-    'click .js-rate-image' : function (event) {
+    'click .js-rate-post' : function (event) {
       var rating = $(event.currentTarget).data('userrating');
-      var image_id = this.id;
-      console.log(image_id);
+      var post_id = this.id;
+      console.log(post_id);
 
-      Images.update({_id: image_id},
+      posts.update({_id: post_id},
         {$set: {rating: rating}}
         );
     },
 
-    'click .js-set-image-filter' : function(event) {
+    'click .js-set-post-filter' : function(event) {
       Session.set("userFilter", this.addedBy);
     },
-    'click .js-unset-image-filter' : function(event) {
+    'click .js-unset-post-filter' : function(event) {
       Session.set("userFilter", undefined);
     }
 
   });
 
-  Template.image_add_form.events({
-    'submit .js-add-image' : function(event) {
-      var img_src, img_alt;
-      img_src = event.target.img_src.value;
+  Template.post_add_form.events({
+    'submit .js-add-post' : function(event) {
+      var source, img_alt;
+      source = event.target.source.value;
       img_alt = event.target.img_alt.value;
       if (Meteor.user()) {
-        Images.insert({
-          img_src : img_src,
+        Posts.insert({
+          source : source,
           img_alt: img_alt,
           addedOn: new Date(),
           addedBy: Meteor.user()._id

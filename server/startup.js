@@ -1,16 +1,16 @@
 Meteor.startup(function() {
-    if (Images.find().count() === 0) {
+    if (Posts.find().count() === 0) {
       for (var i=1; i<23; i++) {
-        Images.insert(
+        Posts.insert(
         {
-          img_src: "img_"+i+".jpg",
-          img_alt: "photo_"+i,
+          source: "img_"+i+".jpg",
+          description: "post description"+i,
           addedBy: 'just for test',
           rating: 0
         }
         );
       }
-    console.log('Startup Images inserted: ' + Images.find().count());
+    console.log('Startup Posts inserted: ' + Posts.find().count());
     }
 
   });
