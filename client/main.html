@@ -186,6 +186,8 @@
             {{comment.commentAuthor}} says:
               <br>
             <em>{{comment.commentBody}}</em>
+            <br>
+            <small>Posted on: <date>{{formatDate comment.commentDate}}</date></small>
           </li>
           {{/each}}
         </ul>
@@ -200,7 +202,7 @@
           <div class="row">
             <div class="input-field col s12">
               <textarea id="commentBody" class="materialize-textarea"></textarea>
-              <label for="commentBody">Commnet</label>
+              <label for="commentBody">Comment</label>
             </div>
           </div>
           <input type="submit" class="btn btn-flat js-add-comment" value="Add comment">
