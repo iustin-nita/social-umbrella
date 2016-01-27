@@ -1,5 +1,4 @@
 //routing
-
 Router.configure({
   layoutTemplate: 'layout'
 });
@@ -47,7 +46,6 @@ Router.route('/contact', function () {
 
     // test if we are near the bottom of the window
     if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-
        // where we are
        var scrollTop = $(this).scrollTop();
       //test if we are going down
@@ -56,6 +54,7 @@ Router.route('/contact', function () {
      }
      lastScrollTop = scrollTop;
    }
+
  });
 
 
@@ -71,6 +70,7 @@ Router.route('/contact', function () {
     passwordSignupFields: 'USERNAME_AND_EMAIL' //  One of 'USERNAME_AND_EMAIL', 'USERNAME_AND_OPTIONAL_EMAIL', 'USERNAME_ONLY', or 'EMAIL_ONLY' (default).
   });
 
+  //body template
   Template.body.helpers({
     username: function() {
       if (Meteor.user()) {
@@ -89,6 +89,7 @@ Router.route('/contact', function () {
 
   });
 
+  //posts template
   Template.posts.helpers({
     posts: function() {
     if (Session.get("userFilter")) { //they set a filter!
@@ -147,6 +148,7 @@ Router.route('/contact', function () {
 
   });
 
+// post template
   Template.post.helpers({
     getUser: function(user_id) {
       var user = Meteor.users.findOne({_id: user_id});
@@ -165,7 +167,7 @@ Router.route('/contact', function () {
       Posts.update({_id: post_id},
         {$inc: {rating: +1}}
         );
-      $('.upvote').attr('disabled');
+      $('.upvote').addClass('disabled');
     },
     'click .downvote': function(event) {
       var post_id = this._id;
@@ -174,10 +176,29 @@ Router.route('/contact', function () {
       Posts.update({_id: post_id},
         {$inc: {rating: -1}}
         );
-      $('.downvote').attr('disabled');
+      $('.downvote').addClass('disabled');
     },
+
+    'submit #add_comment_form': function() {
+      var commentAuthor = $('#commentAuthor').val();
+      var commentBody = $('#commentBody').val();
+      var post_id = this._id;
+      var comment = {
+        commentAuthor: commentAuthor,
+        commentBody: commentBody,
+        commentDate: new Date()
+      }
+      Posts.update(
+        {_id: post_id },
+        { $push: { comments: comment }}
+      )
+      return false;
+    }
+
   });
 
+
+  //post_add_form template
   Template.post_add_form.events({
     'submit .js-add-post' : function(event) {
       var source, img_alt;

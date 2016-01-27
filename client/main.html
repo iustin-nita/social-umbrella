@@ -27,7 +27,6 @@
             <a class="modal-trigger js-show-post-form" data-target="post_add_form" href="#post_add_form">Add post</a>
           </li>
           {{/if}}
-          <!-- <a class="btn-large waves-effect waves-light orange modal-trigger js-show-post-form" data-target="post_add_form" href="#post_add_form">Add post</a> -->
         </ul>
       </div>
     </nav>
@@ -42,6 +41,8 @@
   </div>
   <div class="row center">
     {{#if currentUser}}
+    <span>You are free to add some cool stuff</span>
+    <p>...or just view some <a href="/posts">posts</a></p>
     {{else}}
     <span>Please Log in to add an post</span>
     <p>...or just view some <a href="/posts">posts</a></p>
@@ -159,12 +160,11 @@
             <img class="activator" src="{{source}}">
           </div>
           <div class="card-content">
-            <h2>{{_id}}</h2>
             <span class="card-title activator grey-text text-darken-4">{{description}}<i class="material-icons right">more_vert</i></span>
             <br>
             <p>
-              <a href="#" class="upvote"><i class="material-icons">arrow_upward</i></a>
-              <a href="#" class="downvote"><i class="material-icons">arrow_downward</i></a>
+              <a href="#" class="btn upvote"><i class="material-icons">arrow_upward</i></a>
+              <a href="#" class="btn downvote"><i class="material-icons">arrow_downward</i></a>
             </p>
             <p><a href="#">Votes: {{rating}}</a></p>
             <p><a href="#" class="btn-flat js-set-post-filter"> {{getUser(addedBy)}}</a></p>
@@ -190,6 +190,21 @@
           {{/each}}
         </ul>
 
+        <form class="col s12" id="add_comment_form">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="commentAuthor" type="text" class="validate">
+              <label for="commentAuthor">Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="commentBody" class="materialize-textarea"></textarea>
+              <label for="commentBody">Commnet</label>
+            </div>
+          </div>
+          <input type="submit" class="btn btn-flat js-add-comment" value="Add comment">
+        </form>
       </div>
     </div>
   </div>
