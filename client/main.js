@@ -113,9 +113,9 @@ Router.route('/contact', function () {
   Template.posts.helpers({
     posts: function() {
     if (Session.get("userFilter")) { //they set a filter!
-      return Posts.find({addedBy: Session.get('userFilter')}, {sort:{addedOn: -1, rating:-1}});
+      return Posts.find({addedBy: Session.get('userFilter')}, {sort:{upvotes:-1}});
     } else {
-      return Posts.find({}, {sort:{addedOn: -1, rating:-1}, limit: Session.get("postLimit")});
+      return Posts.find({}, {sort:{upvotes: -1}, limit: Session.get("postLimit")});
     }
   },
   filtering_posts :function() {
@@ -136,6 +136,15 @@ Router.route('/contact', function () {
       return user.username;
     } else {
       return 'anonymous';
+    }
+  },
+  active: function(){
+    var userId = Meteor.userId();
+    if (!_.include(this.upvoters, userId) && !_.include(this.downvoters, userId)) {
+      return 'btn-primary active';
+    }
+    else {
+      return 'disabled';
     }
   }
 });
@@ -164,7 +173,29 @@ Router.route('/contact', function () {
     },
     'click .js-unset-post-filter' : function(event) {
       Session.set("userFilter", undefined);
-    }
+    },
+
+    'click .active.upvote': function(event) {
+      var post_id = this._id;
+      var userId = Meteor.userId();
+
+      Posts.update( {_id: post_id},
+        {$inc: {upvotes: +1}, $push: {upvoters: userId}}
+        );
+      $(this).removeClass('active');
+
+    },
+    'click .active.downvote': function(event) {
+      var post_id = this._id;
+      var userId = Meteor.userId();
+      console.log(post_id);
+
+      Posts.update({_id: post_id},
+        {$inc: {downvotes: +1}, $push: {downvoters: userId}}
+        );
+      $(this).removeClass('active');
+    },
+
 
   });
 
@@ -180,26 +211,33 @@ Router.route('/contact', function () {
     },
 
     active: function(){
-
+      var userId = Meteor.userId();
+      if (!_.include(this.upvoters, userId) && !_.include(this.downvoters, userId)) {
+        return 'btn-primary active';
+      }
+      else {
+        return 'disabled';
+      }
     }
   });
 
   Template.post.events({
     'click .active.upvote': function(event) {
       var post_id = this._id;
-      var user_id = Meteor.user()._id;
+      var userId = Meteor.userId();
 
       Posts.update( {_id: post_id},
-        {$inc: {upvotes: +1}, $push: {upvoters: user_id}}
+        {$inc: {upvotes: +1}, $push: {upvoters: userId}}
         );
 
     },
     'click .active.downvote': function(event) {
       var post_id = this._id;
+      var userId = Meteor.userId();
       console.log(post_id);
 
       Posts.update({_id: post_id},
-        {$inc: {downvotes: +1}, $push: {downvoters: user_id}}
+        {$inc: {downvotes: +1}, $push: {downvoters: userId}}
         );
     },
 

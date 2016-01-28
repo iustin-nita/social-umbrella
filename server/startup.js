@@ -5,13 +5,13 @@ Meteor.startup(function() {
       var randomDownvotes = Math.floor(Math.random() * (20 - (-3) + 1)) + (-3);
       Posts.insert(
       {
-        source: "https://www.google.ro/#safe=off&q=top+"+i,
-        description: "Some short post description"+i,
-        addedBy: 'Tiger Woods',
+        source: "https://www.google.ro/#safe=off&q=year+190+"+i,
+        description: "Search on google for year 190"+i,
+        addedBy: "Smart guy",
+        addedOn: Date.now(),
         upvotes: randomUpvotes,
         downvotes: randomDownvotes,
         upvoters: [],
-        rating: this.upvotes - this.downvotes,
         downvoters: [],
         comments: [
           {
@@ -22,7 +22,7 @@ Meteor.startup(function() {
           {
             commentAuthor: "some other guy",
             commentBody: "Don't worry, be happy!",
-            commentDate: "01.10.2015"
+            commentDate: "07.10.2015"
           },
 
         ],
