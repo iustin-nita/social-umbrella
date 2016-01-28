@@ -289,6 +289,14 @@ Router.route('/contact', function () {
 
         });
       }
+      Meteor.call('getInfo', url, function(error, result) {
+        if (error) {
+          // handle error
+        }
+        else {
+          console.log(result);
+        }
+      });
       Router.go('posts');
 
       return false;
