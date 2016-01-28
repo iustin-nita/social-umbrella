@@ -1,8 +1,8 @@
 Meteor.startup(function() {
   if (Posts.find().count() === 0) {
     for (var i=1; i<15; i++) {
-      var randomUpvotes = Math.floor(Math.random() * (20 - (-3) + 1)) + (-3);
-      var randomDownvotes = Math.floor(Math.random() * (20 - (-3) + 1)) + (-3);
+      var randomUpvotes = Math.floor(Math.random() * (20 - (0) + 1)) + (0);
+      var randomDownvotes = Math.floor(Math.random() * (20 - (0) + 1)) + (0);
       Posts.insert(
       {
         source: "https://www.google.ro/#safe=off&q=year+190+"+i,
