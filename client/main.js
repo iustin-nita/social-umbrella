@@ -289,16 +289,19 @@ Router.route('/contact', function () {
 
         });
       }
-      Meteor.call('getInfo', url, function(error, result) {
-        if (error) {
-          // handle error
-        }
-        else {
-          console.log(result);
-        }
-      });
+
       Router.go('posts');
 
       return false;
+    }
+  });
+
+  Meteor.call('getInfo', function(error, result) {
+    if (error) {
+      // handle error
+      console.log("error", error);
+    }
+    else {
+      console.log(result);
     }
   });
