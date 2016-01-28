@@ -284,6 +284,8 @@ Router.route('/contact', function () {
           description: description,
           addedOn: new Date().now,
           addedBy: author,
+          upvotes: 0,
+          downvotes: 0
 
         });
       }
