@@ -126,8 +126,14 @@
       </div>
     </div>
     <div class="row">
+      <div class="col s12">
+        {{> EasySearch.Input index=postsIndex}}
+      </div>
+    </div>
+    <div class="row">
       <ul class="collection col s12">
-      {{#each posts}}
+      <!-- {{#each posts}} -->
+      {{#EasySearch.Each index=postsIndex}}
           <li class="collection-item avatar" id="{{_id}}">
             <a href="{{source}}" target="_blank"><i class="material-icons circle cyan darken-1">public</i></a>
             <span class="title">{{description}}<a href="/post/{{_id}}"></a></span>
@@ -142,8 +148,13 @@
             </p>
             <a href="/post/{{_id}}" class="secondary-content"><i class="material-icons">send</i></a>
           </li>
-      {{/each}}
+      {{/EasySearch.Each}}
       </ul>
+      {{> EasySearch.LoadMore index=postsIndex}}
+
+      {{#EasySearch.IfNoResults index=postsIndex}}
+    <div class="no-results">No results found!</div>
+  {{/EasySearch.IfNoResults}}
     </div> <!-- / row -->
   </div>
 </template>
