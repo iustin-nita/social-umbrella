@@ -24,3 +24,4 @@ fourseven:scss
 iron:router
 materialize:materialize
 momentjs:moment
+dburles:collection-helpers

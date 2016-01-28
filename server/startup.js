@@ -1,14 +1,18 @@
 Meteor.startup(function() {
   if (Posts.find().count() === 0) {
     for (var i=1; i<23; i++) {
-      var randomRating = Math.floor(Math.random() * (20 - (-3) + 1)) + (-3);
+      var randomUpvotes = Math.floor(Math.random() * (20 - (-3) + 1)) + (-3);
+      var randomDownvotes = Math.floor(Math.random() * (20 - (-3) + 1)) + (-3);
       Posts.insert(
       {
-        source: "img_"+i+".jpg",
+        source: "https://www.google.ro/#safe=off&q=top+"+i,
         description: "Some short post description"+i,
         addedBy: 'Tiger Woods',
-        rating: randomRating,
-        voters: [],
+        upvotes: randomUpvotes,
+        downvotes: randomDownvotes,
+        upvoters: [],
+        rating: this.upvotes - this.downvotes,
+        downvoters: [],
         comments: [
           {
             commentAuthor: "some guy",

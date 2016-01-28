@@ -84,6 +84,11 @@ Router.route('/contact', function () {
     return moment(date).format('DD-MM-YYYY');
   });
 
+  Template.registerHelper('subtraction', function(a,b) {
+    var subtraction = a - b;
+    return subtraction;
+  });
+
   //body template
   Template.body.helpers({
     username: function() {
@@ -102,6 +107,7 @@ Router.route('/contact', function () {
     },
 
   });
+
 
   //posts template
   Template.posts.helpers({
@@ -184,7 +190,7 @@ Router.route('/contact', function () {
       var user_id = Meteor.user()._id;
 
       Posts.update( {_id: post_id},
-        {$inc: {rating: +1}, $push: {voters: user_id}}
+        {$inc: {upvotes: +1}, $push: {upvoters: user_id}}
         );
 
     },
@@ -193,9 +199,8 @@ Router.route('/contact', function () {
       console.log(post_id);
 
       Posts.update({_id: post_id},
-        {$inc: {rating: -1}}
+        {$inc: {downvotes: +1}, $push: {downvoters: user_id}}
         );
-      $('.downvote').addClass('disabled');
     },
 
     'submit #add_comment_form': function() {
