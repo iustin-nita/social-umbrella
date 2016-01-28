@@ -8,6 +8,7 @@ Meteor.startup(function() {
         description: "Some short post description"+i,
         addedBy: 'Tiger Woods',
         rating: randomRating,
+        voters: [],
         comments: [
           {
             commentAuthor: "some guy",

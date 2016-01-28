@@ -1,5 +1,4 @@
 //routing
-
 Router.configure({
   layoutTemplate: 'layout'
 });
@@ -15,6 +14,15 @@ Router.route('/posts', function () {
     to: "navbar"
   });
   this.render('posts', {
+    to: "main"
+  });
+});
+
+Router.route('/add', function () {
+  this.render('navbar', {
+    to: "navbar"
+  });
+  this.render('addPostPage', {
     to: "main"
   });
 });
@@ -47,7 +55,6 @@ Router.route('/contact', function () {
 
     // test if we are near the bottom of the window
     if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
-
        // where we are
        var scrollTop = $(this).scrollTop();
       //test if we are going down
@@ -56,6 +63,7 @@ Router.route('/contact', function () {
      }
      lastScrollTop = scrollTop;
    }
+
  });
 
 
@@ -71,6 +79,12 @@ Router.route('/contact', function () {
     passwordSignupFields: 'USERNAME_AND_EMAIL' //  One of 'USERNAME_AND_EMAIL', 'USERNAME_AND_OPTIONAL_EMAIL', 'USERNAME_ONLY', or 'EMAIL_ONLY' (default).
   });
 
+  //global helpers
+  Template.registerHelper('formatDate', function(date) {
+    return moment(date).format('DD-MM-YYYY');
+  });
+
+  //body template
   Template.body.helpers({
     username: function() {
       if (Meteor.user()) {
@@ -89,6 +103,7 @@ Router.route('/contact', function () {
 
   });
 
+  //posts template
   Template.posts.helpers({
     posts: function() {
     if (Session.get("userFilter")) { //they set a filter!
@@ -147,6 +162,7 @@ Router.route('/contact', function () {
 
   });
 
+// post template
   Template.post.helpers({
     getUser: function(user_id) {
       var user = Meteor.users.findOne({_id: user_id});
@@ -155,34 +171,59 @@ Router.route('/contact', function () {
       } else {
         return 'anonymous';
       }
+    },
+
+    active: function(){
+      
     }
   });
 
   Template.post.events({
-    'click .upvote': function(event) {
+    'click .active.upvote': function(event) {
       var post_id = this._id;
+      var user_id = Meteor.user()._id;
 
-      Posts.update({_id: post_id},
-        {$inc: {rating: +1}}
+      Posts.update( {_id: post_id},
+        {$inc: {rating: +1}, $push: {voters: user_id}}
         );
-      $('.upvote').attr('disabled');
+
     },
-    'click .downvote': function(event) {
+    'click .active.downvote': function(event) {
       var post_id = this._id;
       console.log(post_id);
 
       Posts.update({_id: post_id},
         {$inc: {rating: -1}}
         );
-      $('.downvote').attr('disabled');
+      $('.downvote').addClass('disabled');
     },
+
+    'submit #add_comment_form': function() {
+      var commentAuthor = $('#commentAuthor').val();
+      var commentBody = $('#commentBody').val();
+      var post_id = this._id;
+      var comment = {
+        commentAuthor: commentAuthor,
+        commentBody: commentBody,
+        commentDate: new Date()
+      }
+      Posts.update(
+        {_id: post_id },
+        { $push: { comments: comment }}
+      )
+      return false;
+    }
+
   });
 
-  Template.post_add_form.events({
+
+  //addPostPage template
+  Template.addPostPage.events({
     'submit .js-add-post' : function(event) {
-      var source, img_alt;
+      var source, img_alt, keywords;
       source = event.target.source.value;
       img_alt = event.target.img_alt.value;
+
       if (Meteor.user()) {
         Posts.insert({
           source : source,
