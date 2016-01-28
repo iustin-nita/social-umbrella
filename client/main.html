@@ -24,7 +24,7 @@
           <li>{{>loginButtons}}</li>
           {{#if currentUser}}
           <li>
-            <a class="modal-trigger js-show-post-form" href="{{pathFor 'addPostPage'}}">Add post</a>
+            <a class="modal-trigger js-show-post-form" href="/add">Add post</a>
           </li>
           {{/if}}
         </ul>
@@ -102,7 +102,7 @@
               <label for="first_name">Url:</label>
             </div>
             <div class="input-field col s6">
-              <input name="img_alt" type="text" class="validate">
+              <input name="description" type="text" class="validate">
               <label for="last_name">Short description:</label>
             </div>
           </div>
@@ -149,30 +149,31 @@
 </template>
 
 <template name="post">
-  <div class="container">
+  <div class="container" id="{{_id}}">
     <div class="row">
       <div class="col s12">
         <div class="card center">
           <div class="card-image waves-effect waves-block waves-light">
-            <p><a target="_blank" href="{{source}}">{{source}}</a></p>
+            <p><a target="_blank" href="{{source}}">{{source}} </a></p>
           </div>
           <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">{{description}}<i class="material-icons right">more_vert</i></span>
+            <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
             <br>
             <p>
               <a href="#" class="btn upvote {{active}}"><i class="material-icons">arrow_upward</i></a>
               <a href="#" class="btn downvote {{active}}"><i class="material-icons">arrow_downward</i></a>
             </p>
-            <p><a href="#">Upvotes: {{upvotes}} | Downvotes: {{downvotes}}</a></p>
+            <br>
+            <p>Upvotes: {{upvotes}} | Downvotes: {{downvotes}}</p>
             <p><a href="#" class="btn-flat js-set-post-filter"> {{getUser(addedBy)}}</a></p>
             <p><a class="btn-flat" href="/posts">Back to posts</a></p>
           </div>
           <div class="card-reveal">
             <span class="card-title grey-text text-darken-4">{{description}}<i class="material-icons right">close</i></span>
             <p>Here is some more information about this product that is only revealed once clicked on.</p>
-            <p><a href="#">{{addedOn}}</a></p>
+            <p><a href="#">{{formatDate addedOn}}</a></p>
             <p><a href="#" class="btn js-del-post">Delete this post</a></p>
-            <p><a href="#">{{rating}}</a></p>
+            <p>Upvotes: {{upvotes}} | Downvotes: {{downvotes}}</p>
           </div>
         </div>
 

@@ -1,6 +1,6 @@
 Meteor.startup(function() {
   if (Posts.find().count() === 0) {
-    for (var i=1; i<23; i++) {
+    for (var i=1; i<15; i++) {
       var randomUpvotes = Math.floor(Math.random() * (20 - (-3) + 1)) + (-3);
       var randomDownvotes = Math.floor(Math.random() * (20 - (-3) + 1)) + (-3);
       Posts.insert(

@@ -49,7 +49,7 @@ Router.route('/contact', function () {
 });
 
   // infinite scroll
-  Session.set("postLimit", 6);
+  Session.set("postLimit", 10);
   lastScrollTop = 0;
   $(window).scroll(function(event) {
 
@@ -195,8 +195,6 @@ Router.route('/contact', function () {
         );
       $(this).removeClass('active');
     },
-
-
   });
 
 // post template
@@ -222,6 +220,16 @@ Router.route('/contact', function () {
   });
 
   Template.post.events({
+
+    'click .js-del-post': function (event) {
+      var post_id = this._id;
+      $('#'+post_id).hide('slow', function() {
+        Posts.remove({"_id": post_id});
+        Router.go('/posts');
+      });
+
+    },
+
     'click .active.upvote': function(event) {
       var post_id = this._id;
       var userId = Meteor.userId();
@@ -254,6 +262,7 @@ Router.route('/contact', function () {
         {_id: post_id },
         { $push: { comments: comment }}
       );
+
       return false;
     }
 
@@ -263,18 +272,21 @@ Router.route('/contact', function () {
   //addPostPage template
   Template.addPostPage.events({
     'submit .js-add-post' : function(event) {
-      var source, img_alt, keywords;
+      var source, img_alt, author;
+      author = Meteor.userId();
       source = event.target.source.value;
-      img_alt = event.target.img_alt.value;
+      description = event.target.description.value;
 
       if (Meteor.user()) {
         Posts.insert({
           source : source,
-          img_alt: img_alt,
-          addedOn: new Date(),
-          addedBy: Meteor.user()._id
+          description: description,
+          addedOn: new Date().now,
+          addedBy: author,
+
         });
       }
+      Router.go('posts');
 
       return false;
     }
