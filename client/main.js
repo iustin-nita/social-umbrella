@@ -289,19 +289,9 @@ Router.route('/contact', function () {
 
         });
       }
-
+      
       Router.go('posts');
 
       return false;
-    }
-  });
-
-  Meteor.call('getInfo', function(error, result) {
-    if (error) {
-      // handle error
-      console.log("error", error);
-    }
-    else {
-      console.log(result);
     }
   });
