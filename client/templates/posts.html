@@ -1,0 +1,46 @@
+<template name="posts">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 center">
+        {{#if filtering_posts}}
+          <p>Showing content by user {{currentUserFilter}}.</p>
+          <a href="#" class="js-unset-post-filter btn btn-primary">Remove filter</a>
+        {{/if}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        {{> EasySearch.Input index=postsIndex}}
+        <!-- <div class="autosuggest-component">
+          {{> EasySearch.Autosuggest index=postsIndex}}
+        </div> -->
+      </div>
+    </div>
+    <div class="row">
+      <ul class="collection col s12">
+      <!-- {{#each posts}} -->
+      {{#EasySearch.Each index=postsIndex}}
+          <li class="collection-item avatar" id="{{_id}}">
+            <a class="pull-left logo-container" href="{{source}}" target="_blank"><img class="logo" src="{{image}}" alt="{{description}}"></a>
+            <span class="title"><a href="/post/{{_id}}">{{description}}</a></span>
+            <p>
+              <a href="#" class="js-set-post-filter"> {{getUser(addedBy)}}</a>
+            </p>
+            <p>{{formatDate addedOn}} </p>
+            <p>Upvotes: {{ upvotes }} | Downvotes: {{ downvotes}}</p>
+            <p>
+              <span class="btn upvote {{active}}"><i class="material-icons">arrow_upward</i></span>
+              <span class="btn downvote {{active}}"><i class="material-icons">arrow_downward</i></span>
+            </p>
+            <a href="/post/{{_id}}" class="secondary-content"><i class="material-icons">send</i></a>
+          </li>
+      {{/EasySearch.Each}}
+      </ul>
+      <!-- {{> EasySearch.LoadMore index=postsIndex}} -->
+
+      {{#EasySearch.IfNoResults index=postsIndex}}
+    <div class="no-results">No results found!</div>
+  {{/EasySearch.IfNoResults}}
+    </div> <!-- / row -->
+  </div>
+</template>
