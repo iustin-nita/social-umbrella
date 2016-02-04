@@ -277,7 +277,10 @@ Router.route('/contact', function () {
       author = Meteor.userId();
       source = event.target.source.value;
       description = event.target.description.value;
+      Meteor.call('remoteGet', source, {}, function(error, response) {
+         console.log(response);
 
+       });
       if (Meteor.user()) {
         Posts.insert({
           source : source,
@@ -289,8 +292,8 @@ Router.route('/contact', function () {
 
         });
       }
-      
-      Router.go('posts');
+
+      // Router.go('posts');
 
       return false;
     }
