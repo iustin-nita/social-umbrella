@@ -101,10 +101,6 @@
               <input name="source" type="text" class="validate">
               <label for="first_name">Url:</label>
             </div>
-            <div class="input-field col s6">
-              <input name="description" type="text" class="validate">
-              <label for="last_name">Short description:</label>
-            </div>
           </div>
           <div class="col s12">
             <input type="submit" value="Save" class="modal-action modal-close btn-flat waves-effect">
@@ -138,8 +134,8 @@
       <!-- {{#each posts}} -->
       {{#EasySearch.Each index=postsIndex}}
           <li class="collection-item avatar" id="{{_id}}">
-            <a href="{{source}}" target="_blank"><i class="material-icons circle cyan darken-1">public</i></a>
-            <span class="title">{{description}}<a href="/post/{{_id}}"></a></span>
+            <a href="{{source}}" target="_blank"><img src="{{image}}" alt="{{description}}"></a>
+            <span class="title"><a href="/post/{{_id}}">{{description}}</a></span>
             <p>
               <a href="#" class="js-set-post-filter"> {{getUser(addedBy)}}</a>
             </p>

@@ -39,17 +39,17 @@ Router.route('/post/:_id', function () {
   });
 });
 
-Router.route('/contact', function () {
-  this.render('navbar', {
-    to: "navbar"
-  });
-  this.render('contact', {
-    to: "main"
-  });
-});
+// Router.route('/contact', function () {
+//   this.render('navbar', {
+//     to: "navbar"
+//   });
+//   this.render('contact', {
+//     to: "main"
+//   });
+// });
 
   // infinite scroll
-  Session.set("postLimit", 10);
+  Session.set("postLimit", 3);
   lastScrollTop = 0;
   $(window).scroll(function(event) {
 
@@ -273,27 +273,43 @@ Router.route('/contact', function () {
   //addPostPage template
   Template.addPostPage.events({
     'submit .js-add-post' : function(event) {
-      var source, img_alt, author;
+      var source, author, image, description;
       author = Meteor.userId();
       source = event.target.source.value;
-      description = event.target.description.value;
-      Meteor.call('remoteGet', source, {}, function(error, response) {
-         console.log(response);
 
-       });
+      extractMeta(source, function (err, res) {
+        console.log(res);
+        if (res.description) {
+          description = res.description;
+        } else if (res.title) {
+          description = res.title;
+        } else {
+          description = "No description";
+        }
+
+        if (res.image) {
+          image = res.image;
+        } else {
+          image = "http://placehold.it/150x150";
+        }
+        console.log(image);
+        console.log(description);
+      });
+      console.log('after'+image);
+      console.log('after'+description);
       if (Meteor.user()) {
         Posts.insert({
           source : source,
+          image: image,
           description: description,
           addedOn: new Date().now,
           addedBy: author,
           upvotes: 0,
           downvotes: 0
-
         });
       }
 
-      // Router.go('posts');
+      Router.go('posts');
 
       return false;
     }

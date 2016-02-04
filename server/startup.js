@@ -1,6 +1,6 @@
 Meteor.startup(function() {
   if (Posts.find().count() === 0) {
-    for (var i=1; i<15; i++) {
+    for (var i=1; i<25; i++) {
       var randomUpvotes = Math.floor(Math.random() * (20 - (0) + 1)) + (0);
       var randomDownvotes = Math.floor(Math.random() * (20 - (0) + 1)) + (0);
       Posts.insert(
@@ -11,6 +11,7 @@ Meteor.startup(function() {
         addedOn: Date.now(),
         upvotes: randomUpvotes,
         downvotes: randomDownvotes,
+        image: "http://placehold.it/150x150",
         upvoters: [],
         downvoters: [],
         comments: [
