@@ -292,22 +292,23 @@ Router.route('/post/:_id', function () {
         } else {
           image = "http://placehold.it/150x150";
         }
-        console.log(image);
-        console.log(description);
+        console.log('before'+image);
+        console.log('before'+description);
+        if (Meteor.user()) {
+          Posts.insert({
+            source : source,
+            image: image,
+            description: description,
+            addedOn: new Date().now,
+            addedBy: author,
+            upvotes: 0,
+            downvotes: 0
+          });
+        }
       });
       console.log('after'+image);
       console.log('after'+description);
-      if (Meteor.user()) {
-        Posts.insert({
-          source : source,
-          image: image,
-          description: description,
-          addedOn: new Date().now,
-          addedBy: author,
-          upvotes: 0,
-          downvotes: 0
-        });
-      }
+
 
       Router.go('posts');
 

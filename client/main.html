@@ -134,7 +134,7 @@
       <!-- {{#each posts}} -->
       {{#EasySearch.Each index=postsIndex}}
           <li class="collection-item avatar" id="{{_id}}">
-            <a href="{{source}}" target="_blank"><img src="{{image}}" alt="{{description}}"></a>
+            <a class="pull-left logo-container" href="{{source}}" target="_blank"><img class="logo" src="{{image}}" alt="{{description}}"></a>
             <span class="title"><a href="/post/{{_id}}">{{description}}</a></span>
             <p>
               <a href="#" class="js-set-post-filter"> {{getUser(addedBy)}}</a>
@@ -167,7 +167,7 @@
             <p><a target="_blank" href="{{source}}">{{source}} </a></p>
           </div>
           <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+            <span class="card-title activator grey-text text-darken-4 clearfix"><img src="{{image}}" class="logo" alt=""></span>
             <br>
             <p>
               <a href="#" class="btn upvote {{active}}"><i class="material-icons">arrow_upward</i></a>
@@ -178,7 +178,7 @@
             <p><a href="#" class="btn-flat js-set-post-filter"> {{getUser(addedBy)}}</a></p>
             <p><a class="btn-flat" href="/posts">Back to posts</a></p>
           </div>
-          <div class="card-reveal">
+          <div class="card-reveal ">
             <span class="card-title grey-text text-darken-4">{{description}}<i class="material-icons right">close</i></span>
             <p>Here is some more information about this product that is only revealed once clicked on.</p>
             <p><a href="#">{{formatDate addedOn}}</a></p>
