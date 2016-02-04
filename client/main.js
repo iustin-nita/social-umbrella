@@ -62,6 +62,9 @@
   //posts template
   Template.posts.helpers({
     postsIndex: () => PostsIndex, // instanceof EasySearch.Index
+    inputAttributes: function () {
+      return { 'class': 'easy-search-input', 'placeholder': 'Start searching...' };
+    },
     posts: function() {
     if (Session.get("userFilter")) { //they set a filter!
       return Posts.find({addedBy: Session.get('userFilter')}, {sort:{upvotes:-1}});

@@ -1,8 +1,10 @@
 PostsIndex = new EasySearch.Index({
   collection: Posts,
-  limit: 20,
+  sort: function () {
+    return { upvotes: -1 };
+  },
   defaultSearchOptions: {
-    limit: 10,
+    limit: 5,
   },
   fields: ['source', 'description', 'addedBy'],
   engine: new EasySearch.Minimongo()

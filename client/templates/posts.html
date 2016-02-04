@@ -10,7 +10,7 @@
     </div>
     <div class="row">
       <div class="col s12">
-        {{> EasySearch.Input index=postsIndex}}
+        {{> EasySearch.Input index=postsIndex  attributes=inputAttributes}}
         <!-- <div class="autosuggest-component">
           {{> EasySearch.Autosuggest index=postsIndex}}
         </div> -->
@@ -35,6 +35,9 @@
             <a href="/post/{{_id}}" class="secondary-content"><i class="material-icons">send</i></a>
           </li>
       {{/EasySearch.Each}}
+      <!-- {{> EasySearch.LoadMore index=postsIndex content="Load more content" class="btn btn-primary"}} -->
+
+      {{> EasySearch.Pagination index=postsIndex maxPages=10}}
       </ul>
       <!-- {{> EasySearch.LoadMore index=postsIndex}} -->
 
