@@ -34,3 +34,5 @@ kadira:blaze-layout
 react
 react-template-helper
 accounts-facebook
+cfs:standard-packages
+cfs:gridfs
