@@ -74,7 +74,7 @@
   getUser: function(user_id) {
     var user = Meteor.users.findOne({_id: user_id});
     if (user) {
-      return user.username;
+      return user.profile.name;
     } else {
       return 'anonymous';
     }
@@ -220,6 +220,20 @@
 
   //addPostPage template
   Template.addPostPage.events({
+    'change .post-image': function(event, template) {
+       FS.Utility.eachFile(event, function(file) {
+         Images.insert(file, function (err, fileObj) {
+           if (err){
+              // handle error
+           } else {
+              // handle success depending what you need to do
+             
+             var imagesURL = "/cfs/files/images/" + fileObj._id;
+              Session.set('imageURL', imagesURL);
+           }
+         });
+      });
+    },
     'submit .js-add-post' : function(event) {
       var source, author, image, description;
       author = Meteor.userId();
@@ -235,11 +249,12 @@
           description = "No description";
         }
 
-        if (res.image) {
-          image = res.image;
-        } else {
-          image = "http://placehold.it/150x150";
-        }
+        // if (res.image) {
+        //   image = res.image;
+        // } else {
+        //   image = "http://placehold.it/150x150";
+        // }
+        image = Session.get('imageURL');
         console.log('before'+image);
         console.log('before'+description);
         if (Meteor.user()) {
@@ -261,5 +276,10 @@
       FlowRouter.go('posts');
 
       return false;
-    }
+    },
+
+
+
   });
+
+    
