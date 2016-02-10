@@ -21,7 +21,6 @@ barbatus:stars-rating
 accounts-ui
 accounts-password
 fourseven:scss
-iron:router
 materialize:materialize
 momentjs:moment
 dburles:collection-helpers
@@ -29,3 +28,6 @@ erasaur:meteor-lodash
 easy:search
 http
 acemtp:meta-extractor
+kadira:flow-router
+arillo:flow-router-helpers
+kadira:blaze-layout

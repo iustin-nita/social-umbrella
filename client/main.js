@@ -9,26 +9,13 @@
        var scrollTop = $(this).scrollTop();
       //test if we are going down
       if (scrollTop > lastScrollTop) {
-        console.log(PostsIndex);
+        // console.log(PostsIndex);
        PostsIndex.config.defaultSearchOptions.limit = PostsIndex.config.defaultSearchOptions.limit + 5;
      }
      lastScrollTop = scrollTop;
    }
 
  });
-
-
-
-  //accounts config
-  Accounts.ui.config({
-    requestPermissions: {
-      // facebook: ['user_likes']
-    },
-    requestOfflineToken: {
-      // google: true
-    },
-    passwordSignupFields: 'USERNAME_AND_EMAIL' //  One of 'USERNAME_AND_EMAIL', 'USERNAME_AND_OPTIONAL_EMAIL', 'USERNAME_ONLY', or 'EMAIL_ONLY' (default).
-  });
 
   //global helpers
   Template.registerHelper('formatDate', function(date) {
@@ -145,6 +132,14 @@
   });
 
 // post template
+  Template.post.onCreated(function() {
+    var self = this;
+    self.autorun(function() {
+      var postId = FlowRouter.getParam('postId');
+      self.subscribe('singlePost', postId);  
+    });
+  });
+  
   Template.post.helpers({
     getUser: function(user_id) {
       var user = Meteor.users.findOne({_id: user_id});
@@ -154,10 +149,13 @@
         return 'anonymous';
       }
     },
-    getpost: function() {
-      console.log('suntem in ppst');
-      return Posts.findOne({_id: Router.current().params._id});
+    post: function() {
+      var postId = FlowRouter.getParam('_id');
+      var post = Posts.findOne({_id: postId}) || {};
+      console.log(post);
+      return post;
     },
+
 
     active: function(){
       var userId = Meteor.userId();
@@ -176,7 +174,7 @@
       var post_id = this._id;
       $('#'+post_id).hide('slow', function() {
         Posts.remove({"_id": post_id});
-        Router.go('/posts');
+        FlowRouter.go('/posts');
       });
 
     },
@@ -260,7 +258,7 @@
       console.log('after'+description);
 
 
-      Router.go('posts');
+      FlowRouter.go('posts');
 
       return false;
     }

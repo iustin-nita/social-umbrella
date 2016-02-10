@@ -22,7 +22,7 @@
       {{#EasySearch.Each index=postsIndex}}
           <li class="collection-item avatar" id="{{_id}}">
             <a class="pull-left logo-container" href="{{source}}" target="_blank"><img class="logo" src="{{image}}" alt="{{description}}"></a>
-            <span class="title"><a href="/post/{{_id}}">{{description}}</a></span>
+            <span class="title"><a href="{{pathFor 'post' id=id}}">{{description}}</a></span>
             <p>
               <a href="#" class="js-set-post-filter"> {{getUser(addedBy)}}</a>
             </p>
