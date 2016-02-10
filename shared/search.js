@@ -1,7 +1,7 @@
 PostsIndex = new EasySearch.Index({
   collection: Posts,
   sort: function () {
-    return { upvotes: -1 };
+    return { likes: -1 };
   },
   defaultSearchOptions: {
     limit: 5,

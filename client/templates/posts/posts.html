@@ -27,10 +27,9 @@
               <a href="#" class="js-set-post-filter"> {{getUser(addedBy)}}</a>
             </p>
             <p>{{formatDate addedOn}} </p>
-            <p>Upvotes: {{ upvotes }} | Downvotes: {{ downvotes}}</p>
+            <p>Likes: {{ likes }}</p>
             <p>
-              <span class="btn upvote {{active}}"><i class="material-icons">arrow_upward</i></span>
-              <span class="btn downvote {{active}}"><i class="material-icons">arrow_downward</i></span>
+              <span class="btn like {{active}}"><i class="material-icons">plus_one</i></span>
             </p>
             <a href="/post/{{_id}}" class="secondary-content"><i class="material-icons">send</i></a>
           </li>

@@ -19,12 +19,9 @@ Router.route('/posts', function () {
 });
 
 Router.route('/add', function () {
-  this.render('navbar', {
-    to: "navbar"
-  });
-  this.render('addPostPage', {
-    to: "main"
-  });
+  this.layout('layout');
+  this.render('addPostPage');
+  this.render('navbar', { to: 'navbar'});
 });
 
 Router.route('/post/:_id', function () {
@@ -32,10 +29,7 @@ Router.route('/post/:_id', function () {
     to: "navbar"
   });
   this.render('post', {
-    to: "main",
-    data: function() {
-      return Posts.findOne({_id: this.params._id});
-    }
+    to: "main"
   });
 });
 

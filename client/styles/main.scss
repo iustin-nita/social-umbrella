@@ -1,15 +1,12 @@
 $blue: #47b8e5;
 $green: #67c082;
+body {
+  font-family: 'Open Sans', sans-serif;
+}
 
 nav {
-  background: $green;
-      background: -webkit-gradient(linear, left top, right bottom, from($blue), to($green));
-      background: -webkit-linear-gradient(left, $blue, $green);
-      background: -moz-linear-gradient(left, $blue, $green);
-      background: -ms-linear-gradient(left, $blue, $green);
-      background: -o-linear-gradient(left, $blue, $green);
-      background: linear-gradient(left, $blue, $green);
-      filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='$blue', EndColorStr='$green');
+      background: url("https://d3k90kvix375hb.cloudfront.net/assets/home/hero-background-gradient-dark.png"),url("home/hero-background-gradient-light.png"),-webkit-linear-gradient(top, #58488a, #5d64d0),#58488a fixed;
+    background: url("https://d3k90kvix375hb.cloudfront.net/assets/home/hero-background-gradient-dark.png"),url("home/hero-background-gradient-light.png"),linear-gradient(to bottom, #58488a, #5d64d0),#58488a fixed;
 }
 
 .upvote {
@@ -30,4 +27,11 @@ nav {
 .logo-container {
   margin-right: 15px;
   float: left;
+}
+
+.pagination {
+  margin: 15px 0;
+  li {
+    cursor: pointer;
+  }
 }

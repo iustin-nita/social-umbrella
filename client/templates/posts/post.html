@@ -1,4 +1,5 @@
 <template name="post">
+{{#with getpost}}
   <div class="container" id="{{_id}}">
     <div class="row">
       <div class="col s12">
@@ -12,11 +13,10 @@
             </div>
             <br>
             <p>
-              <a href="#" class="btn upvote {{active}}"><i class="material-icons">arrow_upward</i></a>
-              <a href="#" class="btn downvote {{active}}"><i class="material-icons">arrow_downward</i></a>
+              <a href="#" class="btn like {{active}}"><i class="material-icons">plus_one</i></a>
             </p>
             <br>
-            <p>Upvotes: {{upvotes}} | Downvotes: {{downvotes}}</p>
+            <p>Likes: {{likes}}</p>
             <p><a href="#" class="btn-flat js-set-post-filter"> {{getUser(addedBy)}}</a></p>
             <p><a class="btn-flat" href="/posts">Back to posts</a></p>
           </div>
@@ -25,7 +25,7 @@
             <p>Here is some more information about this product that is only revealed once clicked on.</p>
             <p><a href="#">{{formatDate addedOn}}</a></p>
             <p><a href="#" class="btn js-del-post">Delete this post</a></p>
-            <p>Upvotes: {{upvotes}} | Downvotes: {{downvotes}}</p>
+            <p>Likes: {{likes}}</p>
           </div>
         </div>
 
@@ -55,4 +55,5 @@
       </div>
     </div>
   </div>
+  {{/with}}
 </template>

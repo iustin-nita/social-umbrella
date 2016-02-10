@@ -67,9 +67,9 @@
     },
     posts: function() {
     if (Session.get("userFilter")) { //they set a filter!
-      return Posts.find({addedBy: Session.get('userFilter')}, {sort:{upvotes:-1}});
+      return Posts.find({addedBy: Session.get('userFilter')}, {sort:{likes:-1}});
     } else {
-      return Posts.find({}, {sort:{upvotes: -1}, limit: Session.get("postLimit")});
+      return Posts.find({}, {sort:{likes: -1}, limit: Session.get("postLimit")});
     }
   },
   filtering_posts :function() {
@@ -94,7 +94,7 @@
   },
   active: function(){
     var userId = Meteor.userId();
-    if (!_.include(this.upvoters, userId) && !_.include(this.downvoters, userId)) {
+    if (!_.include(this.upvoters, userId)) {
       return 'btn-primary active';
     }
     else {
@@ -132,25 +132,15 @@
       Session.set("userFilter", undefined);
     },
 
-    'click .active.upvote': function(event) {
+    'click .active.like': function(event) {
       var post_id = this._id;
       var userId = Meteor.userId();
 
       Posts.update( {_id: post_id},
-        {$inc: {upvotes: +1}, $push: {upvoters: userId}}
+        {$inc: {likes: +1}, $push: {upvoters: userId}}
         );
       $(this).removeClass('active');
 
-    },
-    'click .active.downvote': function(event) {
-      var post_id = this._id;
-      var userId = Meteor.userId();
-      console.log(post_id);
-
-      Posts.update({_id: post_id},
-        {$inc: {downvotes: +1}, $push: {downvoters: userId}}
-        );
-      $(this).removeClass('active');
     },
   });
 
@@ -163,6 +153,10 @@
       } else {
         return 'anonymous';
       }
+    },
+    getpost: function() {
+      console.log('suntem in ppst');
+      return Posts.findOne({_id: Router.current().params._id});
     },
 
     active: function(){
@@ -187,12 +181,12 @@
 
     },
 
-    'click .active.upvote': function(event) {
+    'click .active.like': function(event) {
       var post_id = this._id;
       var userId = Meteor.userId();
 
       Posts.update( {_id: post_id},
-        {$inc: {upvotes: +1}, $push: {upvoters: userId}}
+        {$inc: {likes: +1}, $push: {upvoters: userId}}
         );
 
     },
@@ -257,7 +251,7 @@
             description: description,
             addedOn: new Date().now,
             addedBy: author,
-            upvotes: 0,
+            likes: 0,
             downvotes: 0
           });
         }

@@ -1,19 +1,16 @@
 Meteor.startup(function() {
   if (Posts.find().count() === 0) {
     for (var i=1; i<25; i++) {
-      var randomUpvotes = Math.floor(Math.random() * (20 - (0) + 1)) + (0);
-      var randomDownvotes = Math.floor(Math.random() * (20 - (0) + 1)) + (0);
+      var randomUplikes = Math.floor(Math.random() * (20 - (0) + 1)) + (0);
       Posts.insert(
       {
         source: "https://www.google.ro/#safe=off&q=year+190+"+i,
         description: "Search on google for year 190"+i,
         addedBy: "Smart guy",
         addedOn: Date.now(),
-        upvotes: randomUpvotes,
-        downvotes: randomDownvotes,
+        likes: randomUplikes,
         image: "http://placehold.it/150x150",
-        upvoters: [],
-        downvoters: [],
+        likers: [],
         comments: [
           {
             commentAuthor: "some guy",
