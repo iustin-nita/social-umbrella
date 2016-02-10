@@ -31,3 +31,5 @@ acemtp:meta-extractor
 kadira:flow-router
 arillo:flow-router-helpers
 kadira:blaze-layout
+react
+react-template-helper
