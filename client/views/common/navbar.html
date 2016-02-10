@@ -1,0 +1,18 @@
+<template name="navbar">
+  <div class="navbar">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="/" class="brand-logo center">Social-umbrella</a>
+        <ul class="center">
+          <li>{{>loginButtons}}</li>
+          {{#if currentUser}}
+          <li>
+            <a class="modal-trigger js-show-post-form" href="/add">Add post</a>
+          </li>
+          {{/if}}
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</template>

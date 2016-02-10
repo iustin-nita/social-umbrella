@@ -1,0 +1,18 @@
+// infinite scroll
+  Session.set("postLimit", 3);
+  lastScrollTop = 0;
+  $(window).scroll(function(event) {
+
+    // test if we are near the bottom of the window
+    if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+       // where we are
+       var scrollTop = $(this).scrollTop();
+      //test if we are going down
+      if (scrollTop > lastScrollTop) {
+        // console.log(PostsIndex);
+       PostsIndex.config.defaultSearchOptions.limit = PostsIndex.config.defaultSearchOptions.limit + 5;
+     }
+     lastScrollTop = scrollTop;
+   }
+
+ });
