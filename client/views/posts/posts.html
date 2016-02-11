@@ -53,8 +53,21 @@
            
             <div class="card-action">
               <a href="{{source}}" target="_blank">Comment</a>
-              <span>Likes: {{likes}}</span>
+              <span>{{likes}} Likes</span>
+              <span>{{comments.length}} Comments</span>
             </div>
+            <ul class="collection with-header">
+              <li class="collection-header"><h6>Comments:</h6></li>
+              {{#each comment in comments}}
+              <li class="collection-item">
+                {{comment.commentAuthor}} says:
+                <br>
+                <em>{{comment.commentBody}}</em>
+                <br>
+                <small>Posted on: <date>{{formatDate comment.commentDate}}</date></small>
+              </li>
+              {{/each}}
+            </ul>
           </div>
       {{/EasySearch.Each}}
       <!-- {{> EasySearch.LoadMore index=postsIndex content="Load more content" class="btn btn-primary"}} -->

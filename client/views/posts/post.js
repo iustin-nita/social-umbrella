@@ -19,7 +19,6 @@
     post: function() {
       var postId = FlowRouter.getParam('_id');
       var post = Posts.findOne({_id: postId}) || {};
-      console.log(post);
       return post;
     },
 
@@ -49,20 +48,32 @@
     'click .active.like': function(event) {
       var post_id = this._id;
       var userId = Meteor.userId();
-
-      Posts.update( {_id: post_id},
-        {$inc: {likes: +1}, $push: {upvoters: userId}}
-        );
+      if(userId) {
+        Posts.update( {_id: post_id},
+          {$inc: {likes: +1}, $push: {likers: userId}}
+          );
+        $(this).removeClass('active').addClass('inactive');
+      } else {
+          Materialize.toast('Please log in to like posts', 4000) // 4000 is the duration of the toast
+      }
 
     },
-    'click .active.downvote': function(event) {
+    'click .inactive.like': function(event) {
       var post_id = this._id;
       var userId = Meteor.userId();
-      console.log(post_id);
-
-      Posts.update({_id: post_id},
-        {$inc: {downvotes: +1}, $push: {downvoters: userId}}
+      console.log('inactive');
+      Posts.update( {_id: post_id},
+        {$inc: {likes: -1}, $pull: {likers: userId}}
         );
+      $('.inactive.like').find('.material-icons').text('thumb_up');
+      console.log($(this));
+      $(this).removeClass('inactive disabled').addClass('active');
+    },
+    'mouseenter .inactive.like':function(event) {
+      $('.inactive.like').find('.material-icons').text('thumb_down');
+    },
+    'mouseleave .inactive.like':function(event) {
+      $('.inactive.like').find('.material-icons').text('thumb_up');
     },
 
     'submit #add_comment_form': function() {

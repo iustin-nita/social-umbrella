@@ -39,7 +39,6 @@ FlowRouter.route('/loader', {
 FlowRouter.route('/post/:_id', {
     name: 'post',
     action: function (params) {
-      console.log( params );
       BlazeLayout.render('app', {content: 'post', header:'navbar'});
     }
 });

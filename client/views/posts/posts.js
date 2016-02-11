@@ -96,11 +96,14 @@
 		'click .active.like': function(event) {
 			var post_id = this._id;
 			var userId = Meteor.userId();
-			console.log('active');
-			Posts.update( {_id: post_id},
-				{$inc: {likes: +1}, $push: {likers: userId}}
-				);
-			$(this).removeClass('active').addClass('inactive');
+			if(userId) {
+				Posts.update( {_id: post_id},
+					{$inc: {likes: +1}, $push: {likers: userId}}
+					);
+				$(this).removeClass('active').addClass('inactive');
+			} else {
+				  Materialize.toast('Please log in to like posts', 4000) // 4000 is the duration of the toast
+			}
 
 		},
 		'click .inactive.like': function(event) {
