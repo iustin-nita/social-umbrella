@@ -40,11 +40,11 @@
 	},
 	active: function(){
 		var userId = Meteor.userId();
-		if (!_.include(this.upvoters, userId)) {
+		if (!_.include(this.likers, userId)) {
 			return 'btn-primary active';
 		}
 		else {
-			return 'disabled';
+			return 'inactive disabled';
 		}
 	},
 	limit: function() {
@@ -77,31 +77,48 @@
 		'click .js-unset-post-filter' : function(event) {
 			Session.set("userFilter", undefined);
 		},
-		'click .like': function(event) {
-			event.preventDefault();
-			Meteor.call('getRandomQuote', function(err, result) {
-				if(err) {
-					console.log(err);
-				} else {
-					console.log(result.data.data[0].text);
-					// var quoteData = result.data[0];
-					// console.log(quoteData);
-					// return quoteData.text;
-					Session.set('testQuote', result.data.data[0].text);
-				}
-			});
-			console.log(Session.get('textQuote'));
-			return Session.get('textQuote');
-		},
-		// 'click .active.like': function(event) {
-		// 	var post_id = this._id;
-		// 	var userId = Meteor.userId();
-
-		// 	Posts.update( {_id: post_id},
-		// 		{$inc: {likes: +1}, $push: {upvoters: userId}}
-		// 		);
-		// 	$(this).removeClass('active');
-
+		// 'click .like': function(event) {
+		// 	event.preventDefault();
+		// 	Meteor.call('getRandomQuote', function(err, result) {
+		// 		if(err) {
+		// 			console.log(err);
+		// 		} else {
+		// 			console.log(result.data.data[0].text);
+		// 			// var quoteData = result.data[0];
+		// 			// console.log(quoteData);
+		// 			// return quoteData.text;
+		// 			Session.set('testQuote', result.data.data[0].text);
+		// 		}
+		// 	});
+		// 	console.log(Session.get('textQuote'));
+		// 	return Session.get('textQuote');
 		// },
+		'click .active.like': function(event) {
+			var post_id = this._id;
+			var userId = Meteor.userId();
+			console.log('active');
+			Posts.update( {_id: post_id},
+				{$inc: {likes: +1}, $push: {likers: userId}}
+				);
+			$(this).removeClass('active').addClass('inactive');
+
+		},
+		'click .inactive.like': function(event) {
+			var post_id = this._id;
+			var userId = Meteor.userId();
+			console.log('inactive');
+			Posts.update( {_id: post_id},
+				{$inc: {likes: -1}, $pull: {likers: userId}}
+				);
+			$('.inactive.like').find('.material-icons').text('thumb_up');
+			console.log($(this));
+			$(this).removeClass('inactive disabled').addClass('active');
+		},
+		'mouseenter .inactive.like':function(event) {
+			$('.inactive.like').find('.material-icons').text('thumb_down');
+		},
+		'mouseleave .inactive.like':function(event) {
+			$('.inactive.like').find('.material-icons').text('thumb_up');
+		}
 	});
 

@@ -19,6 +19,14 @@ nav {
   padding: 5px;
   cursor: pointer;
 }
+
+.card {
+  .like {
+    &.disabled.inactive {
+      cursor: pointer;
+    }
+  }
+}
 .downvote {
   padding: 5px;
   cursor: pointer;
