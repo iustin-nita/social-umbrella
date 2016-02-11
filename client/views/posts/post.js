@@ -76,21 +76,6 @@
       $('.inactive.like').find('.material-icons').text('thumb_up');
     },
 
-    'submit #add_comment_form': function() {
-      var commentAuthor = Meteor.user().username;
-      var commentBody = $('#commentBody').val();
-      var post_id = this._id;
-      var comment = {
-        commentAuthor: commentAuthor,
-        commentBody: commentBody,
-        commentDate: new Date()
-      };
-      Posts.update(
-        {_id: post_id },
-        { $push: { comments: comment }}
-      );
-
-      return false;
-    }
+    
 
   });

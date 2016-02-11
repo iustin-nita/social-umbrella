@@ -53,31 +53,7 @@
 			    <a href="{{source}}" target="_blank">Comment</a>
 			  </div>
 			</div>
-
-
-			<ul class="collection with-header">
-				<li class="collection-header"><h6>Comments:</h6></li>
-				{{#each comment in comments}}
-				<li class="collection-item">
-					{{comment.commentAuthor}} says:
-					<br>
-					<em>{{comment.commentBody}}</em>
-					<br>
-					<small>Posted on: <date>{{formatDate comment.commentDate}}</date></small>
-				</li>
-				{{/each}}
-			</ul>
-			<h5 class="center">You can also leave a comment!</h5>
-
-			<form class="col s6 offset-s3" id="add_comment_form">
-				<div class="row">
-					<div class="input-field col s12">
-						<textarea id="commentBody" class="materialize-textarea"></textarea>
-						<label for="commentBody">Comment</label>
-					</div>
-				</div>
-				<input type="submit" class="btn btn-flat js-add-comment" value="Add comment">
-			</form>
+			{{>comments}}
 		</div>
 	</div>
 	{{/with}}
