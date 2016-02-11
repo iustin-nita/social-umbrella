@@ -77,16 +77,31 @@
 		'click .js-unset-post-filter' : function(event) {
 			Session.set("userFilter", undefined);
 		},
-
-		'click .active.like': function(event) {
-			var post_id = this._id;
-			var userId = Meteor.userId();
-
-			Posts.update( {_id: post_id},
-				{$inc: {likes: +1}, $push: {upvoters: userId}}
-				);
-			$(this).removeClass('active');
-
+		'click .like': function(event) {
+			event.preventDefault();
+			Meteor.call('getRandomQuote', function(err, result) {
+				if(err) {
+					console.log(err);
+				} else {
+					console.log(result.data.data[0].text);
+					// var quoteData = result.data[0];
+					// console.log(quoteData);
+					// return quoteData.text;
+					Session.set('testQuote', result.data.data[0].text);
+				}
+			});
+			console.log(Session.get('textQuote'));
+			return Session.get('textQuote');
 		},
+		// 'click .active.like': function(event) {
+		// 	var post_id = this._id;
+		// 	var userId = Meteor.userId();
+
+		// 	Posts.update( {_id: post_id},
+		// 		{$inc: {likes: +1}, $push: {upvoters: userId}}
+		// 		);
+		// 	$(this).removeClass('active');
+
+		// },
 	});
 

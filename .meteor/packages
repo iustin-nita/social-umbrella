@@ -35,3 +35,5 @@ react-template-helper
 accounts-facebook
 cfs:standard-packages
 cfs:gridfs
+autopublish
+check

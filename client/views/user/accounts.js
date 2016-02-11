@@ -1,7 +1,7 @@
 //accounts config
   Accounts.ui.config({
     requestPermissions: {
-      // facebook: ['user_likes']
+      facebook: ['public_profile', 'email']
     },
     requestOfflineToken: {
       // google: true
