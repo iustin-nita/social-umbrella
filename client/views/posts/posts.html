@@ -1,4 +1,6 @@
 <template name="posts">
+{{#if Template.subscriptionsReady}}
+  {{#with posts}}
   <div class="container">
     <div class="row">
       <div class="col s12 center">
@@ -17,10 +19,9 @@
       </div>
     </div>
     <div class="row">
-      <ul class="collection col s12">
       <!-- {{#each posts}} -->
       {{#EasySearch.Each index=postsIndex}}
-          <li class="collection-item avatar" id="{{_id}}">
+<!--           <li class="collection-item avatar" id="{{_id}}">
             <a class="pull-left logo-container" href="{{source}}" target="_blank"><img class="logo" src="{{image}}" alt="{{description}}"></a>
             <span class="title"><a href="/post/{{_id}}">{{description}}</a></span>
             <p>
@@ -32,12 +33,32 @@
               <span class="btn like {{active}}"><i class="material-icons">plus_one</i></span>
             </p>
             <a href="/post/{{_id}}" class="secondary-content"><i class="material-icons">send</i></a>
-          </li>
+          </li> -->
+          <div class="card">
+           <div class="card-content">
+              <p>
+                <div class="chip">
+                  <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAASAAAAAJDkwMmFlMzY3LTc2MzEtNGQ3NS1hMWNmLWM5Yjg0NTk3YTVkMA.jpg" alt="Contact Person">
+                  Iustin Nita
+                </div>
+              </p>
+              <p>{{description}}</p>
+            </div>
+            <div class="card-image">
+            <a href="/post/{{_id}}">
+              <img src="{{image}}">
+              </a>
+              <span class="card-title"><span class="btn like {{active}}"><i class="material-icons">thumb_up</i></span></span>
+            </div>
+           
+            <div class="card-action">
+              <a href="{{source}}" target="_blank">Comment</a>
+            </div>
+          </div>
       {{/EasySearch.Each}}
       <!-- {{> EasySearch.LoadMore index=postsIndex content="Load more content" class="btn btn-primary"}} -->
 
       {{> EasySearch.Pagination index=postsIndex maxPages=10}}
-      </ul>
       <!-- {{> EasySearch.LoadMore index=postsIndex}} -->
 
       {{#EasySearch.IfNoResults index=postsIndex}}
@@ -45,4 +66,8 @@
   {{/EasySearch.IfNoResults}}
     </div> <!-- / row -->
   </div>
+  {{/with}}
+  {{else}}
+  {{>loading}}
+{{/if}}
 </template>

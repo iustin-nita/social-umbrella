@@ -1,4 +1,10 @@
-
+	Template.posts.onCreated(function() {
+	  var self = this;
+	  self.autorun(function() {
+	    self.subscribe('posts');  
+	  });
+	});
+	
 	//posts template
 	Template.posts.helpers({
 		postsIndex: () => PostsIndex, // instanceof EasySearch.Index
@@ -9,7 +15,7 @@
 		if (Session.get("userFilter")) { //they set a filter!
 			return Posts.find({addedBy: Session.get('userFilter')}, {sort:{likes:-1}});
 		} else {
-			return Posts.find({}, {sort:{likes: -1}, limit: Session.get("postLimit")});
+			return Posts.find({}, {sort:{addedOn: -1}, limit: Session.get("postLimit")});
 		}
 	},
 	filtering_posts :function() {

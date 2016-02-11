@@ -1,15 +1,23 @@
 Meteor.startup(function() {
   if (Posts.find().count() === 0) {
-    for (var i=1; i<25; i++) {
-      var randomUplikes = Math.floor(Math.random() * (20 - (0) + 1)) + (0);
+    for (var i=1; i<100; i++) {
+      var randomLikes = Math.floor(Math.random() * (20 - (0) + 1)) + (0);
+      var randomQuoteText = '';
+      var randomImageURL = "http://lorempixel.com/1920/1080";
+      var randomQuote =  Meteor.call('getRandomQuote', function(err, response) {
+        randomQuoteText = response.content.data[0].text;
+        console.log('final'+ randomQuoteText);
+        return randomQuoteText;
+      });
+      var randomImage =  "http://lorempixel.com/1920/1080/?v="+i;
       Posts.insert(
       {
-        source: "https://www.google.ro/#safe=off&q=year+190+"+i,
-        description: "Search on google for year 190"+i,
-        addedBy: "Smart guy",
+        source: "https://en.wikipedia.org/wiki/Special:Random",
+        description:  randomQuoteText,
+        addedBy: "Iustin Nita",
         addedOn: Date.now(),
-        likes: randomUplikes,
-        image: "http://placehold.it/150x150",
+        likes: randomLikes,
+        image: randomImage,
         likers: [],
         comments: [
           {
@@ -33,9 +41,3 @@ Meteor.startup(function() {
 
 });
 
-Meteor.publish('singlePost', function(id) {
-  check(id, String);
-  // Make a delay manually to show the loading state
-  Meteor._sleepForMs(1000);
-  return Posts.find({_id: id});
-});

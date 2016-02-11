@@ -52,13 +52,8 @@
       });
       console.log('after'+image);
       console.log('after'+description);
-
-
       FlowRouter.go('posts');
-
       return false;
     },
-
-
 
   });
