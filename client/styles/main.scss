@@ -1,7 +1,11 @@
-$blue: #47b8e5;
-$green: #67c082;
+@import 'variables';
+
 body {
   font-family: 'Open Sans', sans-serif;
+  color: $blue;
+}
+a {
+  color: $green;
 }
 
 nav {
@@ -16,6 +20,12 @@ nav {
 .downvote {
   padding: 5px;
   cursor: pointer;
+}
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
 }
 
 .logo {
@@ -35,9 +45,19 @@ nav {
   float: left;
 }
 
+li.collection-item {
+  overflow: hidden;
+  clear: both;
+}
+
 .pagination {
   margin: 15px 0;
   li {
     cursor: pointer;
+    color: $blue;
+    &.current {
+      font-weight: bold;
+      color: $yellow;
+    }
   }
 }

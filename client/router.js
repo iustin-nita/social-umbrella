@@ -28,6 +28,13 @@ FlowRouter.route('/add', {
   }
 });
 
+FlowRouter.route('/loader', {
+  name: 'loader',
+  action: function() {
+    BlazeLayout.render('app', {content: 'loading', header:'navbar'});
+  }
+});
+
 
 FlowRouter.route('/post/:_id', {
     name: 'post',
