@@ -1,25 +1,26 @@
 <template name="comments">
-<form class="add_comment_form">
-  <div class="row">
-    <div class="input-field col s12">
-      <textarea name="commentBody" class="materialize-textarea commentBody"></textarea>
-      <label for="commentBody">Comment</label>
+  {{#if comments}}
+  <ul class="collection comments">
+    {{#each comment in comments}}
+    <li class="collection-item">
+    <div class="chip left">
+      {{> avatar user=this shape="circle"}}
+      {{comment.commentAuthor}} 
     </div>
-  </div>
-  <input type="submit" class="btn btn-flat js-add-comment" value="Add comment">
-</form>
-{{#if comments}}
-<ul class="collection with-header">
-  <li class="collection-header"><h6>Comments:</h6></li>
-  {{#each comment in comments}}
-  <li class="collection-item">
-    {{comment.commentAuthor}} says:
-    <br>
-    <em>{{comment.commentBody}}</em>
-    <br>
-    <small>Posted on: <date>{{formatDate comment.commentDate}}</date></small>
-  </li>
-  {{/each}}
-</ul>
-{{/if}}
+      <span>{{comment.commentBody}}</span>
+      <div class="comment-meta">
+        <span><a href="#">Like</a></span>
+        <span><a href="#">Reply</a></span>
+        <span><a href="#"><i class="material-icons comment-like">thumb_up</i> {{likes}}</a></span>
+        <span class="js-to-comments">{{comments.length}} Replies</span>
+        <span> - <date>{{formatDate comment.commentDate}}</date></span>
+      </div>
+    </li>
+    {{/each}}
+  </ul>
+  {{/if}}
+  <form class="add_comment_form">
+    <input type="text" placeholder="Leave a comment..." name="commentBody" class="commentBody">
+    <input type="submit" class="btn btn-flat hidden js-add-comment" value="Add comment">
+  </form>
 </template>

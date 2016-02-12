@@ -9,7 +9,7 @@
        var scrollTop = $(this).scrollTop();
       //test if we are going down
       if (scrollTop > lastScrollTop) {
-        console.log(Session.get('postLimit'));
+        // console.log(Session.get('postLimit'));
         Session.set('postLimit', Session.get('postLimit')+3);
        // PostsIndex.config.defaultSearchOptions.limit = PostsIndex.config.defaultSearchOptions.limit + 5;
      }

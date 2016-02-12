@@ -22,6 +22,7 @@ Template.comments.events({
           {_id: post_id },
           { $push: { comments: comment }}
         );
+        event.target[0].value = '';
       } else {
         Materialize.toast('You need to log in first', 4000);
       }

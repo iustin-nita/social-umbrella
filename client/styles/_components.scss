@@ -12,3 +12,41 @@
 	width: 32px;
 	height: 32px;
 }
+
+.add_comment_form {
+	.commentBody {
+		border: none;
+		padding: 0 15px;
+		box-sizing: border-box;
+		cursor: pointer;
+	}
+}
+
+.chip {
+	.avatar {
+		width: 32px;
+		height: 32px;
+		float: left;
+		margin: 0 8px 0 -12px;
+	}
+}
+
+.comments {
+	.chip {
+		margin-right: 10px;
+	}
+	.comment-like {
+		vertical-align: middle;
+		font-size: .9rem;
+	}
+	.comment-meta {
+		font-size: .9rem;
+		>span {
+			margin-right: 5px;
+			&:hover {
+				text-decoration: underline;
+				cursor: pointer;
+			}
+		}
+	}
+}
