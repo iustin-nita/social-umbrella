@@ -12,11 +12,7 @@
 			return { 'class': 'easy-search-input', 'placeholder': 'Start searching...' };
 		},
 		posts: function() {
-		if (Session.get("userFilter")) { //they set a filter!
-			return Posts.find({addedBy: Session.get('userFilter')}, {sort:{likes:-1}});
-		} else {
-			return Posts.find({}, {sort:{addedOn: -1}, limit: Session.get("postLimit")});
-		}
+			return Posts.find({}, {sort:{addedOn: 1}, limit: Session.get("postLimit")});
 	},
 	filtering_posts :function() {
 		if (Session.get("userFilter")) { //they set a filter!

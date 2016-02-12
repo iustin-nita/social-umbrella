@@ -1,23 +1,31 @@
 <template name="addPostPage">
   <div id="addPostPage">
     <div class="row">
-        <div class="col s12">
-          <h4>Post something</h4>
-        </div>
-        <form class="col s12 js-add-post">
+      <div class="col s12">
+        <h4>Post something</h4>
+      </div>
+      <form class="col s12 js-add-post">
+        <div class="row">
+          <div class="input-field col s8">
+            <input name="description" type="text" class="validate" placeholder="Say something about it...">
+          </div>
+          </div>
           <div class="row">
-            <div class="input-field col s6">
-              <input name="source" type="text" class="validate" placeholder="Say something about it...">
+          <div class="file-field col s4 input-field">
+            <div class="btn">
+              <span>File</span>
+              <input type="file" name="postImage" class="post-image">                  </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
             </div>
-            <div class="col s6">
-            <input type="file" name="postImage" class="post-image">
-            </div>
+            
           </div>
           <div class="col s12">
-            <input type="submit" value="Save" class="modal-action modal-close btn-flat waves-effect">
+          <input type="submit" value="Post" class="modal-action modal-close btn-large waves-effect waves-light btn">
           </div>
         </form>
       </div>
     </div>
-</template>
-<!-- end post add form -->
+  </template>
+  <!-- end post add form -->

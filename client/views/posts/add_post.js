@@ -18,17 +18,7 @@
     'submit .js-add-post' : function(event) {
       var source, author, image, description;
       author = Meteor.userId();
-      source = event.target.source.value;
-
-      extractMeta(source, function (err, res) {
-        console.log(res);
-        if (res.description) {
-          description = res.description;
-        } else if (res.title) {
-          description = res.title;
-        } else {
-          description = "No description";
-        }
+      description = event.target[0].value;
 
         // if (res.image) {
         //   image = res.image;
@@ -38,9 +28,9 @@
         image = Session.get('imageURL');
         console.log('before'+image);
         console.log('before'+description);
+        console.log(event);
         if (Meteor.user()) {
           Posts.insert({
-            source : source,
             image: image,
             description: description,
             addedOn: new Date().now,
@@ -49,7 +39,6 @@
             downvotes: 0
           });
         }
-      });
       console.log('after'+image);
       console.log('after'+description);
       FlowRouter.go('posts');
