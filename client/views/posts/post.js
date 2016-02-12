@@ -22,7 +22,12 @@
       return post;
     },
 
+    isPostAuthor: function() {
+      var user = Meteor.users.findOne({_id: user_id});
+      var post = this;
+      // if (post.author ==)
 
+    },
     active: function(){
       var userId = Meteor.userId();
       if (!_.include(this.upvoters, userId) && !_.include(this.downvoters, userId)) {

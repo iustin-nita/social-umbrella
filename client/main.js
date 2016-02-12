@@ -1,7 +1,8 @@
 
 	//global helpers
 	Template.registerHelper('formatDate', function(date) {
-		return moment(date).format('DD-MM-YYYY');
+		return moment(new Date(date)).format('DD-MM-YYYY');
+		// moment(new Date(string))
 	});
 
 	Template.registerHelper('subtraction', function(a,b) {

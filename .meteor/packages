@@ -37,3 +37,4 @@ cfs:standard-packages
 cfs:gridfs
 autopublish
 check
+utilities:avatar

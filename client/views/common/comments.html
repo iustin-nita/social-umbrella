@@ -8,6 +8,7 @@
   </div>
   <input type="submit" class="btn btn-flat js-add-comment" value="Add comment">
 </form>
+{{#if comments}}
 <ul class="collection with-header">
   <li class="collection-header"><h6>Comments:</h6></li>
   {{#each comment in comments}}
@@ -20,5 +21,5 @@
   </li>
   {{/each}}
 </ul>
-
+{{/if}}
 </template>
