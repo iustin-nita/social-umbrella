@@ -5,15 +5,22 @@
 body {
   font-family: 'Open Sans', sans-serif;
   color: $blue;
+  background-image: url('images/gplay_pattern.png') repeat;
 }
 a {
   color: $green;
 }
 
 nav {
-      background: url("https://d3k90kvix375hb.cloudfront.net/assets/home/hero-background-gradient-dark.png"),url("home/hero-background-gradient-light.png"),-webkit-linear-gradient(top, #58488a, #5d64d0),#58488a fixed;
-    background: url("https://d3k90kvix375hb.cloudfront.net/assets/home/hero-background-gradient-dark.png"),url("home/hero-background-gradient-light.png"),linear-gradient(to bottom, #58488a, #5d64d0),#58488a fixed;
+  background: $blue;
+      // background: url("https://d3k90kvix375hb.cloudfront.net/assets/home/hero-background-gradient-dark.png"),url("home/hero-background-gradient-light.png"),-webkit-linear-gradient(top, #58488a, #5d64d0),#58488a fixed;
+    // background: url("https://d3k90kvix375hb.cloudfront.net/assets/home/hero-background-gradient-dark.png"),url("home/hero-background-gradient-light.png"),linear-gradient(to bottom, #58488a, #5d64d0),#58488a fixed;
 }
+
+.posts {
+  padding-top: 30px;
+}
+
 .chip {
   margin-bottom: 10px;
 }
