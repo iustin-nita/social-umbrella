@@ -1,4 +1,4 @@
-<template name="posts">
+<template name="posts_search">
 {{#if Template.subscriptionsReady}}
   {{#with posts}}
   <div class="container">
@@ -19,7 +19,21 @@
       </div>
     </div>
     <div class="row">
-      {{#each posts}}
+      <!-- {{#each posts}} -->
+      {{#EasySearch.Each index=postsIndex}}
+<!--           <li class="collection-item avatar" id="{{_id}}">
+            <a class="pull-left logo-container" href="{{source}}" target="_blank"><img class="logo" src="{{image}}" alt="{{description}}"></a>
+            <span class="title"><a href="/post/{{_id}}">{{description}}</a></span>
+            <p>
+              <a href="#" class="js-set-post-filter"> {{getUser(addedBy)}}</a>
+            </p>
+            <p>{{formatDate addedOn}} </p>
+            <p>Likes: {{ likes }}</p>
+            <p>
+              <span class="btn like {{active}}"><i class="material-icons">plus_one</i></span>
+            </p>
+            <a href="/post/{{_id}}" class="secondary-content"><i class="material-icons">send</i></a>
+          </li> -->
           <div class="card">
            <div class="card-content">
               <p>{{> avatar user=this shape="circle"}}</p>
@@ -46,7 +60,15 @@
             </div>
             {{>comments}}
           </div>
-      {{/each}}
+      {{/EasySearch.Each}}
+      <!-- {{> EasySearch.LoadMore index=postsIndex content="Load more content" class="btn btn-primary"}} -->
+
+      {{> EasySearch.Pagination index=postsIndex maxPages=10}}
+      <!-- {{> EasySearch.LoadMore index=postsIndex}} -->
+
+      {{#EasySearch.IfNoResults index=postsIndex}}
+    <div class="no-results">No results found!</div>
+  {{/EasySearch.IfNoResults}}
     </div> <!-- / row -->
   </div>
   {{/with}}
