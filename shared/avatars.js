@@ -1,4 +1,5 @@
   Avatar.setOptions({
   	fallbackType: "initials",
-  	gravatarDefault: "monsterid"
+  	gravatarDefault: "monsterid",
+  	defaultImageUrl: 'images/user2.png'
 });

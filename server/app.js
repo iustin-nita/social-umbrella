@@ -5,3 +5,8 @@ Meteor.publish('singlePost', function(id) {
   Meteor._sleepForMs(1000);
   return Posts.find({_id: id});
 });
+
+  Avatar.setOptions({
+  	fallbackType: "initials",
+  	gravatarDefault: "monsterid"
+});
