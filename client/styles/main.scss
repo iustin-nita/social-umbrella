@@ -5,7 +5,10 @@
 body {
   font-family: 'Open Sans', sans-serif;
   color: $blue;
-  background-image: url('images/gplay_pattern.png') repeat;
+  background: url('/images/gplaypattern.png') repeat;
+}
+.brand-logo {
+  font-family: "Pacifico", sans-serif;
 }
 a {
   color: $green;
@@ -43,6 +46,10 @@ nav {
 
 .loader {
   position: fixed;
+  width: 32px;
+  height: 32px;
+  margin-left: -16px;
+  margin-top: -16px;
   top: 50%;
   left: 50%;
 }
@@ -77,6 +84,34 @@ li.collection-item {
     &.current {
       font-weight: bold;
       color: $yellow;
+    }
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  nav, .navbar-fixed {
+    height: auto;
+  }
+  .navbar-fixed {
+    position: static!important;
+    >nav {
+    position: static!important;
+    }
+    .brand-logo {
+      clear: both;
+          position: static;
+          text-align: center;
+          float: none;
+          transition: no;
+          transform: none!important;
+          margin: 5px auto;
+          display: block;
+    }
+    .mobile-menu {
+      overflow: hidden;
+      clear: both;
+      display: block;
     }
   }
 }

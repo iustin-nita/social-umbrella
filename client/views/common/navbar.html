@@ -1,10 +1,10 @@
 <template name="navbar">
-  <div class="navbar">
+  <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
         <a href="/" class="brand-logo center">Social-umbrella</a>
-        <ul class="center">
-          <li>{{>loginButtons}}</li>
+        <ul class="mobile-menu">
+          <li>{{>loginButtons align=""}}</li>
           {{#if currentUser}}
           <li>
             <a class="modal-trigger js-show-post-form" href="/add">Add post</a>

@@ -29,7 +29,11 @@
 	getUser: function(user_id) {
 		var user = Meteor.users.findOne({_id: user_id});
 		if (user) {
-			return user.profile.name;
+			if (user.services.facebook) {
+				return user.services.facebook.name;
+			} else {
+				return user.username;
+			}
 		} else {
 			return 'anonymous';
 		}
