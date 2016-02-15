@@ -1,29 +1,31 @@
 Template.comments.events({
   'submit .add_comment_form': function(event, template) {
-    var currentTarget, commentAuthor, commentBody, post_id,comment;
+    var currentTarget, userId, body, post_id,comment;
     currentTarget = event.target;
     if (Meteor.user()) {
       // alert(Meteor.user().profile);
-      if (Meteor.user().profile === undefined) {
-        commentAuthor = Meteor.user().username;
-      } else {
-        commentAuthor = Meteor.user().profile.name;
-      }
-      commentBody = event.target[0].value;
+      body = event.target[0].value;
       post_id = this._id;
       // console.log(event.target[0].value);
       comment = {
-        commentAuthor: commentAuthor,
-        commentAuthorId: Meteor.userId(),
-        commentBody: commentBody,
-        commentDate: new Date()
+        userId: Meteor.userId(),
+        body: body,
       };
+
+      var errors = {};
+
+      if(!comment.body) {
+        Materialize.toast('Please write something...', 4000);
+      }
       console.log(comment);
-        Posts.update(
-          {_id: post_id },
-          { $push: { comments: comment }}
-        );
-        event.target[0].value = '';
+
+      Meteor.call('commentInsert', comment, function(error, commentId) {
+        if (error){
+          throwError(error.reason);
+        } else {
+          $body.val('');
+        }
+      });
       } else {
         Materialize.toast('You need to log in first', 4000);
       }

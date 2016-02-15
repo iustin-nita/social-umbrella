@@ -90,3 +90,7 @@
 			$(this).removeClass('inactive disabled').addClass('active');
 		},
 	});
+
+$('.ui.card .image img')
+  .transition('scale');
+;

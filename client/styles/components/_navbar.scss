@@ -1,5 +1,10 @@
-.main-navigation {
-	.user-profile-picture	 {
-		margin-right: 10px;
+.ui.fixed {
+	&.inverted {
+		background: $red;
+	}
+	.main-navigation {
+		.user-profile-picture	 {
+			margin-right: 10px!important;
+		}
 	}
 }

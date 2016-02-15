@@ -2,7 +2,7 @@
 <form class="add_comment_form">
 <div class="ui large transparent left icon input">
   <i class="heart outline icon"></i>
-  <input type="text" placeholder="Add Comment..." name="commentBody" class="commentBody">
+  <input type="text" placeholder="Add Comment..." name="body" class="body">
   <input type="submit" class="btn btn-flat hidden js-add-comment" value="Add comment">
 </div>    
 </form>
@@ -10,16 +10,16 @@
   <div class="ui comments">
     {{#each comment in comments}}
     <div class="comment">
-    <a href="" class="avatar"><img class="ui avatar image" src="{{getProfilePic(comment.commentAuthorId)}}"></a>
+    <a href="" class="avatar"><img class="ui avatar image" src="{{getProfilePic(comment.userId)}}"></a>
     <div class="content">
       <a href="#" class="author">
-       {{getUser(comment.commentAuthorId)}}
+       {{getUser(comment.userId)}}
       </a>
       <div class="metadata">
-        <span class="date">Today at 5:42PM</span>
+        <span class="date">{{comment.commentDate}}</span>
       </div>
       <div class="text">
-       {{comment.commentBody}}
+       {{comment.body}}
       </div>
       <div class="actions">
         <a class="reply">Reply</a>
