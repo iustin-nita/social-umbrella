@@ -1,0 +1,88 @@
+//loader 
+/*
+*Full collection http://stas-melnikov.ru/preloaders/
+*/
+
+/*
+ *mixins
+ */
+.m_horizonatal_center {
+  position: absolute;
+  top: 0;
+  left: 50%;
+}
+.mpc_preloader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+  -webkit-transform: translateZ(0px) translate(-50%, -50%);
+  transform: translateZ(0px) translate(-50%, -50%);
+}
+.mpc_preloader9:before,
+.mpc_preloader9:after {
+  content: "";
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  position: absolute;
+}
+.mpc_preloader9:before {
+  background-color: #6cc88a;
+  -webkit-transform: translateZ(0px) translate(-50%, 0%);
+  transform: translateZ(0px) translate(-50%, 0%);
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: mpc_preloader_left_round 1.8s infinite ease-in-out;
+  animation: mpc_preloader_left_round 1.8s infinite ease-in-out;
+}
+.mpc_preloader9:after {
+  background-color: #4fc3f7;
+  -webkit-transform: translateZ(0px) translate(75%, 0%);
+  transform: translateZ(0px) translate(75%, 0%);
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation: mpc_preloader_right_round 1.8s infinite ease-in-out;
+  animation: mpc_preloader_right_round 1.8s infinite ease-in-out;
+}
+@-webkit-keyframes mpc_preloader_left_round {
+  50% {
+    -webkit-transform: translateZ(0px) translate(75%, 0%);
+    transform: translateZ(0px) translate(75%, 0%);
+  }
+  100% {
+    -webkit-transform: translateZ(0px) translate(-50%, 0%);
+    transform: translateZ(0px) translate(-50%, 0%);
+  }
+}
+@keyframes mpc_preloader_left_round {
+  50% {
+    -webkit-transform: translateZ(0px) translate(75%, 0%);
+    transform: translateZ(0px) translate(75%, 0%);
+  }
+  100% {
+    -webkit-transform: translateZ(0px) translate(-50%, 0%);
+    transform: translateZ(0px) translate(-50%, 0%);
+  }
+}
+@-webkit-keyframes mpc_preloader_right_round {
+  50% {
+    -webkit-transform: translateZ(0px) translate(-50%, 0%);
+    transform: translateZ(0px) translate(-50%, 0%);
+  }
+  100% {
+    -webkit-transform: translateZ(0px) translate(75%, 0%);
+    transform: translateZ(0px) translate(75%, 0%);
+  }
+}
+@keyframes mpc_preloader_right_round {
+  50% {
+    -webkit-transform: translateZ(0px) translate(-50%, 0%);
+    transform: translateZ(0px) translate(-50%, 0%);
+  }
+  100% {
+    -webkit-transform: translateZ(0px) translate(75%, 0%);
+    transform: translateZ(0px) translate(75%, 0%);
+  }
+}

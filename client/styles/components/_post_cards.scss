@@ -1,0 +1,21 @@
+
+.collection {
+  margin-left: 0;
+  margin-right: 0;
+  border: none;
+}
+
+.avatar-initials {
+	width: 32px;
+	height: 32px;
+}
+
+.chip {
+	.avatar {
+		width: 32px;
+		height: 32px;
+		float: left;
+		margin: 0 8px 0 -12px;
+	}
+}
+

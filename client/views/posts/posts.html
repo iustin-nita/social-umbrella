@@ -12,14 +12,18 @@
                   {{getUser(addedBy)}}
                 </div>
               </p>
+              {{#if description}}
               <p>{{description}}</p>
+              {{/if}}
             </div>
+            {{#if image}}
             <div class="card-image">
             <a href="/post/{{_id}}">
               <img src="{{image}}">
               </a>
               <span class="card-title"><span class="btn like {{active}}"><i class="material-icons">thumb_up</i></span></span>
             </div>
+            {{/if}}
            
             <div class="card-action">
               <!-- <a href="/post/{{_id}}" target="_blank">Post page</a> -->

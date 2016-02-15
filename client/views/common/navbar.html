@@ -4,14 +4,23 @@
       <div class="nav-wrapper">
         <a href="/" class="brand-logo center">Social-umbrella</a>
         <ul class="mobile-menu">
-          <li>{{>loginButtons align=""}}</li>
           {{#if currentUser}}
-          <li>
-            <a class="modal-trigger js-show-post-form" href="/add">Add post</a>
-          </li>
+          <!-- <li><a href="/profile">My profile</a></li> -->
+          <li><a href="/posts">News feed</a></li>
+          {{else}}
+          <li><a href="/sign-in">Sign in</a></li>
+          <!-- <li><a href="/sign-up">Register</a></li> -->
           {{/if}}
           <li><a href="/contact">Contact</a></li>
+   <!--        <li>
+            <a class="modal-trigger js-show-post-form" href="/add">Add post</a>
+          </li> -->
         </ul>
+        {{#if currentUser}}
+        <ul class="mobile-menu right">
+        <li><a href="sign-out">{{>atNavButton}}</a></li>
+        </ul>
+        {{/if}}
       </div>
     </nav>
   </div>

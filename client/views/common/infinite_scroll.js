@@ -12,11 +12,6 @@
         // console.log(Session.get('postLimit'));
         Session.set('postLimit', Session.get('postLimit')+3);
        // PostsIndex.config.defaultSearchOptions.limit = PostsIndex.config.defaultSearchOptions.limit + 5;
-       $('.card-image img').addClass(animationName).one(animationend, function() {
-        $(this).removeClass(animationName);
-        console.log('adnimated');
-       });
-
      }
      lastScrollTop = scrollTop;
    }
