@@ -7,7 +7,6 @@ Template.register.events({
               console.log(err);
            } else {
               // handle success depending what you need to do
-             
              var imagesURL = "/cfs/files/images/" + fileObj._id;
               Session.set('profilePicURL', imagesURL);
            }

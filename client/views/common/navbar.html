@@ -5,19 +5,19 @@
         <a href="/" class="brand-logo center">Social-umbrella</a>
         <ul class="mobile-menu">
           {{#if currentUser}}
-          <li><a href="#">Hi, {{currentUser.profile.firstName}}</a></li>
+          <li><a href="#"> <img class="user-profile-picture" src="{{getProfilePic(currentUser._id)}}" alt="{{currentUser.profile.profilePic}}"> <span>Hi, {{getUser(currentUser._id)}}</span> </a> </li>
           <!-- <li><a href="/profile">My profile</a></li> -->
           <li><a href="/posts">News feed</a></li>
           {{else}}
           <li><a href="/login" class="log-in">Sign in</a></li>
           <!-- <li><a href="/sign-up">Register</a></li> -->
           {{/if}}
-          <li><a href="/contact">Contact</a></li>
+          <!-- <li><a href="/contact">Contact</a></li> -->
           
         </ul>
         {{#if currentUser}}
         <ul class="mobile-menu right">
-        <li><img class="user-profile-picture" src="{{currentUser.profile.profilePic}}" alt="{{currentUser.profile.profilePic}}"></li>
+        <li></li>
         <li><a href="#" class="log-out">Log out</a></li>
         <li>
             <a class="modal-trigger js-show-post-form" href="/add">Add post</a>

@@ -105,6 +105,9 @@ li.collection-item {
   nav, .navbar-fixed {
     height: auto;
   }
+ nav .nav-wrapper {
+    height: 130px;
+  }
   .navbar-fixed {
     position: static!important;
     >nav {
