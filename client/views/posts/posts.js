@@ -112,9 +112,10 @@
 				Posts.update( {_id: post_id},
 					{$inc: {likes: +1}, $push: {likers: userId}}
 					);
+				$('.like').find('span').text('Liked');
 				$(this).removeClass('active').addClass('inactive');
 			} else {
-				  Materialize.toast('Please log in to like posts', 4000) // 4000 is the duration of the toast
+				  Materialize.toast('Please log in to like posts', 4000); // 4000 is the duration of the toast
 			}
 
 		},
@@ -127,12 +128,15 @@
 				);
 			$('.inactive.like').find('.material-icons').text('thumb_up');
 			console.log($(this));
+			$('.like').find('span').text('Like');
 			$(this).removeClass('inactive disabled').addClass('active');
 		},
 		'mouseenter .inactive.like':function(event) {
+			$('.inactive.like').find('span').text('Unlike');
 			$('.inactive.like').find('.material-icons').text('thumb_down');
 		},
 		'mouseleave .inactive.like':function(event) {
+			$('.inactive.like').find('span').text('Like');
 			$('.inactive.like').find('.material-icons').text('thumb_up');
 		}
 	});

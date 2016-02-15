@@ -21,13 +21,13 @@
             <a href="/post/{{_id}}">
               <img src="{{image}}">
               </a>
-              <span class="card-title"><span class="btn like {{active}}"><i class="material-icons">thumb_up</i></span></span>
             </div>
             {{/if}}
            
             <div class="card-action">
               <!-- <a href="/post/{{_id}}" target="_blank">Post page</a> -->
-              <span><a href="#" class="js-to-comments">{{likes}} Likes</a></span>
+              <span><a class="like like-button {{active}}"><i class="material-icons">thumb_up</i>Like </a></span>
+              <span><a href="#" class="js-to-comments">{{likes}} <span>Likes</span></a></span>
               <span><a href="#" class="js-to-comments">{{comments.length}} Comments</a></span>
             </div>
             {{>comments}}

@@ -20,7 +20,7 @@ a {
 }
 
 nav {
-  background: $blue;
+  background: $red;
       // background: url("https://d3k90kvix375hb.cloudfront.net/assets/home/hero-background-gradient-dark.png"),url("home/hero-background-gradient-light.png"),-webkit-linear-gradient(top, #58488a, #5d64d0),#58488a fixed;
     // background: url("https://d3k90kvix375hb.cloudfront.net/assets/home/hero-background-gradient-dark.png"),url("home/hero-background-gradient-light.png"),linear-gradient(to bottom, #58488a, #5d64d0),#58488a fixed;
 }
@@ -28,7 +28,19 @@ nav {
 .posts {
   padding-top: 30px;
 }
+.like-button {
+  i {
+    font-size: 14px;
+      margin-right: 5px;
+      vertical-align: middle;
+  }
+}
 
+.card-action {
+  a {
+    text-transform: none!important;
+  }
+}
 .chip {
   margin-bottom: 10px;
 }
