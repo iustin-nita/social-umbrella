@@ -4,8 +4,8 @@
     {{#each comment in comments}}
     <li class="collection-item">
     <div class="chip left">
-      {{> avatar user=this shape="circle"}}
-      {{comment.commentAuthor}} 
+      <img src="{{getProfilePic(comment.commentAuthorId)}}" alt="">
+      {{getUser(comment.commentAuthorId)}}
     </div>
       <span>{{comment.commentBody}}</span>
       <div class="comment-meta">

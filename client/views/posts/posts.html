@@ -4,11 +4,11 @@
   <div class="container">
     <div class="row posts">
       {{#each posts}}
-          <div class="card">
+          <div class="card" id="{{_id}}">
            <div class="card-content">
               <p>
                 <div class="chip">
-                  {{> avatar user=this shape="circle"}}
+                  <img src="{{getProfilePic(addedBy)}}" alt="{{getUser(addedBy)}}">
                   {{getUser(addedBy)}}
                 </div>
               </p>

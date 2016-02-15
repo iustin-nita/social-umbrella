@@ -20,6 +20,7 @@ Template.register.events({
      var email = $('#email').val(),
          firstName = $('#first-name').val(),
          lastName = $('#last-name').val(),
+         name = $('#first-name').val() + ' ' + $('#last-name').val(),
          password = $('#password').val(),
          passwordAgain = $('#password-again').val();
          profilePic = Session.get('profilePicURL');

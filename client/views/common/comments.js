@@ -14,6 +14,7 @@ Template.comments.events({
       // console.log(event.target[0].value);
       comment = {
         commentAuthor: commentAuthor,
+        commentAuthorId: Meteor.userId(),
         commentBody: commentBody,
         commentDate: new Date()
       };
@@ -29,3 +30,31 @@ Template.comments.events({
       return false;
     }
   });
+
+// Template.comments.helpers({
+//   getUser: function(user_id) {
+//     var user = Meteor.users.findOne({_id: user_id});
+//     if (user) {
+//       if (user.services.facebook) {
+//         return user.services.facebook.name;
+//       } else {
+//         return user.profile.name;
+//       }
+//     } else {
+//       console.log('aici'+user);
+//       return 'anonymous';
+//     }
+//   },
+//   getProfilePic: function(user_id) {
+//     var user = Meteor.users.findOne({_id: user_id});
+//     if (user) {
+//       if (user.services.facebook) {
+//         return user.services.facebook.name;
+//       } else {
+//         return user.profile.profilePic;
+//       }
+//     } else {
+//       return '/images/user6.png';
+//     }
+//   },
+// });

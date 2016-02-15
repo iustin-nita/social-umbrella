@@ -8,18 +8,19 @@ Template.login.events({
      Meteor.loginWithPassword(email, password, function(error) {
          if (error) {
           // Returning a sweetAlert
-          return swal({
-                title: "Email or password incorrect",
-                text: "Please try again",
-                timer: 1700,
-                showConfirmButton: false,
-                type: "error"
-            });
+          return Materialize.toast('Unfortunately, something happened: '+(error)+'. Please try again', 4000);
          } else {
            FlowRouter.go('/');
          }
      });
      return false;
+   },
+   'click #login-facebook': function(event) {
+    Meteor.loginWithFacebook({}, function(err){
+            if (err) {
+                throw new Meteor.Error(err);
+            }
+        });
    }
-});
+ });
 
