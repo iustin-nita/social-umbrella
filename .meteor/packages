@@ -20,7 +20,6 @@ barbatus:stars-rating
 accounts-ui
 accounts-password
 fourseven:scss
-materialize:materialize
 momentjs:moment
 dburles:collection-helpers
 erasaur:meteor-lodash
@@ -40,3 +39,6 @@ check
 utilities:avatar
 msavin:mongol
 service-configuration
+semantic:ui
+flemay:less-autoprefixer
+sscaff1:semantic-messages

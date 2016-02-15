@@ -2,6 +2,11 @@
 {{#if Template.subscriptionsReady}}
   {{#with posts}}
   <div class="container">
+    {{#with posts}}
+    <div class="row">
+      {{>addPostPage}}
+    </div>
+    {{/with}}
     <div class="row posts">
       {{#each posts}}
           <div class="card" id="{{_id}}">
@@ -26,7 +31,7 @@
            
             <div class="card-action">
               <!-- <a href="/post/{{_id}}" target="_blank">Post page</a> -->
-              <span><a class="like like-button {{active}}"><i class="material-icons">thumb_up</i>Like </a></span>
+              <span><a class="like like-button {{active}}"><i class="material-icons">thumb_up</i><span>Like</span> </a></span>
               <span><a href="#" class="js-to-comments">{{likes}} <span>Likes</span></a></span>
               <span><a href="#" class="js-to-comments">{{comments.length}} Comments</a></span>
             </div>

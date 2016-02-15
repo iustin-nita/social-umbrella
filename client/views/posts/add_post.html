@@ -5,27 +5,47 @@
         <h4>Post something</h4>
       </div>
       <form class="col s12 js-add-post">
-        <div class="row">
-          <div class="input-field col s8">
-            <input name="description" type="text" class="validate" placeholder="Say something about it...">
-          </div>
-          </div>
-          <div class="row">
-          <div class="file-field col s4 input-field">
-            <div class="btn">
-              <span>File</span>
-              <input type="file" name="postImage" class="post-image">                  </div>
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
-              </div>
-            </div>
-            
-          </div>
-          <div class="col s12">
-          <input type="submit" value="Post" class="modal-action modal-close btn-large waves-effect waves-light btn">
-          </div>
+      
+      <input type="submit" value="Post" class="modal-action modal-close btn-large waves-effect waves-light btn">
         </form>
+
+        <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s6"><a href="#status">Status</a>
+          </li>
+          <li class="tab col s6"><a class="active" href="#photo">Add photo</a>
+          </li>
+        </ul>
       </div>
+      <div id="status" class="col s12">
+      <p>Set status:</p>
+      <input name="description" type="text" class="validate" placeholder="Say something about it...">
+      </div>
+      <div id="photo" class="col s12">
+        <div class="btn">
+          <span>File</span>
+          <input type="file" name="postImage" class="post-image"> 
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="row">
+          <div class="col s12">
+            <ul class="tabs">
+              <li class="tab col s3"><a href="#test1">Test 1</a></li>
+              <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
+              <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
+              <li class="tab col s3"><a href="#test4">Test 4</a></li>
+            </ul>
+          </div>
+          <div id="test1" class="col s12">Test 1</div>
+          <div id="test2" class="col s12">Test 2</div>
+          <div id="test3" class="col s12">Test 3</div>
+          <div id="test4" class="col s12">Test 4</div>
+        </div>
     </div>
   </template>
   <!-- end post add form -->

@@ -29,16 +29,25 @@ nav {
   padding-top: 30px;
 }
 .like-button {
+  cursor: pointer;
   i {
     font-size: 14px;
       margin-right: 5px;
       vertical-align: middle;
+  }
+  &.inactive {
+    color: darken($green, 30%)!important;
+  }
+  &:hover {
+    color: darken($green, 30%)!important;
+    text-decoration: underline;
   }
 }
 
 .card-action {
   a {
     text-transform: none!important;
+    color: $green!important;
   }
 }
 .chip {

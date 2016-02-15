@@ -8,13 +8,15 @@
       {{getUser(comment.commentAuthorId)}}
     </div>
       <span>{{comment.commentBody}}</span>
-      <div class="comment-meta">
+
+      <!-- wait to implement -->
+     <!--  <div class="comment-meta">
         <span><a href="#">Like</a></span>
         <span><a href="#">Reply</a></span>
         <span><a href="#"><i class="material-icons comment-like">thumb_up</i> {{likes}}</a></span>
         <span class="js-to-comments"><a href="#">{{comments.length}} Replies</a></span>
         <span> - <date>{{formatDate comment.commentDate}}</date></span>
-      </div>
+      </div> -->
     </li>
     {{/each}}
   </ul>
