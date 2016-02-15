@@ -3,8 +3,8 @@
 // })
 Template.app.events({
 	'click .log-out': function(event) {
-			Meteor.logout(function() {
-				FlowRouter.go('/');
-			});
-		},
+		Meteor.logout(function() {
+			FlowRouter.go('/');
+		});
+	},
 });

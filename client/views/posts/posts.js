@@ -26,37 +26,13 @@
 
 		return Meteor.users.findOne({_id: currentUserId}).username;
 	},
-	// getUser: function(user_id) {
-	// 	var user = Meteor.users.findOne({_id: user_id});
-	// 	if (user) {
-	// 		if (user.services.facebook) {
-	// 			return user.services.facebook.name;
-	// 		} else {
-	// 			return user.profile.name;
-	// 		}
-	// 	} else {
-	// 		return 'anonymous';
-	// 	}
-	// },
-	// getProfilePic: function(user_id) {
-	// 	var user = Meteor.users.findOne({_id: user_id});
-	// 	if (user) {
-	// 		if (user.services.facebook) {
-	// 			return user.services.facebook.name;
-	// 		} else {
-	// 			return user.profile.profilePic;
-	// 		}
-	// 	} else {
-	// 		return '/images/user6.png';
-	// 	}
-	// },
 	active: function(){
 		var userId = Meteor.userId();
-		if (!_.include(this.likers, userId)) {
-			return 'btn-primary active';
+		if (_.include(this.likers, userId)) {
+			return 'active';
 		}
 		else {
-			return 'inactive disabled';
+			return 'inactive';
 		}
 	},
 	limit: function() {
@@ -89,7 +65,7 @@
 		'click .js-unset-post-filter' : function(event) {
 			Session.set("userFilter", undefined);
 		},
-		'click .active.like': function(event) {
+		'click .inactive.like': function(event) {
 			var post_id = this._id;
 			var userId = Meteor.userId();
 			if(userId) {
@@ -102,7 +78,7 @@
 			}
 
 		},
-		'click .inactive.like': function(event) {
+		'click .active.like': function(event) {
 			var post_id = this._id;
 			var userId = Meteor.userId();
 			console.log('inactive');
@@ -114,6 +90,3 @@
 			$(this).removeClass('inactive disabled').addClass('active');
 		},
 	});
-
-
- $('ul.tabs').tabs();

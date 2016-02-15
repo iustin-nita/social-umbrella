@@ -30,11 +30,11 @@
     },
     active: function(){
       var userId = Meteor.userId();
-      if (!_.include(this.upvoters, userId) && !_.include(this.downvoters, userId)) {
-        return 'btn-primary active';
+      if (_.include(this.likers, userId)) {
+        return 'active';
       }
       else {
-        return 'disabled';
+        return 'inactive disabled';
       }
     }
   });
@@ -50,7 +50,7 @@
 
     },
 
-    'click .active.like': function(event) {
+    'click .inactive.like': function(event) {
       var post_id = this._id;
       var userId = Meteor.userId();
       if(userId) {
@@ -63,24 +63,14 @@
       }
 
     },
-    'click .inactive.like': function(event) {
+    'click .active.like': function(event) {
       var post_id = this._id;
       var userId = Meteor.userId();
       console.log('inactive');
       Posts.update( {_id: post_id},
         {$inc: {likes: -1}, $pull: {likers: userId}}
         );
-      $('.inactive.like').find('.material-icons').text('thumb_up');
-      console.log($(this));
       $(this).removeClass('inactive disabled').addClass('active');
     },
-    'mouseenter .inactive.like':function(event) {
-      $('.inactive.like').find('.material-icons').text('thumb_down');
-    },
-    'mouseleave .inactive.like':function(event) {
-      $('.inactive.like').find('.material-icons').text('thumb_up');
-    },
-
-    
 
   });

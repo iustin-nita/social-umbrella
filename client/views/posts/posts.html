@@ -10,7 +10,7 @@
         {{#each posts}}
             <div class="ui fluid card" id="{{_id}}">
               <div class="content">
-                <div class="right floated meta">{{addedOn}}</div>
+                <div class="right floated meta">{{prettydate addedOn live=true}}</div>
                 <img class="ui avatar image" src="{{getProfilePic(addedBy)}}"> {{getUser(addedBy)}}
               </div>
               <div class="image">
@@ -18,7 +18,7 @@
               </div>
               <div class="content">
                 <span class="right floated">
-                  <i class="heart outline like icon"></i>
+                  <i class="heart outline like {{active}} icon"></i>
                   {{likes}} likes
                 </span>
                 <i class="comment icon"></i>

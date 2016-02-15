@@ -42,3 +42,4 @@ service-configuration
 semantic:ui
 flemay:less-autoprefixer
 sscaff1:semantic-messages
+chriscinelli:prettydate
