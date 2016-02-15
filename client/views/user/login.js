@@ -19,6 +19,8 @@ Template.login.events({
     Meteor.loginWithFacebook({}, function(err){
             if (err) {
                 throw new Meteor.Error(err);
+            } else {
+              FlowRouter.go('/');
             }
         });
    }

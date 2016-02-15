@@ -1,30 +1,26 @@
 <template name="navbar">
-  <div class="navbar-fixed">
-    <nav>
-      <div class="nav-wrapper">
-        <a href="/" class="brand-logo center">Social-umbrella</a>
-        <ul class="mobile-menu">
-          {{#if currentUser}}
-          <li><a href="#"> <img class="user-profile-picture" src="{{getProfilePic(currentUser._id)}}" alt="{{currentUser.profile.profilePic}}"> <span>Hi, {{getUser(currentUser._id)}}</span> </a> </li>
-          <!-- <li><a href="/profile">My profile</a></li> -->
-          <li><a href="/posts">News feed</a></li>
-          {{else}}
-          <li><a href="/login" class="log-in">Sign in</a></li>
-          <!-- <li><a href="/sign-up">Register</a></li> -->
-          {{/if}}
-          <!-- <li><a href="/contact">Contact</a></li> -->
-          
-        </ul>
+  <div class="ui fixed inverted menu">
+      <div class="ui container main-navigation">
+      {{#if currentUser}}
+        <a href="#" class="header item">
+          <img class="user-profile-picture logo" src="{{getProfilePic(currentUser._id)}}">
+          Hi, {{getUser(currentUser._id)}}
+        </a>
+        {{else}}
+         <a href="/login" class="item">Log in</a>
+         {{/if}}
+        <a href="/posts" class="item">News feed</a>
         {{#if currentUser}}
-        <ul class="mobile-menu right">
-        <li></li>
-        <li><a href="#" class="log-out">Log out</a></li>
-        <li>
-            <a class="modal-trigger js-show-post-form" href="/add">Add post</a>
-          </li>
-        </ul>
+        <div class="ui simple dropdown item">
+          My account <i class="dropdown icon"></i>
+          <div class="menu">
+            <a class="item" href="#">Profile</a>
+            <a class="item" href="#">Link Item</a>
+            <div class="divider"></div>
+            <a class="item log-out" href="#">Log out</a>
+          </div>
+        </div>
         {{/if}}
       </div>
-    </nav>
-  </div>
+    </div>
 </template>

@@ -1,13 +1,30 @@
 <template name="comments">
+<form class="add_comment_form">
+<div class="ui large transparent left icon input">
+  <i class="heart outline icon"></i>
+  <input type="text" placeholder="Add Comment..." name="commentBody" class="commentBody">
+  <input type="submit" class="btn btn-flat hidden js-add-comment" value="Add comment">
+</div>    
+</form>
   {{#if comments}}
-  <ul class="collection comments">
+  <div class="ui comments">
     {{#each comment in comments}}
-    <li class="collection-item">
-    <div class="chip left">
-      <img src="{{getProfilePic(comment.commentAuthorId)}}" alt="">
-      {{getUser(comment.commentAuthorId)}}
+    <div class="comment">
+    <a href="" class="avatar"><img class="ui avatar image" src="{{getProfilePic(comment.commentAuthorId)}}"></a>
+    <div class="content">
+      <a href="#" class="author">
+       {{getUser(comment.commentAuthorId)}}
+      </a>
+      <div class="metadata">
+        <span class="date">Today at 5:42PM</span>
+      </div>
+      <div class="text">
+       {{comment.commentBody}}
+      </div>
+      <div class="actions">
+        <a class="reply">Reply</a>
+      </div>
     </div>
-      <span>{{comment.commentBody}}</span>
 
       <!-- wait to implement -->
      <!--  <div class="comment-meta">
@@ -17,12 +34,9 @@
         <span class="js-to-comments"><a href="#">{{comments.length}} Replies</a></span>
         <span> - <date>{{formatDate comment.commentDate}}</date></span>
       </div> -->
-    </li>
+    </div>
     {{/each}}
-  </ul>
+  </div>
   {{/if}}
-  <form class="add_comment_form">
-    <input type="text" placeholder="Leave a comment..." name="commentBody" class="commentBody">
-    <input type="submit" class="btn btn-flat hidden js-add-comment" value="Add comment">
-  </form>
+ 
 </template>

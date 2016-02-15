@@ -1,47 +1,72 @@
 <template name="posts">
 {{#if Template.subscriptionsReady}}
-  {{#with posts}}
-  <div class="container">
     {{#with posts}}
-    <div class="row">
+<!--     <div class="row">
       {{>addPostPage}}
     </div>
-    {{/with}}
-    <div class="row posts">
-      {{#each posts}}
-          <div class="card" id="{{_id}}">
-           <div class="card-content">
-              <p>
-                <div class="chip">
-                  <img src="{{getProfilePic(addedBy)}}" alt="{{getUser(addedBy)}}">
-                  {{getUser(addedBy)}}
-                </div>
-              </p>
-              {{#if description}}
-              <p>{{description}}</p>
-              {{/if}}
+    {{/with}} -->
+    <div class="ui one column centered grid">
+      <div class="column posts-page">
+        {{#each posts}}
+            <div class="ui fluid card" id="{{_id}}">
+              <div class="content">
+                <div class="right floated meta">{{addedOn}}</div>
+                <img class="ui avatar image" src="{{getProfilePic(addedBy)}}"> {{getUser(addedBy)}}
+              </div>
+              <div class="image">
+                <img src="{{image}}">
+              </div>
+              <div class="content">
+                <span class="right floated">
+                  <i class="heart outline like icon"></i>
+                  {{likes}} likes
+                </span>
+                <i class="comment icon"></i>
+                {{comments.length}} comments
+              </div>
+              <div class="extra content">
+                <!-- <div class="ui large transparent left icon input">
+                  <i class="heart outline icon"></i>
+                  <input type="text" placeholder="Add Comment...">
+                </div> -->
+                {{>comments}}
+              </div>
             </div>
-            {{#if image}}
-            <div class="card-image">
-            <a href="/post/{{_id}}">
-              <img src="{{image}}">
-              </a>
-            </div>
-            {{/if}}
-           
-            <div class="card-action">
-              <!-- <a href="/post/{{_id}}" target="_blank">Post page</a> -->
-              <span><a class="like like-button {{active}}"><i class="material-icons">thumb_up</i><span>Like</span> </a></span>
-              <span><a href="#" class="js-to-comments">{{likes}} <span>Likes</span></a></span>
-              <span><a href="#" class="js-to-comments">{{comments.length}} Comments</a></span>
-            </div>
-            {{>comments}}
-          </div>
-      {{/each}}
-    </div> <!-- / row -->
-  </div>
+        {{/each}}
+        
+      </div>
+    </div>
   {{/with}}
   {{else}}
   {{>loading}}
 {{/if}}
 </template>
+
+
+<!--  <div class="card" id="{{_id}}">
+             <div class="card-content">
+                <p>
+                  <div class="chip">
+                    <img src="{{getProfilePic(addedBy)}}" alt="{{getUser(addedBy)}}">
+                    {{getUser(addedBy)}}
+                  </div>
+                </p>
+                {{#if description}}
+                <p>{{description}}</p>
+                {{/if}}
+              </div>
+              {{#if image}}
+              <div class="card-image">
+              <a href="/post/{{_id}}">
+                <img src="{{image}}">
+                </a>
+              </div>
+              {{/if}}
+             
+              <div class="card-action">
+                <span><a class="like like-button {{active}}"><i class="material-icons">thumb_up</i><span>Like</span> </a></span>
+                <span><a href="#" class="js-to-comments">{{likes}} <span>Likes</span></a></span>
+                <span><a href="#" class="js-to-comments">{{comments.length}} Comments</a></span>
+              </div>
+              {{>comments}}
+            </div> -->

@@ -7,6 +7,9 @@
 @import 'components/comments';
 @import 'components/post_cards';
 
+@import 'pages/login';
+@import 'pages/posts';
+
 body {
   font-family: 'Open Sans', sans-serif;
   color: $blue;
@@ -115,10 +118,13 @@ li.collection-item {
 }
 
 
+
+
 .user-profile-picture {
   width: 50px;
   height: auto;
   vertical-align: middle;
+  margin-top: 10px;
 }
 
 
