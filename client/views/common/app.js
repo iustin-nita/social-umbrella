@@ -8,3 +8,8 @@ Template.app.events({
 		});
 	},
 });
+
+
+$('#addPostForm .menu .item')
+  .tab()
+;

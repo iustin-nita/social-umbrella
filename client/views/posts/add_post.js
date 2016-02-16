@@ -1,6 +1,6 @@
 
-  //addPostPage template
-  Template.addPostPage.events({
+  //addPostForm template
+  Template.addPostForm.events({
     'change .post-image': function(event, template) {
        FS.Utility.eachFile(event, function(file) {
          Images.insert(file, function (err, fileObj) {
@@ -19,29 +19,25 @@
       var source, author, image, description;
       author = Meteor.userId();
       description = event.target[0].value;
-
-        // if (res.image) {
-        //   image = res.image;
-        // } else {
-        //   image = "http://placehold.it/150x150";
-        // }
         image = Session.get('imageURL');
-        console.log('before'+image);
-        console.log('before'+description);
-        console.log(event);
+        // console.log(event);
         if (Meteor.user()) {
-          Posts.insert({
-            image: image,
-            description: description,
-            addedOn: new Date().now,
-            addedBy: author,
-            likes: 0,
-            commentsCount: 0
-          });
+          if (description) {
+            Posts.insert({
+              image: image,
+              description: description,
+              addedOn: new Date().now,
+              addedBy: author,
+              likes: 0,
+              likers: [],
+              commentsCount: 0
+            });
+          } else {
+            sAlert.info("Please write something cool.", {effect:'genie'});
+          }
+        } else {
+        sAlert.info("You should log in!", {effect:'genie'});
         }
-      console.log('after'+image);
-      console.log('after'+description);
-      FlowRouter.go('posts');
       return false;
     },
 
