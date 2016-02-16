@@ -81,7 +81,7 @@
 				Meteor.call('likePost', post_id);
 				$(this).removeClass('active').addClass('inactive');
 			} else {
-				sAlert.error("Maybe try logging in?", {effect:'genie'});
+				sAlert.info("You may try to log in.", {effect:'genie'});
 			}
 		},
 		'click .active.like': function(event) {
@@ -91,7 +91,7 @@
 				Meteor.call('unlikePost', post_id);
 				$(this).removeClass('inactive').addClass('active');
 			} else {
-				sAlert.error("Maybe try logging in?");
+				sAlert.info("You may try to log in.", {effect:'genie'});
 			}
 		},
 	});

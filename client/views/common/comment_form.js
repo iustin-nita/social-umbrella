@@ -40,17 +40,18 @@ Template.commentForm.events({
       var errors = {};
 
       if(!comment.body) {
-        alert('Please write something...', 4000);
+        sAlert.info("You should try to write something before!", {effect:'genie'});
       }
       Meteor.call('commentInsert', comment, function(error, commentId) {
         if (error){
           throwError(error.reason);
+          sAlert.error("Oops! Something went wrong!"+error.reason+"", {effect:'genie'});
         } else {
           $body.val('');
         }
       });
       } else {
-        alert('You need to log in first');
+        sAlert.info("You should log in! It's easy!", {effect:'genie'});
       }
       return false;
     }
