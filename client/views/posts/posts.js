@@ -81,10 +81,8 @@
 				Meteor.call('likePost', post_id);
 				$(this).removeClass('active').addClass('inactive');
 			} else {
-				console.log('else');
 				sAlert.error("Maybe try logging in?", {effect:'genie'});
 			}
-			console.log('wtf');
 		},
 		'click .active.like': function(event) {
 			var post_id = this._id;
