@@ -78,24 +78,22 @@
 			var post_id = this._id;
 			var userId = Meteor.userId();
 			if(userId) {
-				Posts.update( {_id: post_id},
-					{$inc: {likes: +1}, $push: {likers: userId}}
-					);
+				Meteor.call('likePost', post_id);
 				$(this).removeClass('active').addClass('inactive');
 			} else {
-				  Materialize.toast('Please log in to like posts', 4000); // 4000 is the duration of the toast
+				console.log('else');
+				sAlert.error("Maybe try logging in?", {effect:'genie'});
 			}
-
+			console.log('wtf');
 		},
 		'click .active.like': function(event) {
 			var post_id = this._id;
 			var userId = Meteor.userId();
-			console.log('inactive');
-			Posts.update( {_id: post_id},
-				{$inc: {likes: -1}, $pull: {likers: userId}}
-				);
-			$('.inactive.like').find('.material-icons').text('thumb_up');
-			console.log($(this));
-			$(this).removeClass('inactive disabled').addClass('active');
+			if(userId) {
+				Meteor.call('unlikePost', post_id);
+				$(this).removeClass('inactive').addClass('active');
+			} else {
+				sAlert.error("Maybe try logging in?");
+			}
 		},
 	});

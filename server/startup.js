@@ -32,6 +32,7 @@ Meteor.startup(function() {
     addedOn: new Date(now - 7 * 3600 * 1000),
     commentsCount: 2,
     likes: 1,
+    likers:[],
   });
 
   Comments.insert({
@@ -55,6 +56,7 @@ Meteor.startup(function() {
     addedOn: new Date(now - 10 * 3600 * 1000),
     commentsCount: 0,
     likes: 0,
+    likers:[],
   });
   Posts.insert({
     description: 'The Meteor Book',
@@ -64,6 +66,7 @@ Meteor.startup(function() {
     addedOn: new Date(now - 12 * 3600 * 1000),
     commentsCount: 0,
     likes: 0,
+    likers:[],
   });
   Posts.insert({
     description: 'The Spaghetti Book',
@@ -73,6 +76,7 @@ Meteor.startup(function() {
     addedOn: new Date(now - 12 * 3600 * 1000),
     commentsCount: 0,
     likes: 0,
+    likers:[],
   });
   Posts.insert({
     description: 'The Pizza Book',
@@ -82,6 +86,7 @@ Meteor.startup(function() {
     addedOn: new Date(now - 12 * 3600 * 1000),
     commentsCount: 0,
     likes: 0,
+    likers:[],
   });
   Posts.insert({
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis amet, labore, praesentium saepe hic aperiam dolores perspiciatis. Magnam modi beatae, dolore minima eveniet, unde, iure eos ea explicabo placeat perferendis.</div>',
@@ -91,6 +96,7 @@ Meteor.startup(function() {
     addedOn: new Date(now - 12 * 3600 * 1000),
     commentsCount: 0,
     likes: 0,
+    likers:[],
   });
 }
 });
