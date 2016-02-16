@@ -8,7 +8,7 @@ Template.login.events({
      Meteor.loginWithPassword(email, password, function(error) {
          if (error) {
           // Returning a sweetAlert
-          return Materialize.toast('Unfortunately, something happened: '+(error)+'. Please try again', 4000);
+          return error;
          } else {
            FlowRouter.go('/');
          }

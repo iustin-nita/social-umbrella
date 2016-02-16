@@ -11,7 +11,10 @@
             <div class="ui fluid card" id="{{_id}}">
               <div class="content">
                 <div class="right floated meta">{{prettydate addedOn live=true}}</div>
-                <img class="ui avatar image" src="{{getProfilePic(addedBy)}}"> {{getUser(addedBy)}}
+                <img class="ui avatar image" src="{{getProfilePic(userId)}}"> {{getUser(userId)}}
+              </div>
+              <div class="extra content">
+                {{description}}
               </div>
               <div class="image">
                 <img src="{{image}}">

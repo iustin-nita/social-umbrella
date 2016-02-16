@@ -1,7 +1,3 @@
-  Avatar.setOptions({
-  	fallbackType: "initials",
-  	gravatarDefault: "monsterid"
-});
 	//global helpers
 	Template.registerHelper('formatDate', function(date) {
 		return moment(new Date(date)).format('DD-MM-YYYY');
@@ -31,11 +27,3 @@
 		},
 
 	});
-
-
-
-	
-	
-	$(document).ready(function(){
-	   $('ul.tabs').tabs();
-	 });

@@ -2,34 +2,39 @@ Meteor.startup(function() {
   // Fixture data
   if (Posts.find().count() === 0) {
     var now = new Date().getTime();
+
   // create four users
   var teodorId = Meteor.users.insert({
     profile: { name: 'Teodor Nita', firstName: 'Teodor', lastName: 'Nita', profilePic: 'images/user5.png', gender: 'm'  }
   });
   var teodor = Meteor.users.findOne(teodorId);
+
   var sandaId = Meteor.users.insert({
     profile: { name: 'Sanda Luca', firstName: 'Sanda', lastName: 'Luca', profilePic: '/images/user3.png', gender: 'f' }
   });
   var sanda = Meteor.users.findOne(sandaId);
+
   var sinsuId = Meteor.users.insert({
     profile: { name: 'Sinsu Sins', firstName: 'Sinsu', lastName: 'Sins', profilePic: 'images/user4.png', gender: 'm'  }
   });
   var sinsu = Meteor.users.findOne(sinsuId);
+
   var cookieId = Meteor.users.insert({
     profile: { name: 'Cookie Black', firstName: 'Cookie', lastName: 'Black', profilePic: '/images/user7.png', gender: 'f' }
   });
   var cookie = Meteor.users.findOne(cookieId);
+  
 
   var catId = Posts.insert({
     description: 'Super cool',
     userId: sanda._id,
-    image: 'https://unsplash.com/photos/yB2TGLr-rVo',
+    image: 'https://images.unsplash.com/photo-1455541029258-597a69778eed?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=35c801a9a82295e64a47b9db556f2d68',
     addedOn: new Date(now - 7 * 3600 * 1000)
   });
 
   Comments.insert({
     postId: catId,
-    userId: iustin._id,
+    userId: sinsu._id,
     addedOn: new Date(now - 5 * 3600 * 1000),
     body: 'Interesting project sanda, can I get involved?'
   });
@@ -37,42 +42,42 @@ Meteor.startup(function() {
     postId: catId,
     userId: sanda._id,
     addedOn: new Date(now - 3 * 3600 * 1000),
-    body: 'You sure can iustin!'
+    body: 'You sure can Sinsu!'
   });
 
   Posts.insert({
     description: 'Meteor',
-    userId: iustin._id,
-    author: iustin.profile.name,
-    image: 'https://unsplash.com/photos/hjyRhlEJ0gU',
+    userId: sanda._id,
+    addedBy: sanda.profile.name,
+    image: 'https://images.unsplash.com/photo-1455539084491-2d02703d31ce?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=d80249b7380b0c74f51c088370edc4c2',
     addedOn: new Date(now - 10 * 3600 * 1000)
   });
   Posts.insert({
     description: 'The Meteor Book',
-    userId: iustin._id,
-    author: iustin.profile.name,
-    image: 'https://unsplash.com/photos/s4vD5WCvxdQ',
+    userId: cookie._id,
+    addedBy: cookie.profile.name,
+    image: 'https://images.unsplash.com/photo-1455539784245-e92a1368b18d?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=ca68217f70201315969e16e600d7965b',
     addedOn: new Date(now - 12 * 3600 * 1000)
   });
   Posts.insert({
     description: 'The Spaghetti Book',
     userId: teodor._id,
-    author: teodor.profile.name,
-    image: 'https://unsplash.com/photos/BniZvM_UKq8',
+    addedBy: teodor.profile.name,
+    image: 'https://images.unsplash.com/photo-1455529141151-d17aac90e709?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=8f1f9a4a04eb5c8e77e6bc894192728c',
     addedOn: new Date(now - 12 * 3600 * 1000)
   });
   Posts.insert({
     description: 'The Pizza Book',
     userId: sinsu._id,
-    author: sinsu.profile.name,
-    image: 'https://unsplash.com/photos/e5dkQjh89RQ',
+    addedBy: sinsu.profile.name,
+    image: 'https://images.unsplash.com/photo-1455526050980-d3e7b9b789a4?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=02892423ebe159c82e32121328cbe22b',
     addedOn: new Date(now - 12 * 3600 * 1000)
   });
   Posts.insert({
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis amet, labore, praesentium saepe hic aperiam dolores perspiciatis. Magnam modi beatae, dolore minima eveniet, unde, iure eos ea explicabo placeat perferendis.</div>',
-    userId: iustin._id,
-    author: iustin.profile.name,
-    image: 'https://unsplash.com/photos/Gv2t5q_LnwA',
+    userId: sinsu._id,
+    addedBy: sinsu.profile.name,
+    image: 'https://images.unsplash.com/photo-1455525928928-837c99714248?crop=entropy&fit=crop&fm=jpg&h=875&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1725',
     addedOn: new Date(now - 12 * 3600 * 1000)
   });
 }
@@ -528,12 +533,12 @@ Meteor.startup(function() {
 //         likers: [],
 //         comments: [
 //         {
-//           commentAuthor: "some guy",
+//           commentaddedBy: "some guy",
 //           commentBody: "Great stuff you posted",
 //           commentDate: "01.10.2015"
 //         },
 //         {
-//           commentAuthor: "some other guy",
+//           commentaddedBy: "some other guy",
 //           commentBody: "Don't worry, be happy!",
 //           commentDate: "07.10.2015"
 //         },

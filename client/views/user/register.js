@@ -33,12 +33,7 @@ Template.register.events({
        if (pwd === pwd2) {
          return pwd.length >= 6 ? true : false;
        } else {
-         return swal({
-            title: "Passwords don't match",
-            text: "Please try again",
-            showConfirmButton: true,
-            type: "error"
-         });
+         return "Passwords don't match!";
        }
      };
      console.log(profilePic);

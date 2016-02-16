@@ -6,6 +6,7 @@
   <input type="submit" class="btn btn-flat hidden js-add-comment" value="Add comment">
 </div>    
 </form>
+{{#with comments}}
   {{#if comments}}
   <div class="ui comments">
     {{#each comment in comments}}
@@ -38,5 +39,5 @@
     {{/each}}
   </div>
   {{/if}}
- 
+ {{/with}}
 </template>

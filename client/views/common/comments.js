@@ -1,3 +1,12 @@
+Template.comments.helpers({
+  comments: function(post_id) {
+    console.log(this);
+    console.log(Comments.find({"post_id":post_id}, {sort:{addedOn: 1}}));
+    return Comments.find({"post_id":post_id}, {sort:{addedOn: 1}});
+  },
+});
+
+
 Template.comments.events({
   'submit .add_comment_form': function(event, template) {
     var currentTarget, userId, body, post_id,comment;
@@ -5,17 +14,20 @@ Template.comments.events({
     if (Meteor.user()) {
       // alert(Meteor.user().profile);
       body = event.target[0].value;
-      post_id = this._id;
+      // post_id = this._id;
       // console.log(event.target[0].value);
-      comment = {
-        userId: Meteor.userId(),
-        body: body,
-      };
+      console.log(template);
+      console.log(event.target);
+      var $body = $(event.target).find('[name=body]');
+        var comment = {
+        body: $body.val(),
+        postId: template.data._id
+        };
 
       var errors = {};
 
       if(!comment.body) {
-        Materialize.toast('Please write something...', 4000);
+        alert('Please write something...', 4000);
       }
       console.log(comment);
 
@@ -27,7 +39,7 @@ Template.comments.events({
         }
       });
       } else {
-        Materialize.toast('You need to log in first', 4000);
+        alert('You need to log in first');
       }
       return false;
     }

@@ -7,12 +7,12 @@
 	
 	//posts template
 	Template.posts.helpers({
-		postsIndex: () => PostsIndex, // instanceof EasySearch.Index
-		inputAttributes: function () {
-			return { 'class': 'easy-search-input', 'placeholder': 'Start searching...' };
-		},
-		posts: function() {
-			return Posts.find({}, {sort:{addedOn: 1}, limit: Session.get("postLimit")});
+	postsIndex: () => PostsIndex, // instanceof EasySearch.Index
+	inputAttributes: function () {
+		return { 'class': 'easy-search-input', 'placeholder': 'Start searching...' };
+	},
+	posts: function() {
+		return Posts.find({}, {sort:{addedOn: 1}, limit: Session.get("postLimit")});
 	},
 	filtering_posts :function() {
 		if (Session.get("userFilter")) { //they set a filter!
@@ -90,7 +90,3 @@
 			$(this).removeClass('inactive disabled').addClass('active');
 		},
 	});
-
-$('.ui.card .image img')
-  .transition('scale');
-;
