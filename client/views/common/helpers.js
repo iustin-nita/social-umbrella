@@ -23,3 +23,16 @@ Template.registerHelper("getProfilePic", function (user_id) {
 		}
 
 });
+Template.registerHelper("getLink", function (user_id) {
+    var user = Meteor.users.findOne({_id: user_id});
+		if (user) {
+			if (user.services) {
+				return user.profile.link;
+			} else {
+				return "no birhtday set";
+			}
+		} else {
+			return 'no user';
+		}
+
+});

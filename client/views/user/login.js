@@ -20,10 +20,12 @@ Template.login.events({
         if (err) {
             throw new Meteor.Error("Facebook login failed");
         }
-        console.log(Meteor.user().services.facebook.name);
-        console.log(Meteor.user().services.facebook.id);
-        console.log(Meteor.user().services.facebook.email);
-        console.log(Meteor.user().services.facebook.gender);            
+        
+        // console.log(Meteor.user().services.facebook.name);
+        // console.log(Meteor.user().services.facebook.id);
+        // console.log(Meteor.user().services.facebook.email);
+        // console.log(Meteor.user().services.facebook.gender);   
+        FlowRouter.go('/');         
     });
    }
  });

@@ -5,11 +5,8 @@ Accounts.onCreateUser(function(options, user) {
    user.profile.firstName = options.firstName;
    user.profile.lastName = options.lastName;
    user.profile.name = options.firstName+' '+options.lastName;
-   user.profile.profilePic = options.profilePic || "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
-   // Returns the user object
-
    if (user.hasOwnProperty('services') && user.services.hasOwnProperty('facebook')  ) {
-        var result = Meteor.http.get('https://graph.facebook.com/v2.4/' + user.services.facebook.id + '?access_token=' + user.services.facebook.accessToken + '&fields=first_name, last_name, birthday, email, gender, location, link, friends');
+        var result = Meteor.http.get('https://graph.facebook.com/' + user.services.facebook.id + '?access_token=' + user.services.facebook.accessToken + '&fields=first_name, last_name, birthday, email, gender, age_range, location, link, friends');
 
    user.profile.firstName = result.data.first_name;
    user.profile.lastName = result.data.last_name;
@@ -17,6 +14,7 @@ Accounts.onCreateUser(function(options, user) {
    user.profile.email = result.data.email;
    user.profile.location = result.data.location;
    user.profile.gender = result.data.gender;
+   user.profile.age = result.data.age_range;
    user.profile.birthday = result.data.birthday;
    user.profile.link = result.data.link;
    user.profile.friends = result.data.friends;
@@ -28,6 +26,10 @@ Accounts.onCreateUser(function(options, user) {
         console.log(result.data.location);
         console.log(result.data.link);
         console.log(result.data.friends);
+        console.log(result.data.age_range);
 }
+   user.profile.profilePic = options.profilePic || "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
+   // Returns the user object
+   console.log(user);
    return user;
 });
