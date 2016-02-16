@@ -9,12 +9,22 @@
 
 Template.commentForm.events({
   'submit .add_comment_form': function(event, template) {
-    var currentTarget, userId, user, body, post_id,comment;
+    var currentTarget, userId, user, body, post_id,comment, userName;
     currentTarget = event.target;
     if (Meteor.user()) {
       // alert(Meteor.user().profile);
       body = event.target[0].value;
       userId = Meteor.userId();
+      user = Meteor.users.findOne({_id: userId});
+          if (user) {
+            if (user.services) {
+              userName = user.services.facebook.name;
+            } else {
+              userName = user.profile.name;
+            }
+          } else {
+            return 'anonymous';
+          }
       // post_id = this._id;
       // console.log(event.target[0].value);
       // console.log(template);
@@ -23,7 +33,8 @@ Template.commentForm.events({
         comment = {
         body: $body.val(),
         postId: template.data._id,
-        userId: userId
+        userId: userId,
+        userName: userName
         };
 
       var errors = {};

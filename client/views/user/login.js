@@ -16,13 +16,15 @@ Template.login.events({
      return false;
    },
    'click #login-facebook': function(event) {
-    Meteor.loginWithFacebook({}, function(err){
-            if (err) {
-                throw new Meteor.Error(err);
-            } else {
-              FlowRouter.go('/');
-            }
-        });
+    Meteor.loginWithFacebook({ requestPermissions: ['email', 'public_profile', 'user_friends', 'user_likes']}, function(err){
+        if (err) {
+            throw new Meteor.Error("Facebook login failed");
+        }
+        console.log(Meteor.user().services.facebook.name);
+        console.log(Meteor.user().services.facebook.id);
+        console.log(Meteor.user().services.facebook.email);
+        console.log(Meteor.user().services.facebook.gender);            
+    });
    }
  });
 
