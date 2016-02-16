@@ -36,7 +36,7 @@
             addedOn: new Date().now,
             addedBy: author,
             likes: 0,
-            downvotes: 0
+            commentsCount: 0
           });
         }
       console.log('after'+image);

@@ -7,12 +7,21 @@
 	
 	//posts template
 	Template.posts.helpers({
-	postsIndex: () => PostsIndex, // instanceof EasySearch.Index
+	//postsIndex: () => PostsIndex, // instanceof EasySearch.Index
 	inputAttributes: function () {
 		return { 'class': 'easy-search-input', 'placeholder': 'Start searching...' };
 	},
 	posts: function() {
 		return Posts.find({}, {sort:{addedOn: 1}, limit: Session.get("postLimit")});
+	},
+	comments: function() {
+		return Comments.find({postId: this._id});
+	},
+	ownPost: function() {
+		return this.userId === Meteor.userId(); },
+	domain: function() {
+		var a = document.createElement('a'); a.href = this.url;
+		return a.hostname;
 	},
 	filtering_posts :function() {
 		if (Session.get("userFilter")) { //they set a filter!

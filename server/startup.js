@@ -29,7 +29,9 @@ Meteor.startup(function() {
     description: 'Super cool',
     userId: sanda._id,
     image: 'https://images.unsplash.com/photo-1455541029258-597a69778eed?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=35c801a9a82295e64a47b9db556f2d68',
-    addedOn: new Date(now - 7 * 3600 * 1000)
+    addedOn: new Date(now - 7 * 3600 * 1000),
+    commentsCount: 2,
+    likes: 1,
   });
 
   Comments.insert({
@@ -50,35 +52,45 @@ Meteor.startup(function() {
     userId: sanda._id,
     addedBy: sanda.profile.name,
     image: 'https://images.unsplash.com/photo-1455539084491-2d02703d31ce?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=d80249b7380b0c74f51c088370edc4c2',
-    addedOn: new Date(now - 10 * 3600 * 1000)
+    addedOn: new Date(now - 10 * 3600 * 1000),
+    commentsCount: 0,
+    likes: 0,
   });
   Posts.insert({
     description: 'The Meteor Book',
     userId: cookie._id,
     addedBy: cookie.profile.name,
     image: 'https://images.unsplash.com/photo-1455539784245-e92a1368b18d?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=ca68217f70201315969e16e600d7965b',
-    addedOn: new Date(now - 12 * 3600 * 1000)
+    addedOn: new Date(now - 12 * 3600 * 1000),
+    commentsCount: 0,
+    likes: 0,
   });
   Posts.insert({
     description: 'The Spaghetti Book',
     userId: teodor._id,
     addedBy: teodor.profile.name,
     image: 'https://images.unsplash.com/photo-1455529141151-d17aac90e709?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=8f1f9a4a04eb5c8e77e6bc894192728c',
-    addedOn: new Date(now - 12 * 3600 * 1000)
+    addedOn: new Date(now - 12 * 3600 * 1000),
+    commentsCount: 0,
+    likes: 0,
   });
   Posts.insert({
     description: 'The Pizza Book',
     userId: sinsu._id,
     addedBy: sinsu.profile.name,
     image: 'https://images.unsplash.com/photo-1455526050980-d3e7b9b789a4?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=02892423ebe159c82e32121328cbe22b',
-    addedOn: new Date(now - 12 * 3600 * 1000)
+    addedOn: new Date(now - 12 * 3600 * 1000),
+    commentsCount: 0,
+    likes: 0,
   });
   Posts.insert({
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis amet, labore, praesentium saepe hic aperiam dolores perspiciatis. Magnam modi beatae, dolore minima eveniet, unde, iure eos ea explicabo placeat perferendis.</div>',
     userId: sinsu._id,
     addedBy: sinsu.profile.name,
     image: 'https://images.unsplash.com/photo-1455525928928-837c99714248?crop=entropy&fit=crop&fm=jpg&h=875&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1725',
-    addedOn: new Date(now - 12 * 3600 * 1000)
+    addedOn: new Date(now - 12 * 3600 * 1000),
+    commentsCount: 0,
+    likes: 0,
   });
 }
 });

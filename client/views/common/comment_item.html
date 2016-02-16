@@ -1,0 +1,31 @@
+<template name="commentItem">
+  
+
+  <div class="comment" id="{{_id}}">
+    <a href="" class="avatar"><img class="ui avatar image" src="{{getProfilePic(userId)}}"></a>
+    <div class="content">
+      <a href="#" class="author">
+       {{getUser(userId)}}
+      </a>
+      <div class="metadata">
+        <span class="date">{{prettydate addedOn live=true}}</span>
+      </div>
+      <div class="text">
+       {{body}}
+      </div>
+      <div class="actions">
+        <a class="reply">Reply</a>
+      </div>
+    </div>
+
+      <!-- wait to implement -->
+     <!--  <div class="comment-meta">
+        <span><a href="#">Like</a></span>
+        <span><a href="#">Reply</a></span>
+        <span><a href="#"><i class="material-icons comment-like">thumb_up</i> {{likes}}</a></span>
+        <span class="js-to-comments"><a href="#">{{comments.length}} Replies</a></span>
+        <span> - <date>{{formatDate comment.commentDate}}</date></span>
+      </div> -->
+    </div>
+
+    </template>
