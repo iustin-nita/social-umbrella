@@ -12,9 +12,11 @@
                 <div class="right floated meta">{{prettydate addedOn live=true}}</div>
                 <img class="ui avatar image" src="{{getProfilePic(userId)}}"> {{getUser(userId)}}
               </div>
+              {{#if description}}
               <div class="content">
                 {{description}}
               </div>
+              {{/if}}
               <div class="image">
                 <img src="{{image}}">
               </div>
@@ -33,14 +35,15 @@
                 </div> -->
                 <!-- {{#if comments}} -->
                 {{>commentForm}}
-                <div class="ui comments">
-                <!-- {{#with commentItem}} -->
-                  {{#each comments}}
-                   {{>commentItem}}
-                  {{/each}}
-                <!-- {{/with}} -->
-                </div>
-                <!-- {{/if}} -->
+                {{#if comments}}
+                  <div class="ui comments">
+                  <!-- {{#with commentItem}} -->
+                    {{#each comments}}
+                     {{>commentItem}}
+                    {{/each}}
+                  <!-- {{/with}} -->
+                  </div>
+                {{/if}}
               </div>
             </div>
         {{/each}}
