@@ -38,7 +38,12 @@
   });
 
   Template.editPost.events({
-    'click .delete-post-image': function() {
+    'click .delete-post-image': function(event, template) {
+      event.preventDefault();
+      var postId = this._id;
+      var post = Posts.findOne({_id: postId});
+      Posts.update({_id:postId}, {$set: {image: ''} });
+      console.log(post);
 
     },
 
@@ -68,35 +73,31 @@
     'submit .js-edit-post' : function(event) {
       var source, userId, image, description, post;
       userId = Meteor.userId();
+      var currentPostId = this._id;
       description = event.target[0].value;
         image = Session.get('imageURL');
         console.log(image);
         // console.log(event);
-        if (Meteor.user()) {
           if (description || image) {
             post = {
               image: image,
               description: description,
-              likes: 0,
-              likers: [],
-              commentsCount: 0,
+              editedOn: new Date(),
               };
               console.log(post);
-            // Meteor.call('insertPost', post, function (error, result) {
-            //     if (error){
-            //       console.log(error.reason);
-            //       sAlert.error("Oops! Something went wrong!"+error.reason+"", {effect:'genie'});
-            //     } else {
-            //       event.target[0].value='';
-            //     }
-            // });
+           console.log(currentPostId);
+           Posts.update(currentPostId, {$set: post}, function(error) { 
+            if (error) {
+           console.log(error); 
+         } else {
+             FlowRouter.go('/');  
+           }
+           });
             event.target[0].value = '';
           } else {
             sAlert.info("Please write something cool.", {effect:'genie'});
           }
-        } else {
-        sAlert.info('You should <a href="/login" class="underline">log in!</a>', {effect:'genie', html: true});
-        }
+
       return false;
     },
 
