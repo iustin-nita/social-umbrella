@@ -24,6 +24,9 @@ a {
   color: $green;
 }
 
+.main-container {
+  padding-top: 100px;
+}
 nav {
   background: $red;
       // background: url("https://d3k90kvix375hb.cloudfront.net/assets/home/hero-background-gradient-dark.png"),url("home/hero-background-gradient-light.png"),-webkit-linear-gradient(top, #58488a, #5d64d0),#58488a fixed;

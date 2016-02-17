@@ -21,6 +21,9 @@
       var post = Posts.findOne({_id: postId}) || {};
       return post;
     },
+    comments: function() {
+      return Comments.find({postId: this._id});
+    },
 
     isPostAuthor: function() {
       var user = Meteor.users.findOne({_id: user_id});

@@ -1,61 +1,45 @@
 <template name="post">
 	{{#if Template.subscriptionsReady}}
 	{{#with post}}
-	<div class="row postPage" id="{{this._id}}">
-		<div class="col s12">
-
-		
-			<!-- <div class="card center">
-				<div class="card-image waves-effect waves-block waves-light">
-					<p><a target="_blank" href="{{source}}">{{source}} </a></p>
-				</div>
-				<div class="card-content">
-					<div class="card-title grey-text text-darken-4 clearfix">
-						<img src="{{image}}" class="activator logo" alt="">
-					</div>
-					<br>
-					<p>
-						<a href="#" class="btn like {{active}}"><i class="material-icons">plus_one</i></a>
-					</p>
-					<br>
-					<p>Likes: {{likes}}</p>
-					<p><a href="#" class="btn-flat js-set-post-filter"> {{getUser(addedBy)}}</a></p>
-					<p><a class="btn-flat" href="/posts">Back to posts</a></p>
-				</div>
-				<div class="card-reveal ">
-					<span class="card-title grey-text text-darken-4">{{description}}<i class="material-icons right">close</i></span>
-					<p>Here is some more information about this product that is only revealed once clicked on.</p>
-					<p><a href="#">{{formatDate addedOn}}</a></p>
-					<p><a href="#" class="btn js-del-post">Delete this post</a></p>
-					<p>Likes: {{likes}}</p>
-				</div>
-			</div> -->
-
-
-			<div class="card" id="{{this._id}}">
-			 <div class="card-content">
-			    <p>
-			      <div class="chip">
-			        <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAASAAAAAJDkwMmFlMzY3LTc2MzEtNGQ3NS1hMWNmLWM5Yjg0NTk3YTVkMA.jpg" alt="Contact Person">
-			        Iustin Nita
-			      </div>
-			    </p>
-			    <p>{{description}}</p>
-			  </div>
-			  <div class="card-image">
-			  <a href="/post/{{_id}}">
-			    <img src="{{image}}">
-			    </a>
-			    <span class="card-title"><span class="btn like {{active}}"><i class="material-icons">thumb_up</i></span></span>
-			  </div>
-			 
-			  <div class="card-action">
-			    <a href="{{source}}" class="js-del-post" target="_blank">Delete</a>
-			  </div>
-			</div>
-			{{>comments}}
-		</div>
-	</div>
+		<div class="ui fluid card post-page-card" id="{{_id}}">
+              <div class="content">
+                <div class="right floated meta">{{prettydate addedOn live=true}}</div>
+                <img class="ui avatar image" src="{{getProfilePic(userId)}}" data-title="Elliot Fu" data-content="Elliot has been a member since July 2012"> {{getUser(userId)}}
+              </div>
+              {{#if description}}
+              <div class="content">
+                {{description}}
+              </div>
+              {{/if}}
+              <div class="image">
+                <img src="{{image}}">
+              </div>
+              <div class="content">
+                <span class="right floated">
+                  <i class="heart outline like {{active}} icon"></i>
+                  {{likes}} likes
+                </span>
+                <i class="comment icon"></i>
+                {{commentsCount}} comments
+              </div>
+              <div class="extra content">
+                <!-- <div class="ui large transparent left icon input">
+                  <i class="heart outline icon"></i>
+                  <input type="text" placeholder="Add Comment...">
+                </div> -->
+                <!-- {{#if comments}} -->
+                {{>commentForm}}
+                {{#if comments}}
+                  <div class="ui comments">
+                  <!-- {{#with commentItem}} -->
+                    {{#each comments}}
+                     {{>commentItem}}
+                    {{/each}}
+                  <!-- {{/with}} -->
+                  </div>
+                {{/if}}
+              </div>
+            </div>
 	{{/with}}
 	{{else}}
 	{{>loading}}

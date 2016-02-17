@@ -9,7 +9,13 @@ Template.app.events({
 	},
 });
 
-
+jQuery(document).ready(function($) {
+	
 $('#addPostForm .menu .item')
   .tab()
 ;
+
+$('.avatar')
+  .popup()
+;
+});
