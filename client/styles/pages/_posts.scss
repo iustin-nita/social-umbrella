@@ -34,3 +34,26 @@
 		margin-right: 15px;
 	}
 }
+.js-edit-post {
+	.edit-page {
+		.six.wide {
+			text-align: center!important;
+		}
+		.field:last-child, .fields:last-child .field {
+			margin-bottom: 1em;
+		}
+	}
+
+
+	.delete-post-image {
+	    position: absolute;
+		right: 25px;
+		top: 25px;
+		display: none;
+	}
+	.image:hover {
+		.delete-post-image {
+			display: block;
+		}
+	}
+}
