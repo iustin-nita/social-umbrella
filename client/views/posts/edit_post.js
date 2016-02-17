@@ -1,5 +1,5 @@
 // post template
-  Template.post.onCreated(function() {
+  Template.editPost.onCreated(function() {
     var self = this;
     self.autorun(function() {
       var postId = FlowRouter.getParam('postId');
@@ -7,7 +7,7 @@
     });
   });
   
-  Template.post.helpers({
+  Template.editPost.helpers({
     post: function() {
       var postId = FlowRouter.getParam('_id');
       var post = Posts.findOne({_id: postId}) || {};
@@ -37,7 +37,7 @@
     }
   });
 
-  Template.post.events({
+  Template.editPost.events({
 
     'click .js-del-post': function (event) {
       var post_id = this._id;
