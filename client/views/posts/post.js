@@ -57,7 +57,7 @@
           );
         $(this).removeClass('active').addClass('inactive');
       } else {
-          Materialize.toast('Please log in to like posts', 4000) // 4000 is the duration of the toast
+      sAlert.info("You need to <a href='/login'>log in </a> first.", {effect:'genie', html: true});
       }
 
     },

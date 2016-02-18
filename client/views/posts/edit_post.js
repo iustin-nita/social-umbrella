@@ -1,12 +1,3 @@
-// post template
-Template.editPost.onCreated(function() {
-  var self = this;
-  self.autorun(function() {
-    var postId = FlowRouter.getParam('postId');
-    self.subscribe('singlePost', postId);  
-  });
-});
-
 Template.editPost.helpers({
   post: function() {
     var postId = FlowRouter.getParam('_id');
@@ -38,20 +29,22 @@ Template.editPost.helpers({
 });
 
 Template.editPost.events({
+
   'click .delete-post-image': function(event, template) {
     event.preventDefault();
     var postId = this._id;
     var post = {id: postId};
-    Meteor.call('deleteImage', post, function (error, result) {
-      if(error) {
-        console.log(error);
-      } else {
-        console.log('nice');
-      }
-    });
-    
-    console.log(post);
-
+    if(Meteor.user()) {
+      Meteor.call('deleteImage', post, function (error, result) {
+        if(error) {
+          console.log(error);
+        } else {
+          console.log('nice');
+        }
+      });
+    } else {
+      sAlert.warning("You need to be the post author.", {effect:'genie'});
+    }
   },
 
   'click .js-del-post': function (event) {
@@ -90,26 +83,31 @@ Template.editPost.events({
   } else {
     console.log('image is undefined');
   }
-  if (description || image) {
-    post = {
-      id: currentPostId,
-      image: image,
-      description: description,
-      editedOn: new Date(),
-    };
-    console.log(post);
-    Meteor.call('editPost', post, function (error, result) {
-      if(error) {
-        console.log(error);
-      } else {
-        console.log('all good');
-      }
-    });
-    event.target[0].value = '';
-  } else {
-    sAlert.info("Please write something cool.", {effect:'genie'});
-  }
+  if(userId) {
 
+
+    if (description || image) {
+      post = {
+        id: currentPostId,
+        image: image,
+        description: description,
+        editedOn: new Date(),
+      };
+      console.log(post);
+      Meteor.call('editPost', post, function (error, result) {
+        if(error) {
+          console.log(error);
+        } else {
+          console.log('all good');
+        }
+      });
+      event.target[0].value = '';
+    } else {
+      sAlert.info("Please write something cool.", {effect:'genie'});
+    }
+  } else {
+    sAlert.warning("You need to be the post author in order to edit it", {effect:'genie'});
+  }
   return false;
 },
 

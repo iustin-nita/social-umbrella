@@ -2,35 +2,35 @@
 	{{#if Template.subscriptionsReady}}
 	{{#with post}}
   <form class="form ui js-edit-post">
-  <div class="ui card post-page-card edit-page" id="{{_id}}">
-    <div class="content">
-      <div class="right floated meta">{{prettydate addedOn live=true}}</div>
-      <img class="ui avatar image" src="{{getProfilePic(userId)}}" data-title="Elliot Fu" data-content="Elliot has been a member since July 2012"> {{getUser(userId)}}
+    <div class="ui card post-page-card edit-page" id="{{_id}}">
+      <div class="content">
+        <div class="right floated meta">{{prettydate addedOn live=true}}</div>
+        <img class="ui avatar image" src="{{getProfilePic(userId)}}" data-title="Elliot Fu" data-content="Elliot has been a member since July 2012"> {{getUser(userId)}}
 
-    </div>
-    
+      </div>
+
       <div class="content">
         <div class="field">
           <textarea value="{{description}}" rows="2"></textarea>
         </div>
       </div>
-     {{#if image}}
+      {{#if image}}
       <div class="image">
         <img src="{{image}}">
         <a href="#" class="mini ui button negative delete-post-image">Delete image</a>
       </div>
       {{/if}}
-     <div class="ui divider"></div>
-       <div class="ui centered grid padding-bottom">
+      <div class="ui divider"></div>
+      <div class="ui centered grid padding-bottom">
         <div class="six wide tablet eight wide computer column">
-     {{#unless image}}
+         {{#unless image}}
          <div class="field">
-            <p class="file">
-              <input type="file" class="post-image" name="postImage" id="file" />
-              <label for="file">Upload a image</label>
-            </p>
+          <p class="file">
+            <input type="file" class="post-image" name="postImage" id="file" />
+            <label for="file">Upload a image</label>
+          </p>
         </div>
-      {{/unless}}
+        {{/unless}}
         <div class="field center">
           <button class="ui primary small button" type="submit">Save changes</button>
           <button class="mini ui button negative js-del-post">Delete post</button>
@@ -46,20 +46,10 @@
       <i class="comment icon"></i>
       {{commentsCount}} comments
     </div>
-<!--     <div class="extra content">
-      {{>commentForm}}
-      {{#if comments}}
-      <div class="ui comments">
-        {{#each comments}}
-        {{>commentItem}}
-        {{/each}}
-      </div>
-      {{/if}}
-    </div> -->
   </div>
-  </form>
-  {{/with}}
-  {{else}}
-  {{>loading}}
-  {{/if}}
+</form>
+{{/with}}
+{{else}}
+{{>loading}}
+{{/if}}
 </template>
