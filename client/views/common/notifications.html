@@ -17,16 +17,16 @@
 
 <template name="notificationItem">
 <div class="event">
-  <div class="label"><img src="{{getProfilePic(userId)}}" alt="{{getUser(userId)}}"></div>
+  <div class="label"><img src="{{getProfilePic(commenterId)}}" alt="{{getUser(commenterId)}}"></div>
   <div class="content">
     <div class="summary">
-      <a>{{getUser(userId)}}</a> commented on your <a class="notificationLink" href="{{pathFor 'post' _id=postId}}">post</a>
+      <a class="capitalize">{{getUser(commenterId)}}</a> commented on your <a class="notificationLink" href="{{pathFor 'post' _id=postId}}">post</a>
       <div class="date">
         {{prettydate when live=true}}
       </div>
     </div>
     <div class="extra text">
-      {{getComment(commenterId)}}
+      {{getComment(commentId)}}
     </div>
   </div>
 </div>
