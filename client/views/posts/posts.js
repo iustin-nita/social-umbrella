@@ -12,7 +12,7 @@
 		return { 'class': 'easy-search-input', 'placeholder': 'Start searching...' };
 	},
 	posts: function() {
-		return Posts.find({}, {sort:{addedOn: 1}, limit: Session.get("postLimit")});
+		return Posts.find({}, {sort:{addedOn: -1}, limit: Session.get("postLimit")});
 	},
 	comments: function() {
 		return Comments.find({postId: this._id});
@@ -57,15 +57,6 @@
 			$('#'+post_id).hide('slow', function() {
 				posts.remove({"_id": post_id});
 			});
-		},
-		'click .js-rate-post' : function (event) {
-			var rating = $(event.currentTarget).data('userrating');
-			var post_id = this.id;
-			console.log(post_id);
-
-			posts.update({_id: post_id},
-				{$set: {rating: rating}}
-				);
 		},
 
 		'click .js-set-post-filter' : function(event) {

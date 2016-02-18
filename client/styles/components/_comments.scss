@@ -20,6 +20,16 @@
 
 
 .add_comment_form {
+	&:hover{
+		cursor: pointer;
+	}
+	> .input, input {
+		cursor: pointer;
+		width: 100%;
+		&:focus {
+			cursor: text;
+		}
+	}
 	.commentBody {
 		border: none;
 		padding: 0 15px;
