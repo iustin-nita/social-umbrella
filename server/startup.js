@@ -23,7 +23,6 @@ Meteor.startup(function() {
     profile: { name: 'Cookie Black', firstName: 'Cookie', lastName: 'Black', profilePic: '/images/user7.png', gender: 'f' }
   });
   var cookie = Meteor.users.findOne(cookieId);
-  
 
   var catId = Posts.insert({
     description: 'Super cool',

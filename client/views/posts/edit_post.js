@@ -41,8 +41,15 @@ Template.editPost.events({
   'click .delete-post-image': function(event, template) {
     event.preventDefault();
     var postId = this._id;
-    var post = Posts.findOne({_id: postId});
-    Posts.update({_id:postId}, {$set: {image: ''} });
+    var post = {id: postId};
+    Meteor.call('deleteImage', post, function (error, result) {
+      if(error) {
+        console.log(error);
+      } else {
+        console.log('nice');
+      }
+    });
+    
     console.log(post);
 
   },

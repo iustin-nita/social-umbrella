@@ -1,7 +1,7 @@
 <template name="post">
 	{{#if Template.subscriptionsReady}}
 	{{#with post}}
-		<div class="ui fluid card post-page-card" id="{{_id}}">
+		<div class="ui card post-page-card" id="{{_id}}">
               <div class="content">
                 <div class="right floated meta">{{prettydate addedOn live=true}}</div>
                 <div class="right floated meta edit-button"><a href="/post/{{_id}}/edit"><i class="edit icon"></i> Edit</a></div>

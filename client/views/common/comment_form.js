@@ -34,7 +34,6 @@ Template.commentForm.events({
         body: $body.val(),
         postId: template.data._id,
         userId: userId,
-        userName: userName
         };
 
       var errors = {};
