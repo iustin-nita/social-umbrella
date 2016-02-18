@@ -29,6 +29,10 @@ Template.editPost.helpers({
 });
 
 Template.editPost.events({
+  'paste textarea': function(event) {
+    console.log('paste');
+    console.log(event);
+  },
 
   'click .delete-post-image': function(event, template) {
     event.preventDefault();
