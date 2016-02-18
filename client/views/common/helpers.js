@@ -15,7 +15,6 @@ Template.registerHelper("getProfilePic", function (user_id) {
 				return "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=square";
 			} 
 			else if(user.profile) {
-				console.log(user);
 				return user.profile.profilePic;
 			}
 		}  else if(user.profile) {
