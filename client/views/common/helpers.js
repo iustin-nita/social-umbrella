@@ -32,3 +32,10 @@ Template.registerHelper("getLink", function (user_id) {
 	}
 
 });
+
+Template.registerHelper("notifications", function(user_id) {
+	var user = Meteor.users.findOne({_id: user_id});
+	if (user) {
+		Notifications.find();
+	}
+});
