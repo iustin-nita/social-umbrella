@@ -15,16 +15,6 @@ Template.commentForm.events({
       // alert(Meteor.user().profile);
       body = event.target[0].value;
       userId = Meteor.userId();
-      user = Meteor.users.findOne({_id: userId});
-          if (user) {
-            if (user.services) {
-              userName = user.services.facebook.name;
-            } else {
-              userName = user.profile.name;
-            }
-          } else {
-            return 'anonymous';
-          }
       // post_id = this._id;
       // console.log(event.target[0].value);
       // console.log(template);
