@@ -25,6 +25,7 @@
           if (description || image) {
             post = {
               image: image,
+              userId: userId,
               description: description,
               likes: 0,
               likers: [],
