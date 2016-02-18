@@ -11,15 +11,17 @@
          {{/if}}
         <a href="/posts" class="item">News feed</a>
         {{#if currentUser}}
-        <div class="ui simple dropdown item">
-          My account <i class="dropdown icon"></i>
-          <div class="menu">
-            <a class="item" href="#">Profile</a>
-            <div class="divider"></div>
-            <a class="item log-out" href="#">Log out</a>
+          <div class="ui simple dropdown item">
+            My account <i class="dropdown icon"></i>
+            <div class="menu">
+              <a class="item" href="#">Profile</a>
+              <div class="divider"></div>
+              <a class="item log-out" href="#">Log out</a>
+            </div>
           </div>
-        </div>
-        {{>notifications}}
+
+            {{>notifications}}
+
         {{/if}}
       </div>
     </div>

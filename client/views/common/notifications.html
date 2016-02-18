@@ -1,13 +1,13 @@
 <template name="notifications">
 <div class="ui simple dropdown item">
   Notifications <i class="dropdown icon"></i>
-    <div class="menu">
+    <div class="ui feed menu">
     {{#if notificationCount}}
         {{#each notifications}}
           {{> notificationItem}}
         {{/each}}
-      <div class="divider"></div>
-      <a class="item" href="#">Profile</a>
+      <!-- <div class="divider"></div> -->
+      <!-- <a class="item" href="#">Profile</a> -->
       {{else}}
         <li class="item"><span>No Notifications</span></li>
       {{/if}}
@@ -16,7 +16,21 @@
 </template>
 
 <template name="notificationItem">
-    <a class="item" href="{{notificationPostPath}}">
-      <strong>{{user}}</strong> commented on your post
-  </a> 
+<div class="event">
+  <div class="label"><img src="{{getProfilePic(userId)}}" alt="{{getUser(userId)}}"></div>
+  <div class="content">
+    <div class="summary">
+      <a>{{getUser(userId)}}</a> commented on your <a class="notificationLink" href="{{pathFor 'post' _id=postId}}">post</a>
+      <div class="date">
+        {{prettydate when live=true}}
+      </div>
+    </div>
+    <div class="extra text">
+      {{getComment(commenterId)}}
+    </div>
+  </div>
+</div>
+<!--     <a class="item" href="{{pathFor 'post' _id=postId}}">
+      <strong>{{getUser(userId)}}</strong> commented on your post
+  </a>  -->
 </template>

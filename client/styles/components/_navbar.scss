@@ -12,3 +12,18 @@
 .currentUser {
 	text-transform: capitalize;
 }
+
+.ui.dropdown {
+	.ui.feed.menu {
+		max-height: 350px;
+		overflow-y: auto;
+		>.event {
+			padding-left: 1em;
+			padding-right: 1em;
+			padding-top: .5em;
+			&:hover {
+				background: #fafafa;
+			}
+		}
+	}
+}

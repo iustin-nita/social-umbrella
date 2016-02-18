@@ -7,16 +7,23 @@ Template.notifications.helpers({
 		return Notifications.find({
 			userId: Meteor.userId(), read: false
 		}).count();
-	} });
+	} ,
+	
+
+});
 
 Template.notificationItem.helpers({
  notificationPostPath: function() {
-	return Router.routes.postPage.path({_id: this.postId}); 
+	return FlowRouter.routes.post.path({_id: this.postId}); 
+	},
+	getComment: function(commentId) {
+		console.log(commentId);
+		return Comments.findOne({_id:commentId}).body;
 	}
 });
 
 Template.notificationItem.events({
- 'click a': function() {
+ 'click .notificationLink': function() {
 	Notifications.update(this._id, {$set: {read: true}}); 
 }
 });
