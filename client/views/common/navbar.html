@@ -2,7 +2,7 @@
   <div class="ui fixed inverted menu">
       <div class="ui container main-navigation">
       {{#if currentUser}}
-        <a href="#" class="header item">
+        <a href="/user/{{currentUser._id}}" class="header item">
           <img class="user-profile-picture logo" src="{{getProfilePic(currentUser._id)}}">
           <span class="currentUser">Hi, {{getUser(currentUser._id)}}</span>
         </a>

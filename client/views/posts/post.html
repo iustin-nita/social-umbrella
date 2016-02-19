@@ -1,49 +1,44 @@
 <template name="post">
 	{{#if Template.subscriptionsReady}}
 	{{#with post}}
-		<div class="ui card post-page-card" id="{{_id}}">
-              <div class="content">
-                <div class="right floated meta">{{prettydate addedOn live=true}}</div>
-                {{#if isPostAuthor}}<div class="right floated meta edit-button"><a href="/post/{{_id}}/edit"><i class="edit icon"></i> Edit</a></div>{{/if}}
-                <img class="ui avatar image" src="{{getProfilePic(userId)}}" data-title="Elliot Fu" data-content="Elliot has been a member since July 2012"> {{getUser(userId)}}
+  <div class="ui card post-page-card" id="{{_id}}">
+    <div class="content">
+      <div class="right floated meta">{{prettydate addedOn live=true}}</div>
+      {{#if isPostAuthor}}<div class="right floated meta edit-button"><a href="/post/{{_id}}/edit"><i class="edit icon"></i> Edit</a></div>{{/if}}
+      <img class="ui avatar image" src="{{getProfilePic(userId)}}" data-title="Elliot Fu" data-content="Elliot has been a member since July 2012"> {{getUser(userId)}}
 
-              </div>
-              {{#if description}}
-              <div class="content">
-                {{description}}
-              </div>
-              {{/if}}
-              <div class="image">
-                <img src="{{image}}">
-              </div>
-              <div class="content">
-                <span class="right floated">
-                  <i class="heart like {{active}} icon"></i>
-                  {{likes}} likes
-                </span>
-                <i class="comment icon"></i>
-                {{commentsCount}} comments
-              </div>
-              <div class="extra content">
-                <!-- <div class="ui large transparent left icon input">
-                  <i class="heart outline icon"></i>
-                  <input type="text" placeholder="Add Comment...">
-                </div> -->
-                <!-- {{#if comments}} -->
-                {{>commentForm}}
-                {{#if comments}}
-                  <div class="ui comments">
-                  <!-- {{#with commentItem}} -->
-                    {{#each comments}}
-                     {{>commentItem}}
-                    {{/each}}
-                  <!-- {{/with}} -->
-                  </div>
-                {{/if}}
-              </div>
-            </div>
-	{{/with}}
-	{{else}}
-	{{>loading}}
-	{{/if}}
+    </div>
+    {{#if description}}
+    <div class="content">
+      {{description}}
+    </div>
+    {{/if}}
+    <div class="image">
+      <img src="{{image}}">
+    </div>
+    <div class="content">
+      <span class="right floated">
+        <i class="heart like {{active}} icon"></i>
+        {{likes}} likes
+      </span>
+      <i class="comment icon"></i>
+      {{commentsCount}} comments
+    </div>
+    <div class="extra content">
+      {{>commentForm}}
+      {{#if comments}}
+      <div class="ui comments">
+        <!-- {{#with commentItem}} -->
+        {{#each comments}}
+        {{>commentItem}}
+        {{/each}}
+        <!-- {{/with}} -->
+      </div>
+      {{/if}}
+    </div>
+  </div>
+  {{/with}}
+  {{else}}
+  {{>loading}}
+  {{/if}}
 </template>

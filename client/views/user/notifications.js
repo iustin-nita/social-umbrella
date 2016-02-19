@@ -1,7 +1,7 @@
 Template.notifications.helpers({ 
 	notifications: function() {
 	return Notifications.find({
-		userId: Meteor.userId(), read: false
+		userId: Meteor.userId()
 	}); },
 	notificationCount: function(){
 		return Notifications.find({
@@ -19,7 +19,8 @@ Template.notificationItem.helpers({
 	getComment: function(commentId) {
 		console.log(commentId);
 		return Comments.findOne({_id:commentId}).body;
-	}
+	},
+
 });
 
 Template.notificationItem.events({

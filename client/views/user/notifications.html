@@ -1,23 +1,21 @@
 <template name="notifications">
 <div class="ui simple dropdown item">
-  Notifications <a class="ui teal circular label">{{notificationCount}}</a>
+  Notifications 
+  
+  {{#if notificationCount}}<a class="ui teal circular label">{{notificationCount}}</a> {{/if}}
     <div class="ui feed menu">
-    {{#if notificationCount}}
-    
         {{#each notifications}}
           {{> notificationItem}}
         {{/each}}
       <!-- <div class="divider"></div> -->
       <!-- <a class="item" href="#">Profile</a> -->
-      {{else}}
-        <li class="item"><span>No Notifications</span></li>
-      {{/if}}
     </div>
+   
 </div>
 </template>
 
 <template name="notificationItem">
-<div class="event">
+<div class="event {{status}}">
   <div class="label"><img src="{{getProfilePic(commenterId)}}" alt="{{getUser(commenterId)}}"></div>
   <div class="content">
     <div class="summary">
