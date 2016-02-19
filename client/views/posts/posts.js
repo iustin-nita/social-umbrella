@@ -50,10 +50,10 @@
 });
 
 	Template.posts.events({
-		'mouseenter .ui.avatar.image' : function() {
-			$('.avatar.image').popup();
-			console.log('asdas');
-		},
+		// 'mouseenter .ui.avatar.image' : function(event) {
+		// 	$(event.target).popup();
+		// 	console.log(this);
+		// },
 		'click .js-del-post': function (event) {
 			var post_id = this._id;
 			console.log(post_id);
