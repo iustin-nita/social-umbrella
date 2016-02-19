@@ -4,17 +4,6 @@
 	    self.subscribe('posts');  
 	  });
 	});
-
-	Template.posts.rendered = function() {
-
-		$('#addPostForm .menu .item')
-		  .tab()
-		;
-
-		$('.avatar').popup();
-		$('.avatar').css('height', '100px');
-		$('.fuck').height(100);
-};
 	
 	//posts template
 	Template.posts.helpers({
@@ -61,7 +50,10 @@
 });
 
 	Template.posts.events({
-
+		'mouseenter .ui.avatar.image' : function() {
+			$('.avatar.image').popup();
+			console.log('asdas');
+		},
 		'click .js-del-post': function (event) {
 			var post_id = this._id;
 			console.log(post_id);

@@ -6,7 +6,20 @@
 		.user-profile-picture	 {
 			margin-right: 10px!important;
 		}
+		@media screen and (max-width: 480px) {
+			> .item {
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+		}
+		@media screen and (max-width: 360px) {
+			> .item {
+				padding-left: 5px;
+				padding-right: 5px;
+			}
+		}
 	}
+
 }
 
 .currentUser {
@@ -15,7 +28,7 @@
 
 .ui.dropdown {
 	.ui.feed.menu {
-		max-height: 350px;
+		max-height: 370px;
 		overflow-y: auto;
 		left: auto;
 		right: 0;
@@ -43,3 +56,9 @@
 	}
 }
 
+.show-more.button {
+    margin: 10px auto;
+    display: block;
+    width: 150px;
+    text-align: center;
+}
