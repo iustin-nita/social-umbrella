@@ -1,6 +1,7 @@
 // infinite scroll
   Session.set("postLimit", 3);
   lastScrollTop = 0;
+  
   $(window).scroll(function(event) {
 
     // test if we are near the bottom of the window
@@ -17,3 +18,5 @@
    }
 
  });
+
+  Session.set("notificationsLimit", 5);

@@ -1,15 +1,22 @@
 Template.notifications.helpers({ 
 	notifications: function() {
 	return Notifications.find({
-		userId: Meteor.userId()
-	}); },
+		userId: Meteor.userId()}, {sort: {date: -1}, limit: Session.get("notificationsLimit")}
+	 );
+},
 	notificationCount: function(){
 		return Notifications.find({
 			userId: Meteor.userId(), read: false
 		}).count();
 	} ,
-	
 
+});
+
+Template.notifications.events({
+	'click .show-more': function (event) {
+		event.preventDefault();
+		Session.set('notificationsLimit', Session.get('notificationsLimit')+5);
+	}
 });
 
 Template.notificationItem.helpers({

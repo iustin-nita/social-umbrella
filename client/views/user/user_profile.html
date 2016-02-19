@@ -1,6 +1,33 @@
 <template name="userProfile">
 {{#if Template.subscriptionsReady}}
 	{{#with user}}
+
+	<div class="ui special cards">
+  <div class="card">
+    <div class="blurring dimmable image">
+      <div class="ui dimmer">
+        <div class="content">
+          <div class="center">
+            <div class="ui inverted button">Add Friend</div>
+          </div>
+        </div>
+      </div>
+      <img src="{{getProfilePic(user._id)}}">
+    </div>
+    <div class="content">
+      <a class="header">Team Fu</a>
+      <div class="meta">
+        <span class="date">Create in Sep 2014</span>
+      </div>
+    </div>
+    <div class="extra content">
+      <a>
+        <i class="users icon"></i>
+        2 Members
+      </a>
+    </div>
+  </div>
+  </div>
 		  {{#with posts}}
 		  <div class="ui column">
 		    {{>addPostForm}}

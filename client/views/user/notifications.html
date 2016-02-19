@@ -9,6 +9,7 @@
         {{/each}}
       <!-- <div class="divider"></div> -->
       <!-- <a class="item" href="#">Profile</a> -->
+      <a href="#" class="ui show-more button primary">Show more</a>
     </div>
    
 </div>
@@ -19,7 +20,7 @@
   <div class="label"><img src="{{getProfilePic(commenterId)}}" alt="{{getUser(commenterId)}}"></div>
   <div class="content">
     <div class="summary">
-      <a class="capitalize">{{getUser(commenterId)}}</a> commented on your <a class="notificationLink" href="{{pathFor 'post' _id=postId}}">post</a>
+      <a href="/user/{{commenterId}}" class="capitalize">{{getUser(commenterId)}}</a> commented on your <a class="notificationLink" href="{{pathFor 'post' _id=postId}}">post</a>
       <div class="date">
         {{prettydate when live=true}}
       </div>
