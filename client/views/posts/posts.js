@@ -4,6 +4,17 @@
 	    self.subscribe('posts');  
 	  });
 	});
+
+	Template.posts.rendered = function() {
+
+		$('#addPostForm .menu .item')
+		  .tab()
+		;
+
+		$('.avatar').popup();
+		$('.avatar').css('height', '100px');
+		$('.fuck').height(100);
+};
 	
 	//posts template
 	Template.posts.helpers({

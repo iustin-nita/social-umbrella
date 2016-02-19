@@ -27,3 +27,16 @@
 		},
 
 	});
+
+	Template.navbar.events({
+		'click .ui.dropdown.user-menu': function () {
+			$('.ui.dropdown.user-menu').dropdown('show');
+		},
+		'click .ui.dropdown.notifications-menu': function() {
+		$('.ui.dropdown.notifications-menu').dropdown({
+			selector: {
+				item         : '.event',
+			}
+		});
+	}
+	});

@@ -9,7 +9,9 @@ Template.userProfile.helpers({
 		// ...
 	},
 	posts: function() {
-		return Posts.find({userId: Meteor.userId()}, {sort:{addedOn: -1}, limit: Session.get("postLimit")});
+		var userId = FlowRouter.getParam('_id');
+      	var user = Meteor.users.findOne({_id: userId}) || {};
+		return Posts.find({userId: userId}, {sort:{addedOn: -1}, limit: Session.get("postLimit")});
 	},
 	user: function() {
       var userId = FlowRouter.getParam('_id');

@@ -17,13 +17,29 @@
 	.ui.feed.menu {
 		max-height: 350px;
 		overflow-y: auto;
+		left: auto;
+		right: 0;
 		>.event {
 			padding-left: 1em;
 			padding-right: 1em;
 			padding-top: .5em;
-			&:hover {
-				background: #fafafa;
+			&.new {
+				background: #E1EFEF;
 			}
+			&.old {
+				background: #fff;
+			}
+			&:hover {
+				background: #F1F7F7;
+			}
+		}
+		
+
+		@media screen and (min-width: 480px) {
+			left: 0;
+			right: auto;
+
 		}
 	}
 }
+

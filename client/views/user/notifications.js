@@ -3,7 +3,7 @@ Template.notifications.helpers({
 	return Notifications.find({
 		userId: Meteor.userId()}, {sort: {date: -1}, limit: Session.get("notificationsLimit")}
 	 );
-},
+	},
 	notificationCount: function(){
 		return Notifications.find({
 			userId: Meteor.userId(), read: false
@@ -16,7 +16,8 @@ Template.notifications.events({
 	'click .show-more': function (event) {
 		event.preventDefault();
 		Session.set('notificationsLimit', Session.get('notificationsLimit')+5);
-	}
+	},
+	
 });
 
 Template.notificationItem.helpers({
@@ -27,6 +28,14 @@ Template.notificationItem.helpers({
 		console.log(commentId);
 		return Comments.findOne({_id:commentId}).body;
 	},
+	status: function() {
+		var notification = Notifications.findOne({_id:this._id});
+		if(notification.read === false) {
+			return 'new';
+		} else {
+			return 'old';
+		}
+	}
 
 });
 
