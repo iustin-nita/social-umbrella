@@ -29,9 +29,12 @@
 		</div>
 	</div>
 	{{#with posts}}
+	
+	{{#if isUser}}
 	<div class="ui column">
 		{{>addPostForm}}
 	</div>
+	{{/if}}
 	<div class="ui one column centered grid">
 		<div class="column posts-page">
 			{{#each posts}}

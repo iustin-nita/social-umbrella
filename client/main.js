@@ -20,13 +20,6 @@
 		}
 	});
 
-	Template.body.events({
-		'click .js-show-post-form':function(event){
-			$('.js-show-post-form').leanModal();
-			console.log(event);
-		},
-
-	});
 
 	Template.navbar.events({
 		'click .ui.dropdown.user-menu': function () {
