@@ -12,7 +12,7 @@ Template.registerHelper("getProfilePic", function (user_id) {
 		if (user.services) {
 			if(user.services.facebook) {
 				console.log('asdas');
-				return "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=square";
+				return "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
 			} 
 			else if(user.profile) {
 				return user.profile.profilePic;

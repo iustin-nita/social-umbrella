@@ -45,7 +45,8 @@ Template.register.events({
            firstName: firstName,
            lastName: lastName,
            password: password,
-           profilePic: profilePic
+           profilePic: profilePic,
+           createdOn: new Date(),
       }, function(error) {
          if (error) {
             console.log("Error: " + error.reason);

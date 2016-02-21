@@ -4,6 +4,9 @@
 
 	<div class="ui special cards">
 		<div class="card user-profile-card">
+		{{#if isUser}}
+		<a href="/user/{{user._id}}/edit" class="ui button primary">Edit profile</a>
+		{{/if}}
 			<div class="blurring dimmable image">
 				<div class="ui dimmer">
 					<div class="content">
@@ -27,6 +30,7 @@
 				</a>
 			</div>
 		</div>
+
 	</div>
 	{{#with posts}}
 	

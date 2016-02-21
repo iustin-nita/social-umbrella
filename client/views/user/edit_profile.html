@@ -1,0 +1,42 @@
+<template name="editProfile">
+{{#if Template.subscriptionsReady}}
+	{{#with user}}
+	  <form class="form ui js-edit-profile">
+	<div class="ui special cards">
+		<div class="card user-profile-card">
+			<div class="blurring dimmable image">
+				<div class="ui dimmer">
+					<div class="content">
+						<div class="center">
+							<div class="ui inverted button">Add Friend</div>
+						</div>
+					</div>
+				</div>
+				<img src="{{getProfilePic(user._id)}}">
+			</div>
+			<div class="content">
+				<span class="header capitalize">{{getUser(user._id)}}</span>
+				<div class="meta">
+					<span class="date">Create in Sep 2014</span>
+				</div>
+				<div class="field description">
+				  <textarea value="{{user.description}}" placeholder="Say something about you..." rows="2"></textarea>
+				</div>
+			</div>
+			<div class="extra content user-friends">
+				<a>
+					<i class="users icon"></i>
+					2 Members
+				</a>
+			</div>
+		</div>
+	</div>
+	<button class="button success" type="submit">Save changes</button>
+	</form>
+
+	{{/with}}
+
+	{{else}}
+		nyu
+	{{/if}}
+</template>

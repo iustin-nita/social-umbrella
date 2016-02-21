@@ -18,6 +18,7 @@ Accounts.onCreateUser(function(options, user) {
    user.profile.birthday = result.data.birthday;
    user.profile.link = result.data.link;
    user.profile.friends = result.data.friends;
+   user.profile.createdOn = new Date();
         console.log(result.data.first_name);
         console.log(result.data.last_name);
         console.log(result.data.birthday);
