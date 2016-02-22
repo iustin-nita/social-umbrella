@@ -9,7 +9,27 @@ Template.editProfile.events({
 				}
 			});
 		}
-	}
+	},
+	'click .delete-user-image': function(event, template) {
+	  event.preventDefault();
+	  var userId = FlowRouter.getParam('_id');
+		var currentUser = Meteor.userId();
+		var data ={};
+		data.profilePic = '';
+		data.userId = userId;
+		if (userId === currentUser) {
+			Meteor.call('deleteProfileImage', data, function (error, result) {
+	      if(error) {
+	        console.log(error);
+	      } else {
+	        console.log('nice');
+	      }
+	    });
+		} else {
+	    sAlert.warning("This needs to be your profile.", {effect:'genie'});
+	  }
+
+	},
 });
 
 Template.editProfile.helpers({

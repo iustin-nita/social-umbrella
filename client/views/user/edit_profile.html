@@ -13,6 +13,7 @@
 					</div>
 				</div>
 				<img src="{{getProfilePic(user._id)}}">
+				<a href="#" class="mini ui button negative delete-user-image">Delete image</a>
 			</div>
 			<div class="content">
 				<span class="header capitalize">{{getUser(user._id)}}</span>
@@ -31,7 +32,9 @@
 			</div>
 		</div>
 	</div>
-	<button class="button success" type="submit">Save changes</button>
+	<div class="field center">
+		<button class="ui button success" type="submit">Save changes</button>
+	</div>
 	</form>
 
 	{{/with}}
