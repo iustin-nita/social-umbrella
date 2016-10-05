@@ -1,7 +1,7 @@
 Template.registerHelper("getUser", function (user_id) {
 	var user = Meteor.users.findOne({_id: user_id});
 	if (user) {
-		return user.profile.name;
+		return user.profile.firstName;
 	} else {
 		return 'anonymous';
 	}

@@ -12,7 +12,7 @@
 		return { 'class': 'easy-search-input', 'placeholder': 'Start searching...' };
 	},
 	posts: function() {
-		return Posts.find({}, {sort:{addedOn: -1}, limit: Session.get("postLimit")});
+		return Posts.find({}, {sort:{addedOn: 1}, limit: Session.get("postLimit")});
 	},
 	comments: function() {
 		return Comments.find({postId: this._id});
